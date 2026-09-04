@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#09090c">
+<meta name="description" content="ZM Creative — The Digital Perspective. Art, photography, design, experiments and writing by Zarir Madon.">
+<title>ZM / THE PORTAL — The Digital Perspective</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg:#08080b;--ink:#f6f4ef;--muted:#9b9aa2;--line:rgba(255,255,255,.13);
+  --acid:#d7ff43;--violet:#a78bfa;--cyan:#65e6ff;--orange:#ff9366;
+  --mx:50vw;--my:50vh;--rot:0deg;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+::selection{background:var(--acid);color:#08080b}
+
+.noise{position:fixed;inset:0;pointer-events:none;z-index:30;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");mix-blend-mode:screen}
+.cursor{position:fixed;left:var(--mx);top:var(--my);width:360px;height:360px;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(215,255,67,.075),rgba(101,230,255,.025) 32%,transparent 70%);filter:blur(8px);transition:opacity .3s}
+.grain{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+ radial-gradient(circle at 18% 18%,rgba(167,139,250,.11),transparent 25%),
+ radial-gradient(circle at 83% 33%,rgba(101,230,255,.08),transparent 23%),
+ radial-gradient(circle at 58% 86%,rgba(255,147,102,.07),transparent 26%)}
+
+.wrap{position:relative;z-index:2;width:min(1240px,calc(100% - 32px));margin:auto}
+header{height:92px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:13px}
+.logo{width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;font:700 13px/1 "Space Grotesk";letter-spacing:-.08em;background:rgba(255,255,255,.035);position:relative;overflow:hidden}
+.logo:after{content:"";position:absolute;width:13px;height:13px;border-radius:50%;background:var(--acid);right:-2px;top:-2px;filter:blur(1px)}
+.wordmark{font:600 13px/1 "DM Mono";letter-spacing:.13em;text-transform:uppercase}
+.header-right{display:flex;align-items:center;gap:18px;color:var(--muted);font:500 11px "DM Mono";letter-spacing:.08em;text-transform:uppercase}
+.status{display:flex;align-items:center;gap:7px}.dot{width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 14px var(--acid)}
+
+.hero{min-height:calc(100vh - 92px);display:grid;align-items:center;padding:70px 0 90px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:5vw;align-items:center}
+.eyebrow{font:500 11px "DM Mono";color:var(--acid);letter-spacing:.18em;text-transform:uppercase;margin-bottom:28px}
+h1{font:800 clamp(4.5rem,12vw,10.8rem)/.78 "Space Grotesk";letter-spacing:-.095em;margin:0 0 30px;max-width:800px}
+h1 span{display:block}.outline{-webkit-text-stroke:1px rgba(246,244,239,.68);color:transparent}
+.tagline{font:600 clamp(1rem,1.7vw,1.35rem)/1.35 Manrope;max-width:550px;letter-spacing:-.035em}
+.tagline em{font-style:normal;color:var(--acid)}
+.hero-meta{display:flex;align-items:center;gap:18px;margin-top:38px;font:400 10px "DM Mono";color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.scroll-line{width:70px;height:1px;background:var(--line)}
+
+.orbit-stage{height:540px;position:relative;display:grid;place-items:center}
+.orbit{position:absolute;width:430px;height:430px;border:1px solid rgba(255,255,255,.12);border-radius:50%;animation:spin 26s linear infinite}
+.orbit.two{width:330px;height:330px;animation-direction:reverse;animation-duration:18s;border-style:dashed}
+.orbit.three{width:190px;height:190px;animation-duration:11s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.core{width:205px;height:205px;border-radius:44% 56% 52% 48%;background:
+ conic-gradient(from 30deg,var(--acid),var(--cyan),var(--violet),var(--orange),var(--acid));
+ filter:saturate(1.1);transform:rotate(var(--rot));transition:transform .2s ease;box-shadow:0 0 80px rgba(167,139,250,.16);position:relative}
+.core:before{content:"";position:absolute;inset:17px;border-radius:inherit;background:#0b0b10;mix-blend-mode:multiply}
+.core:after{content:"ZM";position:absolute;inset:0;display:grid;place-items:center;font:800 54px "Space Grotesk";letter-spacing:-.12em;color:#f8f5ec;z-index:2}
+.orbit-label{position:absolute;font:500 9px "DM Mono";letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:var(--bg);padding:6px 8px}
+.l1{top:4%;left:50%;transform:translateX(-50%)}.l2{bottom:8%;right:4%}.l3{left:0;top:46%}
+
+.section-head{display:flex;justify-content:space-between;align-items:end;padding:30px 0 18px;border-top:1px solid var(--line)}
+.kicker{font:500 10px "DM Mono";color:var(--muted);text-transform:uppercase;letter-spacing:.13em}
+.section-title{font:700 clamp(2rem,4vw,3.7rem)/.9 "Space Grotesk";letter-spacing:-.07em}
+
+.portal-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;padding-bottom:120px}
+.portal{min-height:270px;border:1px solid var(--line);position:relative;overflow:hidden;padding:25px;display:flex;flex-direction:column;justify-content:space-between;background:rgba(255,255,255,.025);transition:transform .45s cubic-bezier(.2,.8,.2,1),border-color .3s,background .3s}
+.portal:hover{transform:translateY(-7px) rotate(-.35deg);border-color:rgba(255,255,255,.32);background:rgba(255,255,255,.055)}
+.portal:nth-child(1){grid-column:span 7;min-height:380px}.portal:nth-child(2){grid-column:span 5}
+.portal:nth-child(3){grid-column:span 4}.portal:nth-child(4){grid-column:span 4}.portal:nth-child(5){grid-column:span 4}
+.portal:nth-child(6){grid-column:span 5}.portal:nth-child(7){grid-column:span 7}
+.num{font:500 10px "DM Mono";color:var(--muted);letter-spacing:.12em}
+.portal h2{font:700 clamp(2rem,4.5vw,4.8rem)/.82 "Space Grotesk";letter-spacing:-.085em;margin:0;max-width:80%}
+.portal p{font-size:12px;line-height:1.5;color:var(--muted);max-width:340px;margin:0}
+.arrow{position:absolute;right:23px;top:21px;font-size:25px;transition:transform .3s}.portal:hover .arrow{transform:translate(4px,-4px)}
+.art{position:absolute;inset:0;opacity:.9;pointer-events:none}
+.art-a{background:radial-gradient(circle at 70% 60%,transparent 0 17%,rgba(215,255,67,.65) 18% 19%,transparent 20%),conic-gradient(from 180deg at 70% 60%,transparent,var(--violet),transparent 40%),radial-gradient(ellipse at 70% 60%,rgba(101,230,255,.28),transparent 48%);mix-blend-mode:screen}
+.art-b{background:repeating-linear-gradient(115deg,transparent 0 18px,rgba(101,230,255,.15) 19px 20px),radial-gradient(circle at 40% 40%,rgba(215,255,67,.25),transparent 40%);transform:rotate(-12deg) scale(1.2)}
+.art-c{background:radial-gradient(circle at 65% 35%,rgba(255,147,102,.8) 0 5%,transparent 6%),radial-gradient(circle at 40% 65%,rgba(167,139,250,.7) 0 11%,transparent 12%),linear-gradient(135deg,transparent 45%,rgba(215,255,67,.25) 46% 47%,transparent 48%)}
+.art-d{background:linear-gradient(120deg,transparent 35%,rgba(255,255,255,.14) 36% 37%,transparent 38%),radial-gradient(ellipse,rgba(167,139,250,.35),transparent 58%);filter:blur(1px)}
+.art-e{background:conic-gradient(from 20deg at 50% 50%,rgba(215,255,67,.3),transparent 12%,rgba(255,147,102,.3) 20%,transparent 36%,rgba(101,230,255,.25) 48%,transparent 65%);animation:slowspin 15s linear infinite}
+@keyframes slowspin{to{transform:rotate(360deg)}}
+.portal .content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between}
+.portal.big .content{justify-content:flex-end}.portal.big .num{position:absolute;top:0}.portal.big h2{margin-top:auto}
+.portal:not(.big) .content{justify-content:flex-end}
+.portal:not(.big) .art{transform:scale(.85);opacity:.5;transition:transform .5s}.portal:hover .art{transform:scale(1);opacity:.8}
+
+.marquee{overflow:hidden;border-block:1px solid var(--line);white-space:nowrap;padding:15px 0;margin-bottom:110px}
+.marquee-track{display:inline-block;animation:marquee 24s linear infinite;font:500 11px "DM Mono";letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.marquee b{color:var(--acid);font-weight:500;margin:0 25px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+.connect{padding:0 0 90px}
+.connect-inner{border:1px solid var(--line);padding:clamp(25px,5vw,65px);display:grid;grid-template-columns:1fr 1fr;gap:50px;position:relative;overflow:hidden}
+.connect-inner:before{content:"";position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(215,255,67,.12),transparent 65%);right:-180px;bottom:-280px}
+.connect h2{font:700 clamp(3rem,7vw,7rem)/.78 "Space Grotesk";letter-spacing:-.09em;margin:0}
+.connect h2 span{color:var(--acid)}
+.links{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start}
+.link{border:1px solid var(--line);padding:17px 15px;display:flex;justify-content:space-between;align-items:center;font:500 11px "DM Mono";text-transform:uppercase;letter-spacing:.08em;transition:.25s}
+.link:hover{background:var(--acid);color:#08080b;border-color:var(--acid);transform:translateX(5px)}
+footer{border-top:1px solid var(--line);padding:22px 0 30px;display:flex;justify-content:space-between;color:var(--muted);font:400 9px "DM Mono";text-transform:uppercase;letter-spacing:.1em}
+
+.palette{position:fixed;inset:0;background:rgba(5,5,8,.72);backdrop-filter:blur(18px);z-index:50;display:none;place-items:start center;padding-top:15vh}
+.palette.open{display:grid}
+.pbox{width:min(620px,calc(100% - 30px));border:1px solid rgba(255,255,255,.2);background:#0c0c11;box-shadow:0 30px 100px rgba(0,0,0,.5)}
+.psearch{padding:20px;border-bottom:1px solid var(--line);font:500 13px "DM Mono";color:var(--muted)}
+.pitems{padding:8px}.pitem{display:flex;justify-content:space-between;padding:14px;font:500 11px "DM Mono";text-transform:uppercase}.pitem:hover{background:rgba(255,255,255,.08)}
+.phelp{padding:12px 20px;border-top:1px solid var(--line);color:#666;font:9px "DM Mono"}
+.cmd{position:fixed;right:22px;bottom:22px;z-index:40;width:42px;height:42px;border:1px solid var(--line);background:rgba(8,8,11,.75);backdrop-filter:blur(12px);cursor:pointer;display:grid;place-items:center;font:500 17px "DM Mono";transition:.2s}.cmd:hover{background:var(--acid);color:#08080b;border-color:var(--acid)}
+
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}.reveal.in{opacity:1;transform:none}
+
+@media(max-width:800px){
+ header{height:74px}.header-right .status{display:none}
+ .hero{min-height:auto;padding:70px 0 80px}.hero-grid{grid-template-columns:1fr;gap:20px}
+ h1{font-size:clamp(4.2rem,20vw,7.5rem)}.orbit-stage{height:390px;transform:scale(.8);margin:-25px 0 -20px}
+ .portal-grid{grid-template-columns:1fr 1fr}.portal,.portal:nth-child(n){grid-column:span 1;min-height:250px}.portal:nth-child(1),.portal:nth-child(7){grid-column:span 2}.portal:nth-child(1){min-height:330px}
+ .portal h2{font-size:clamp(1.8rem,8vw,3.5rem)}
+ .connect-inner{grid-template-columns:1fr;gap:35px}.links{grid-template-columns:1fr}
+ footer{gap:20px;flex-direction:column}
+}
+@media(max-width:480px){
+ .wrap{width:min(100% - 22px,1240px)}.wordmark{font-size:11px}.hero{padding-top:55px}
+ .orbit-stage{height:320px;transform:scale(.7);margin:-35px 0 -45px}
+ .portal-grid{gap:8px}.portal{padding:18px}.portal:nth-child(1){min-height:300px}.portal:nth-child(n+2){min-height:220px}
+ .section-head{display:block}.section-title{margin-top:10px}.hero-meta{margin-top:28px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.cursor{display:none}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="grain"></div><div class="noise"></div><div class="cursor"></div>
+
+<div class="wrap">
+<header>
+  <a class="brand" href="#top" aria-label="ZM Creative home">
+    <div class="logo">ZM</div><div class="wordmark">ZM Creative</div>
+  </a>
+  <div class="header-right"><span class="status"><i class="dot"></i> portal online</span><span>© 2026</span></div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-grid">
+    <div class="reveal">
+      <div class="eyebrow">Independent visual artist / photographer / designer</div>
+      <h1><span>THE</span><span class="outline">DIGITAL</span><span>PERSPECTIVE.</span></h1>
+      <p class="tagline">The world isn't changed.<br><em>The perspective is.</em></p>
+      <div class="hero-meta"><span class="scroll-line"></span><span>Scroll to explore the work</span></div>
+    </div>
+    <div class="orbit-stage reveal">
+      <div class="orbit"><span class="orbit-label l1">photography</span></div>
+      <div class="orbit two"><span class="orbit-label l2">experiments</span></div>
+      <div class="orbit three"><span class="orbit-label l3">imagination</span></div>
+      <div class="core" id="core"></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-head reveal"><div class="section-title">Choose<br>your portal.</div><div class="kicker">01 / everything starts with curiosity</div></div>
+  <div class="portal-grid">
+    <a class="portal big reveal" href="https://zmcreative.github.io/" target="_blank" rel="noopener">
+      <div class="art art-a"></div><div class="content"><span class="num">01 / THE GALLERY</span><h2>SEE<br>THE WORK ↗</h2><p>The main ZM Creative portfolio — fine art, digital art, photography and visual experiments.</p></div><span class="arrow">↗</span>
+    </a>
+    <a class="portal reveal" href="#" data-placeholder="Replace with your photography URL">
+      <div class="art art-b"></div><div class="content"><span class="num">02 / PHOTOGRAPHY</span><h2>LOOK<br>CLOSER</h2><p>Painterly landscapes, wildlife, portraits and places seen differently.</p></div><span class="arrow">↗</span>
+    </a>
+    <a class="portal reveal" href="#" data-placeholder="Replace with your shop URL">
+      <div class="art art-c"></div><div class="content"><span class="num">03 / SHOP</span><h2>TAKE<br>IT HOME</h2></div><span class="arrow">↗</span>
+    </a>
+    <a class="portal reveal" href="#" data-placeholder="Replace with your writing URL">
+      <div class="art art-d"></div><div class="content"><span class="num">04 / WRITING</span><h2>READ<br>THE RABBIT HOLE</h2></div><span class="arrow">↗</span>
+    </a>
+    <a class="portal reveal" href="#" data-placeholder="Replace with your experiments URL">
+      <div class="art art-e"></div><div class="content"><span class="num">05 / THE LAB</span><h2>BREAK<br>THINGS</h2></div><span class="arrow">↗</span>
+    </a>
+    <a class="portal reveal" href="#" data-placeholder="Replace with your about URL">
+      <div class="art art-d"></div><div class="content"><span class="num">06 / ABOUT</span><h2>WHO'S<br>BEHIND ZM?</h2></div><span class="arrow">↗</span>
+    </a>
+    <a class="portal big reveal" href="mailto:hello@zmcreative.com">
+      <div class="art art-a"></div><div class="content"><span class="num">07 / COLLABORATE</span><h2>MAKE<br>SOMETHING<br>STRANGE.</h2><p>Commissions, collaborations, creative projects or simply saying hello.</p></div><span class="arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<div class="marquee"><div class="marquee-track">CHANGE THE ANGLE <b>✦</b> QUESTION THE OBVIOUS <b>✦</b> MAKE SOMETHING BEAUTIFUL <b>✦</b> FOLLOW THE RABBIT HOLE <b>✦</b> CHANGE THE ANGLE <b>✦</b> QUESTION THE OBVIOUS <b>✦</b> MAKE SOMETHING BEAUTIFUL <b>✦</b> FOLLOW THE RABBIT HOLE <b>✦</b></div></div>
+
+<section class="connect reveal">
+  <div class="connect-inner">
+    <div><div class="eyebrow">Find the signal</div><h2>OUT<br><span>THERE.</span></h2></div>
+    <nav class="links" aria-label="Social links">
+      <a class="link" href="#" data-placeholder="Add Instagram URL">Instagram <b>↗</b></a>
+      <a class="link" href="#" data-placeholder="Add Behance URL">Behance <b>↗</b></a>
+      <a class="link" href="#" data-placeholder="Add Substack URL">Substack <b>↗</b></a>
+      <a class="link" href="#" data-placeholder="Add GitHub URL">GitHub <b>↗</b></a>
+      <a class="link" href="#" data-placeholder="Add Pinterest URL">Pinterest <b>↗</b></a>
+      <a class="link" href="mailto:hello@zmcreative.com">Email <b>↗</b></a>
+    </nav>
+  </div>
+</section>
+</main>
+
+<footer><span>ZM Creative / The Digital Perspective</span><span>Made with curiosity, not templates.</span></footer>
+</div>
+
+<button class="cmd" id="cmd" aria-label="Open quick navigation">+</button>
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Quick navigation">
+  <div class="pbox">
+    <div class="psearch">⌕ &nbsp; QUICK NAVIGATION</div>
+    <div class="pitems">
+      <a class="pitem" href="#work"><span>Explore portals</span><span>↵</span></a>
+      <a class="pitem" href="#top"><span>Back to top</span><span>↑</span></a>
+      <a class="pitem" href="mailto:hello@zmcreative.com"><span>Contact Zarir</span><span>↗</span></a>
+    </div>
+    <div class="phelp">ESC TO CLOSE</div>
+  </div>
+</div>
+
+<script>
+const root=document.documentElement, core=document.getElementById('core');
+let tx=50,ty=50;
+window.addEventListener('pointermove',e=>{
+  tx=e.clientX;ty=e.clientY;
+  root.style.setProperty('--mx',tx+'px');root.style.setProperty('--my',ty+'px');
+  const x=(e.clientX/innerWidth-.5)*16,y=(e.clientY/innerHeight-.5)*16;
+  root.style.setProperty('--rot',(x+y)+'deg');
+});
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*45);observer.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+const palette=document.getElementById('palette'),cmd=document.getElementById('cmd');
+function closePal(){palette.classList.remove('open')}
+cmd.onclick=()=>palette.classList.toggle('open');
+palette.addEventListener('click',e=>{if(e.target===palette)closePal()});
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape')closePal();
+ if((e.key==='k'||e.key==='K')&&(e.metaKey||e.ctrlKey)){e.preventDefault();palette.classList.toggle('open')}
+});
+
+document.querySelectorAll('[data-placeholder]').forEach(a=>{
+ a.addEventListener('click',e=>{
+   const href=a.getAttribute('href');
+   if(!href||href==='#'){e.preventDefault();alert(a.dataset.placeholder+'\n\nEdit this link in the HTML file.');}
+ });
+});
+
+document.querySelectorAll('.portal').forEach(card=>{
+ card.addEventListener('pointermove',e=>{
+   if(matchMedia('(pointer:fine)').matches){
+     const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+     card.style.transform=`perspective(900px) rotateX(${y*-2}deg) rotateY(${x*2}deg) translateY(-7px)`;
+   }
+ });
+ card.addEventListener('pointerleave',()=>card.style.transform='');
+});
+</script>
+</body>
+</html>
