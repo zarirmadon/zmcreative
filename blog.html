@@ -1,0 +1,822 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wacky Wit Factory Reader</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Outfit (Display) & Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Outfit', 'sans-serif'],
+            head: ['Space Grotesk', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            vivid: {
+              pink: '#ff007a',
+              purple: '#9d4edd',
+              blue: '#00f0ff',
+              cyan: '#06b6d4',
+              amber: '#ffb703',
+              emerald: '#10b981',
+              dark: '#090d16'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #090d16;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Ambient Background Glow Blobs */
+    .glow-blob-1 {
+      position: fixed;
+      top: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 0, 122, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-blob-2 {
+      position: fixed;
+      bottom: -150px;
+      right: -150px;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(157, 78, 221, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-blob-3 {
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.06) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Substack Article Content Overrides (Light Background Theme for Readability) */
+    .substack-content {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.85;
+      color: #1e293b;
+    }
+    .substack-content p {
+      margin-bottom: 1.6rem;
+      font-size: var(--article-font-size, 1.125rem);
+    }
+    .substack-content h1, .substack-content h2, .substack-content h3, .substack-content h4 {
+      font-family: 'Outfit', sans-serif;
+      color: #0f172a;
+      font-weight: 800;
+      margin-top: 2.5rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+    .substack-content h1 { font-size: 2.2rem; }
+    .substack-content h2 { 
+      font-size: 1.75rem; 
+      border-left: 5px solid #ff007a;
+      padding-left: 0.85rem;
+    }
+    .substack-content h3 { font-size: 1.4rem; color: #9d4edd; }
+    
+    .substack-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 1.25rem;
+      margin: 2rem 0;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .substack-content figcaption {
+      text-align: center;
+      font-size: 0.875rem;
+      color: #64748b;
+      margin-top: -1.25rem;
+      margin-bottom: 1.75rem;
+      font-style: italic;
+    }
+    .substack-content blockquote {
+      border-left: 5px solid #ff007a;
+      padding: 1.25rem 1.75rem;
+      margin: 2rem 0;
+      background: linear-gradient(135deg, rgba(255, 0, 122, 0.08), rgba(157, 78, 221, 0.06));
+      border-radius: 0 1rem 1rem 0;
+      color: #0f172a;
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 500;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      border-right: 1px solid rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .substack-content a {
+      color: #ff007a;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      transition: all 0.2s;
+    }
+    .substack-content a:hover {
+      color: #9d4edd;
+    }
+    .substack-content iframe {
+      width: 100%;
+      border-radius: 1rem;
+      margin: 1.75rem 0;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .substack-content ul, .substack-content ol {
+      margin-bottom: 1.75rem;
+      padding-left: 1.75rem;
+    }
+    .substack-content ul { list-style-type: disc; }
+    .substack-content ol { list-style-type: decimal; }
+    .substack-content li { margin-bottom: 0.6rem; }
+
+    /* Custom Glass & Colorful Dark Cards */
+    .color-card {
+      background-color: #131927;
+      border-color: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    /* Reading Progress Bar */
+    #progress-bar {
+      transition: width 0.1s ease-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col relative overflow-x-hidden selection:bg-vivid-pink selection:text-white">
+
+  <div class="glow-blob-1"></div>
+  <div class="glow-blob-2"></div>
+  <div class="glow-blob-3"></div>
+
+  <!-- Top Fixed Reading Progress Bar -->
+  <div class="fixed top-0 left-0 w-full h-1.5 z-50 bg-slate-900/50">
+    <div id="progress-bar" class="h-full bg-gradient-to-r from-vivid-pink via-vivid-purple to-vivid-blue w-0"></div>
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-40 bg-[#090d16]/90 backdrop-blur-md border-b border-slate-800 px-4 sm:px-8 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Brand Logo / Title -->
+      <a href="#" id="brand-logo" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-vivid-pink to-vivid-purple flex items-center justify-center text-white shadow-lg shadow-vivid-pink/30 group-hover:scale-105 transition-transform duration-300">
+          <i data-lucide="zap" class="w-5 h-5 fill-current"></i>
+        </div>
+        <div>
+          <h1 class="font-display font-black text-xl sm:text-2xl tracking-tight text-white group-hover:text-vivid-pink transition-colors">
+            Wacky Wit <span class="text-transparent bg-clip-text bg-gradient-to-r from-vivid-pink via-vivid-purple to-vivid-blue">Factory</span>
+          </h1>
+          <p class="text-[10px] font-head text-slate-400 tracking-wider uppercase -mt-1 hidden sm:block">Dynamic Substack Reader</p>
+        </div>
+      </a>
+
+      <!-- Desktop Header Actions -->
+      <div class="hidden md:flex items-center space-x-4">
+        <button id="nav-home-btn" class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-white font-head text-xs font-bold transition border border-slate-700">
+          <i data-lucide="grid" class="w-4 h-4 text-vivid-cyan"></i>
+          <span>All Articles</span>
+        </button>
+
+        <button id="nav-bookmarks-btn" class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 font-head text-xs font-bold transition border border-slate-700">
+          <i data-lucide="bookmark" class="w-4 h-4 text-vivid-pink"></i>
+          <span>Saved</span>
+          <span id="bookmark-badge" class="ml-1 bg-vivid-pink text-white text-[10px] px-1.5 py-0.5 rounded-full hidden">0</span>
+        </button>
+
+        <a href="https://wackywitfactory.substack.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-gradient-to-r from-vivid-pink to-vivid-purple hover:opacity-90 text-white font-head text-xs font-bold transition shadow-md shadow-vivid-pink/20">
+          <span>Substack</span>
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button id="mobile-menu-toggle" aria-label="Toggle Menu" class="md:hidden p-2.5 rounded-xl bg-slate-800 text-slate-200 border border-slate-700 hover:text-white">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-drawer-overlay" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden transition-opacity duration-300"></div>
+  <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-[#131927] border-l border-slate-800 z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-between p-6">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-slate-800">
+        <span class="font-display font-black text-lg text-white">Navigation</span>
+        <button id="mobile-menu-close" aria-label="Close Menu" class="p-2 text-slate-400 hover:text-white rounded-lg bg-slate-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <nav class="mt-6 flex flex-col space-y-3 font-head">
+        <button id="mobile-nav-home" class="flex items-center space-x-3 p-3 rounded-xl bg-slate-800/80 text-white font-bold text-sm">
+          <i data-lucide="grid" class="w-5 h-5 text-vivid-cyan"></i>
+          <span>All Articles</span>
+        </button>
+        <button id="mobile-nav-bookmarks" class="flex items-center space-x-3 p-3 rounded-xl bg-slate-800/40 text-slate-300 font-bold text-sm hover:bg-slate-800">
+          <i data-lucide="bookmark" class="w-5 h-5 text-vivid-pink"></i>
+          <span>Saved Articles</span>
+        </button>
+        <a href="https://wackywitfactory.substack.com" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-vivid-pink/10 border border-vivid-pink/30 text-vivid-pink font-bold text-sm">
+          <span class="flex items-center space-x-3">
+            <i data-lucide="external-link" class="w-5 h-5"></i>
+            <span>Visit Original Substack</span>
+          </span>
+          <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </a>
+      </nav>
+    </div>
+    <div class="pt-6 border-t border-slate-800 text-xs text-slate-500 font-sans">
+      The Wacky Wit Factory Reader &copy; 2026
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-8 z-10 flex flex-col">
+
+    <!-- HOMEPAGE VIEW (#home-view) -->
+    <div id="home-view" class="flex-1 flex flex-col">
+      
+      <!-- Hero Banner -->
+      <div class="mb-10 text-center sm:text-left flex flex-col md:flex-row md:items-end justify-between border-b border-slate-800/80 pb-8">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-vivid-pink/10 border border-vivid-pink/30 text-vivid-pink text-xs font-head font-bold mb-3">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span>DYNAMIC CONTENT ENGINE</span>
+          </div>
+          <h2 class="font-display font-black text-3xl sm:text-5xl tracking-tight text-white max-w-2xl leading-tight">
+            Fresh Wacky Wit, Delivered Clean.
+          </h2>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-400 font-sans max-w-sm mt-4 md:mt-0">
+          Auto-synchronized with <span class="text-white font-semibold">wackywitfactory.substack.com</span>. Cached for instant 0ms loads.
+        </p>
+      </div>
+
+      <!-- Search & Filters Header Bar -->
+      <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 color-card p-4 rounded-2xl border border-slate-800">
+        <div class="relative flex-1">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-vivid-pink"></i>
+          <input type="text" id="search-input" placeholder="Search witty articles..." class="w-full bg-white text-slate-900 border border-slate-200 rounded-xl pl-10 pr-8 py-2.5 text-xs font-sans placeholder-slate-400 focus:outline-none focus:border-vivid-pink focus:ring-2 focus:ring-vivid-pink/30 transition shadow-inner">
+          <button id="clear-search-btn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <div class="hidden sm:flex items-center space-x-2 font-head text-xs">
+          <button id="filter-all-btn" class="px-3 py-2 rounded-xl bg-vivid-pink text-white font-bold shadow-md shadow-vivid-pink/20">All Posts</button>
+          <button id="filter-bookmarked-btn" class="px-3 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white font-bold border border-slate-700">Bookmarks Only</button>
+        </div>
+      </div>
+
+      <!-- Articles Grid Container (Homepage: Title & Image Only) -->
+      <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1">
+        <!-- Skeleton Loading Cards -->
+        <div class="color-card rounded-3xl overflow-hidden border border-slate-800 flex flex-col">
+          <div class="h-52 bg-slate-800/60 animate-pulse"></div>
+          <div class="p-5 bg-white space-y-3">
+            <div class="h-6 bg-slate-200 rounded-lg animate-pulse w-4/5"></div>
+            <div class="h-6 bg-slate-200 rounded-lg animate-pulse w-3/5"></div>
+          </div>
+        </div>
+        <div class="color-card rounded-3xl overflow-hidden border border-slate-800 flex flex-col">
+          <div class="h-52 bg-slate-800/60 animate-pulse"></div>
+          <div class="p-5 bg-white space-y-3">
+            <div class="h-6 bg-slate-200 rounded-lg animate-pulse w-3/4"></div>
+            <div class="h-6 bg-slate-200 rounded-lg animate-pulse w-1/2"></div>
+          </div>
+        </div>
+        <div class="color-card rounded-3xl overflow-hidden border border-slate-800 flex flex-col">
+          <div class="h-52 bg-slate-800/60 animate-pulse"></div>
+          <div class="p-5 bg-white space-y-3">
+            <div class="h-6 bg-slate-200 rounded-lg animate-pulse w-5/6"></div>
+            <div class="h-6 bg-slate-200 rounded-lg animate-pulse w-2/3"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Load More Button -->
+      <div class="mt-12 text-center">
+        <button id="load-more-btn" class="px-8 py-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 font-head text-xs font-bold text-white transition-all shadow-xl hover:border-vivid-pink inline-flex items-center space-x-2">
+          <span>Load Older Archives</span>
+          <i data-lucide="arrow-down" class="w-4 h-4 text-vivid-pink"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ARTICLE READ VIEW (#article-view-container) -->
+    <div id="article-view-container" class="hidden flex-1 max-w-4xl mx-auto w-full">
+      
+      <!-- Article View Header Controls -->
+      <div class="mb-6 flex items-center justify-between flex-wrap gap-4 bg-[#131927] p-4 rounded-2xl border border-slate-800 shadow-xl">
+        <button id="back-to-home-btn" class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-head text-xs font-bold transition border border-slate-700 group">
+          <i data-lucide="arrow-left" class="w-4 h-4 text-vivid-cyan group-hover:-translate-x-1 transition-transform"></i>
+          <span>Back to Articles</span>
+        </button>
+
+        <!-- Article Toolbar -->
+        <div class="flex items-center space-x-3 text-xs font-head">
+          <!-- Text Size Adjuster -->
+          <div class="flex items-center bg-slate-800 rounded-xl border border-slate-700 p-1">
+            <button id="font-decrease" class="p-1.5 text-slate-400 hover:text-white" title="Decrease font size">
+              <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+            </button>
+            <span class="px-2 text-[11px] font-bold text-slate-300">Text</span>
+            <button id="font-increase" class="p-1.5 text-slate-400 hover:text-white" title="Increase font size">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+          <!-- Bookmark Toggle Button -->
+          <button id="article-bookmark-toggle" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700">
+            <i data-lucide="bookmark" class="w-4 h-4"></i>
+          </button>
+
+          <!-- External Substack Link -->
+          <a id="external-article-link" href="#" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-vivid-pink border border-slate-700" title="Open on Substack">
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Article Render Canvas (ALWAYS LIGHT BACKGROUND FOR MAXIMUM READABILITY) -->
+      <article id="article-view" class="bg-white text-slate-900 p-6 md:p-10 rounded-3xl shadow-2xl border border-slate-200">
+        <!-- Rendered dynamically -->
+      </article>
+    </div>
+
+  </div>
+
+  <!-- Toast Notification Alert -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white border border-vivid-pink px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 font-head text-xs font-bold pointer-events-none">
+    <i data-lucide="check-circle" class="w-4 h-4 text-vivid-pink"></i>
+    <span id="toast-message">Notification message</span>
+  </div>
+
+  <script>
+    /* Global Application State */
+    const SUBSTACK_DOMAIN = 'wackywitfactory.substack.com';
+    const LIMIT = 12;
+    let offset = 0;
+    let allPosts = [];
+    let currentFilteredPosts = [];
+    let activePost = null;
+    let bookmarks = JSON.parse(localStorage.getItem('wacky_bookmarks') || '[]');
+    let currentFontSizePx = 18;
+    let activeFilter = 'all';
+
+    const CACHE_KEY = 'wacky_wit_cached_posts';
+
+    /* Initialization on Window Load */
+    window.onload = function () {
+      lucide.createIcons();
+      setupEventListeners();
+      setupScrollProgress();
+      
+      // Load instant cache first
+      loadCachedPosts();
+
+      // Fetch fresh data in parallel background
+      fetchFreshPosts();
+    };
+
+    function setupEventListeners() {
+      // Navigation Header buttons
+      document.getElementById('brand-logo').addEventListener('click', (e) => {
+        e.preventDefault();
+        showHomeView();
+      });
+      document.getElementById('nav-home-btn').addEventListener('click', showHomeView);
+      document.getElementById('back-to-home-btn').addEventListener('click', showHomeView);
+      document.getElementById('nav-bookmarks-btn').addEventListener('click', toggleBookmarksFilter);
+
+      // Mobile Menu Drawer
+      const mobileToggle = document.getElementById('mobile-menu-toggle');
+      const mobileClose = document.getElementById('mobile-menu-close');
+      const mobileOverlay = document.getElementById('mobile-drawer-overlay');
+      
+      mobileToggle.addEventListener('click', openMobileDrawer);
+      mobileClose.addEventListener('click', closeMobileDrawer);
+      mobileOverlay.addEventListener('click', closeMobileDrawer);
+
+      document.getElementById('mobile-nav-home').addEventListener('click', () => {
+        closeMobileDrawer();
+        showHomeView();
+      });
+      document.getElementById('mobile-nav-bookmarks').addEventListener('click', () => {
+        closeMobileDrawer();
+        toggleBookmarksFilter();
+      });
+
+      // Search and Filter controls
+      const searchInput = document.getElementById('search-input');
+      const clearSearchBtn = document.getElementById('clear-search-btn');
+      
+      searchInput.addEventListener('input', (e) => {
+        const val = e.target.value.toLowerCase().trim();
+        clearSearchBtn.classList.toggle('hidden', val === '');
+        applyFilters();
+      });
+
+      clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        clearSearchBtn.classList.add('hidden');
+        applyFilters();
+      });
+
+      document.getElementById('filter-all-btn').addEventListener('click', () => {
+        activeFilter = 'all';
+        updateFilterUI();
+        applyFilters();
+      });
+
+      document.getElementById('filter-bookmarked-btn').addEventListener('click', () => {
+        activeFilter = 'bookmarked';
+        updateFilterUI();
+        applyFilters();
+      });
+
+      // Load More Button
+      document.getElementById('load-more-btn').addEventListener('click', () => {
+        fetchFreshPosts(true);
+      });
+
+      // Font size adjustment buttons
+      document.getElementById('font-increase').addEventListener('click', () => {
+        if (currentFontSizePx < 26) {
+          currentFontSizePx += 2;
+          updateFontSize();
+        }
+      });
+      document.getElementById('font-decrease').addEventListener('click', () => {
+        if (currentFontSizePx > 14) {
+          currentFontSizePx -= 2;
+          updateFontSize();
+        }
+      });
+
+      // Article Bookmark Toggle Button
+      document.getElementById('article-bookmark-toggle').addEventListener('click', () => {
+        if (activePost) {
+          toggleBookmarkPost(activePost);
+        }
+      });
+    }
+
+    /* Mobile Drawer Controls */
+    function openMobileDrawer() {
+      document.getElementById('mobile-drawer-overlay').classList.remove('hidden');
+      document.getElementById('mobile-drawer').classList.remove('translate-x-full');
+    }
+    function closeMobileDrawer() {
+      document.getElementById('mobile-drawer-overlay').classList.add('hidden');
+      document.getElementById('mobile-drawer').classList.add('translate-x-full');
+    }
+
+    // Instant Load from LocalStorage
+    function loadCachedPosts() {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        try {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            allPosts = parsed;
+            applyFilters();
+          }
+        } catch (e) {
+          console.error("Cache parsing error", e);
+        }
+      }
+      updateBookmarkBadge();
+    }
+
+    // Fast Parallel Proxy Racing (Promise.any)
+    async function fetchFreshPosts(isLoadMore = false) {
+      const currentOffset = isLoadMore ? offset : 0;
+      const targetUrl = `https://${SUBSTACK_DOMAIN}/api/v1/posts?limit=${LIMIT}&offset=${currentOffset}`;
+
+      // List of high-speed CORS proxies to race in parallel
+      const proxies = [
+        `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`,
+        `https://proxy.cors.sh/${targetUrl}`
+      ];
+
+      const fetchWithTimeout = (url, timeoutMs = 4000) => {
+        const controller = new AbortController();
+        const id = setTimeout(() => controller.abort(), timeoutMs);
+        return fetch(url, { signal: controller.signal })
+          .then(res => {
+            clearTimeout(id);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.json();
+          });
+      };
+
+      try {
+        // Race all proxy requests simultaneously - fastest wins!
+        const posts = await Promise.any(proxies.map(p => fetchWithTimeout(p)));
+
+        if (Array.isArray(posts) && posts.length > 0) {
+          if (isLoadMore) {
+            // Append unique posts
+            const existingIds = new Set(allPosts.map(p => p.id));
+            posts.forEach(p => {
+              if (!existingIds.has(p.id)) allPosts.push(p);
+            });
+            offset += LIMIT;
+          } else {
+            allPosts = posts;
+            offset = LIMIT;
+          }
+
+          // Save to local cache for instant future loads
+          localStorage.setItem(CACHE_KEY, JSON.stringify(allPosts));
+          applyFilters();
+        }
+      } catch (err) {
+        console.warn("Parallel API fetch proxy race failed or timed out. Falling back to RSS feed converter...", err);
+        fetchRSSFallback();
+      }
+    }
+
+    // RSS Fallback using RSS2JSON Converter
+    async function fetchRSSFallback() {
+      try {
+        const rssUrl = `https://${SUBSTACK_DOMAIN}/feed`;
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+
+        if (data && data.items && data.items.length > 0) {
+          const formattedPosts = data.items.map((item, idx) => ({
+            id: item.guid || item.link || `rss-${idx}`,
+            title: item.title,
+            post_date: item.pubDate,
+            description: item.description,
+            body_html: item.content || item.description,
+            cover_image: item.thumbnail || (item.enclosure ? item.enclosure.link : null),
+            canonical_url: item.link
+          }));
+
+          allPosts = formattedPosts;
+          localStorage.setItem(CACHE_KEY, JSON.stringify(allPosts));
+          applyFilters();
+        }
+      } catch (e) {
+        console.error("RSS Fallback failed", e);
+      }
+    }
+
+    // Apply Filters & Search Query
+    function applyFilters() {
+      const searchVal = document.getElementById('search-input').value.toLowerCase().trim();
+
+      currentFilteredPosts = allPosts.filter(post => {
+        const matchesSearch = searchVal === '' || 
+          post.title.toLowerCase().includes(searchVal) || 
+          (post.description && post.description.toLowerCase().includes(searchVal));
+
+        const matchesBookmark = activeFilter !== 'bookmarked' || isBookmarked(post.id);
+
+        return matchesSearch && matchesBookmark;
+      });
+
+      renderHomepageGrid(currentFilteredPosts);
+    }
+
+    // Render Homepage Grid (HOMEPAGE: COVER IMAGE & TITLE ONLY)
+    function renderHomepageGrid(filteredPosts) {
+      const grid = document.getElementById('posts-grid');
+      grid.innerHTML = '';
+
+      if (filteredPosts.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-16 text-center color-card rounded-3xl border border-slate-800 p-8">
+            <i data-lucide="ghost" class="w-12 h-12 text-slate-500 mx-auto mb-3"></i>
+            <h3 class="font-display font-black text-xl text-white mb-1">No Articles Found</h3>
+            <p class="text-xs text-slate-400 font-sans">Try modifying your search criteria or bookmark filter.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      filteredPosts.forEach(post => {
+        const card = document.createElement('div');
+        card.className = "color-card rounded-3xl overflow-hidden cursor-pointer group flex flex-col hover:border-vivid-pink hover:shadow-2xl hover:shadow-vivid-pink/10 hover:scale-[1.02] transition-all duration-300 border border-slate-800";
+
+        // Image container with fallback background gradient
+        const imageSrc = post.cover_image || post.og_image || null;
+        const imageContent = imageSrc 
+          ? `<img src="${imageSrc}" alt="${post.title}" class="w-full h-52 object-cover group-hover:scale-105 transition duration-500" loading="lazy" />`
+          : `<div class="w-full h-52 bg-gradient-to-tr from-vivid-pink via-vivid-purple to-vivid-cyan flex items-center justify-center text-white/80"><i data-lucide="sparkles" class="w-12 h-12"></i></div>`;
+
+        card.innerHTML = `
+          <div class="relative overflow-hidden w-full h-52 bg-slate-900">
+            ${imageContent}
+            ${isBookmarked(post.id) ? '<div class="absolute top-3 right-3 bg-slate-900/90 backdrop-blur-md p-1.5 rounded-xl text-vivid-pink shadow-md border border-slate-700/50"><i data-lucide="bookmark" class="w-4 h-4 fill-vivid-pink"></i></div>' : ''}
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between bg-white text-slate-900">
+            <h2 class="font-display font-black text-lg text-slate-900 group-hover:text-vivid-pink leading-snug tracking-tight transition-colors line-clamp-3">
+              ${post.title}
+            </h2>
+          </div>
+        `;
+
+        card.addEventListener('click', () => openPostPage(post));
+        grid.appendChild(card);
+      });
+
+      lucide.createIcons();
+    }
+
+    // Open Single Post Detailed View
+    function openPostPage(post) {
+      activePost = post;
+      renderArticle(post);
+
+      document.getElementById('home-view').classList.add('hidden');
+      document.getElementById('article-view-container').classList.remove('hidden');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Show Homepage Grid View
+    function showHomeView() {
+      activePost = null;
+      document.getElementById('article-view-container').classList.add('hidden');
+      document.getElementById('home-view').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Render Full Article inside Light Container
+    function renderArticle(post) {
+      const articleView = document.getElementById('article-view');
+      const dateStr = new Date(post.post_date || post.pubDate).toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+      });
+
+      document.getElementById('external-article-link').href = post.canonical_url || `https://${SUBSTACK_DOMAIN}`;
+      updateArticleBookmarkButton();
+
+      const words = (post.body_html || post.description || '').replace(/<[^>]*>/g, '').split(/\s+/).length;
+      const readTime = Math.max(1, Math.ceil(words / 200));
+
+      const coverImgHtml = post.cover_image 
+        ? `<img src="${post.cover_image}" alt="${post.title}" class="w-full h-auto rounded-3xl border border-slate-200 my-6 shadow-lg" />`
+        : '';
+
+      articleView.innerHTML = `
+        <header class="mb-8 border-b border-slate-200 pb-6">
+          <h1 class="font-display text-3xl sm:text-5xl font-black text-slate-900 mb-4 leading-tight tracking-tight">${post.title}</h1>
+          <div class="flex flex-wrap items-center gap-3 text-xs font-head text-slate-700">
+            <span class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-100 border border-slate-200 shadow-sm font-bold text-slate-800">
+              <i data-lucide="calendar" class="w-3.5 h-3.5 text-vivid-pink"></i>
+              <span>${dateStr}</span>
+            </span>
+            <span class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-100 border border-slate-200 shadow-sm font-bold text-slate-800">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-vivid-purple"></i>
+              <span>${readTime} min read</span>
+            </span>
+          </div>
+        </header>
+
+        ${coverImgHtml}
+
+        <div class="substack-content" style="--article-font-size: ${currentFontSizePx}px">
+          ${post.body_html || `<p>${post.description || 'Content snippet unavailable.'}</p>`}
+        </div>
+      `;
+
+      lucide.createIcons();
+    }
+
+    // Bookmark Toggle Logic
+    function isBookmarked(id) {
+      return bookmarks.includes(id);
+    }
+
+    function toggleBookmarkPost(post) {
+      if (isBookmarked(post.id)) {
+        bookmarks = bookmarks.filter(id => id !== post.id);
+        showToast('Article removed from bookmarks');
+      } else {
+        bookmarks.push(post.id);
+        showToast('Article saved to bookmarks');
+      }
+
+      localStorage.setItem('wacky_bookmarks', JSON.stringify(bookmarks));
+      updateBookmarkBadge();
+      updateArticleBookmarkButton();
+      applyFilters();
+    }
+
+    function updateBookmarkBadge() {
+      const badge = document.getElementById('bookmark-badge');
+      if (bookmarks.length > 0) {
+        badge.textContent = bookmarks.length;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
+
+    function updateArticleBookmarkButton() {
+      const btn = document.getElementById('article-bookmark-toggle');
+      if (activePost && isBookmarked(activePost.id)) {
+        btn.classList.add('bg-vivid-pink', 'text-white', 'border-vivid-pink');
+        btn.classList.remove('bg-slate-800', 'text-slate-300', 'border-slate-700');
+      } else {
+        btn.classList.remove('bg-vivid-pink', 'text-white', 'border-vivid-pink');
+        btn.classList.add('bg-slate-800', 'text-slate-300', 'border-slate-700');
+      }
+    }
+
+    function toggleBookmarksFilter() {
+      activeFilter = activeFilter === 'bookmarked' ? 'all' : 'bookmarked';
+      updateFilterUI();
+      applyFilters();
+    }
+
+    function updateFilterUI() {
+      const allBtn = document.getElementById('filter-all-btn');
+      const bmBtn = document.getElementById('filter-bookmarked-btn');
+
+      if (activeFilter === 'bookmarked') {
+        bmBtn.className = 'px-3 py-2 rounded-xl bg-vivid-pink text-white font-bold shadow-md shadow-vivid-pink/20';
+        allBtn.className = 'px-3 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white font-bold border border-slate-700';
+      } else {
+        allBtn.className = 'px-3 py-2 rounded-xl bg-vivid-pink text-white font-bold shadow-md shadow-vivid-pink/20';
+        bmBtn.className = 'px-3 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white font-bold border border-slate-700';
+      }
+    }
+
+    function updateFontSize() {
+      const contentEl = document.querySelector('.substack-content');
+      if (contentEl) {
+        contentEl.style.setProperty('--article-font-size', `${currentFontSizePx}px`);
+      }
+    }
+
+    // Scroll Progress Bar Indicator
+    function setupScrollProgress() {
+      window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('progress-bar').style.width = (scrolled || 0) + '%';
+      });
+    }
+
+    // Toast Notification System
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
+```
