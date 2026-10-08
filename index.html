@@ -11,7 +11,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
 
 <style>
 /* =========================================================
@@ -880,7 +880,96 @@ footer {
         font-size: 3rem;
     }
 }
+
+/* Editorial dialogs */
+.header-nav button,.footer-links button{border:0;background:none;color:inherit;font:inherit;font-weight:600;cursor:pointer;padding:0}
+.editorial-overlay{position:fixed;inset:0;z-index:150;background:rgba(12,12,24,.78);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:16px}
+.editorial-overlay.open{display:flex}
+.editorial-panel{position:relative;width:min(1100px,100%);max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;border-radius:26px;padding:clamp(30px,5vw,65px);color:#f9f7f4;background:radial-gradient(ellipse at 82% 88%,rgba(116,129,49,.55),transparent 36%),radial-gradient(ellipse at 66% 68%,rgba(15,138,160,.4),transparent 40%),radial-gradient(ellipse at 90% 25%,rgba(180,70,135,.36),transparent 46%),#20202e;box-shadow:0 35px 100px #0008}
+.editorial-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(25px,5vw,80px)}
+.editorial-eyebrow{font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:#bdb2ce;font-weight:700}
+.editorial-heading{font-family:'Space Grotesk',sans-serif;font-size:clamp(3.7rem,7vw,7.5rem);letter-spacing:-.09em;line-height:.85;margin:20px 0;font-weight:700}
+.editorial-heading em{display:block;color:#9ed6c8;font-family:Georgia,serif;font-weight:400;letter-spacing:-.08em}
+.editorial-copy{font-size:clamp(.95rem,1.3vw,1.1rem);line-height:1.7;color:#e1dce6}
+.editorial-copy p{margin:0 0 22px}
+.editorial-copy strong{color:#c7a5d9}
+.editorial-facts{border-top:1px solid #ffffff2c;margin-top:25px;padding-top:18px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#d3cdd7}
+.editorial-facts div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #ffffff24;padding:12px 0}
+.editorial-facts b{text-align:right}
+.editorial-portfolio{display:block;text-align:center;margin:50px auto 0;padding:25px 10px;border-top:1px solid #ffffff30;border-bottom:1px solid #ffffff30;font-size:clamp(.7rem,1.7vw,1.1rem);letter-spacing:.32em;overflow-wrap:anywhere;color:#c6e6de}
+.editorial-portfolio:hover{color:#fff}
+.editorial-close{position:sticky;float:right;top:0;z-index:2;border:0;border-radius:50%;width:43px;height:43px;background:#fff;color:#222;font-size:1.5rem;cursor:pointer}
+.contact-link{display:inline-block;padding:14px 24px;background:#f9f7f4;color:#222;border-radius:40px;font-weight:700;margin-top:12px}
+.footer-social{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;margin:50px auto 20px;padding-top:28px;border-top:1px solid #ffffff22}
+.footer-social a,.footer-social button{border:1px solid #ffffff45;border-radius:50px;color:#fff;background:transparent;padding:10px 15px;font-size:.8rem;cursor:pointer}
+.footer-social a:hover,.footer-social button:hover{background:#ffffff25}
+@media(max-width:650px){.editorial-grid{grid-template-columns:1fr}.editorial-panel{padding:28px 23px}.editorial-heading{font-size:clamp(3.5rem,15vw,5.5rem)}.editorial-portfolio{letter-spacing:.15em}.header-nav{display:flex;gap:12px}.header-nav a{display:none}.header-nav button{font-size:.8rem}.editorial-facts div{font-size:.62rem}}
+/* Keep the existing product dialog scrollable on narrow screens */
+@media(max-width:900px){.modal-window{overflow-y:auto;max-height:calc(100dvh - 20px)}.modal-image{min-height:0;height:35vh;max-height:320px}.modal-content{overflow:visible}}
+
+/* Compact editorial windows; no internal scrolling */
+.editorial-panel{width:min(990px,90vw);max-height:90dvh;overflow:hidden;padding:clamp(22px,3.3vw,43px)}
+.editorial-grid{gap:clamp(18px,3vw,45px)}
+.editorial-heading{font-size:clamp(3rem,5.6vw,6.1rem);margin:13px 0}
+.editorial-copy{font-size:clamp(.83rem,1.08vw,1rem);line-height:1.5}
+.editorial-copy p{margin-bottom:14px}
+.editorial-facts{margin-top:13px;padding-top:8px}
+.editorial-facts div{padding:7px 0}
+.editorial-portfolio{margin:20px auto 0;padding:16px 10px;border:0;letter-spacing:.32em}
+.footer-social{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:9px;margin:30px auto 22px;padding:0;border:0}
+.footer-social a,.footer-social button{display:grid;place-items:center;width:39px;height:39px;flex:0 0 39px;padding:0;border:1px solid #ffffff38;border-radius:50%;background:#fff;color:#19191e;text-decoration:none;cursor:pointer}
+.footer-social a:hover,.footer-social button:hover{background:#f1e9f4;transform:translateY(-2px)}
+.social-glyph{font-size:24px;font-weight:700;line-height:1}.social-small{font-size:9px;font-weight:800}.social-wordmark{font-size:11px;font-weight:900;line-height:.9;letter-spacing:-.05em}.social-wordmark small{display:block;font-size:8px;color:#ed3f84;text-align:right}
+.instagram{color:#ff2981}.facebook,.behance{color:#1877f2}.pinterest{color:#d62838}.substack{color:#ff6719}.mastodon{color:#7657da}.bluesky{color:#198aff}.etsy{color:#ed6c26;font-family:Georgia,serif}.email{color:#f04f83}.xbrand,.github{color:#17151a}
+@media(max-width:650px){.editorial-panel{width:94vw;padding:18px 20px;max-height:94dvh}.editorial-grid{gap:10px}.editorial-heading{font-size:clamp(2.5rem,10vw,4rem);margin:8px 0}.editorial-copy{font-size:.76rem;line-height:1.35}.editorial-copy p{margin-bottom:8px}.editorial-facts{margin-top:7px;padding-top:4px}.editorial-facts div{padding:4px 0}.editorial-portfolio{margin-top:10px;padding:9px 3px;letter-spacing:.13em;font-size:.7rem}.footer-social{gap:7px}}
+@media(max-height:680px){.editorial-panel{padding:18px 25px}.editorial-heading{font-size:clamp(2.5rem,5vw,4.5rem)}.editorial-copy{font-size:.82rem;line-height:1.3}.editorial-copy p{margin-bottom:8px}.editorial-portfolio{margin-top:10px;padding:8px}}
+/* Final navigation and reference-icon alignment */
+.header-nav button,.footer-links button{font-family:inherit;font-size:.85rem;font-weight:600;line-height:inherit;letter-spacing:inherit;color:inherit;opacity:.7;background:none;border:0;padding:0;cursor:pointer}
+.header-nav button:hover,.footer-links button:hover{opacity:1}
+.footer-social{border:0!important;border-top:0!important;border-bottom:0!important}
+.footer-social a,.footer-social button{width:39px;height:39px;border:1px solid #dfe4e7;background:#f9fbfc;color:#202126;border-radius:50%;display:grid;place-items:center;padding:0}
+.footer-social .social-glyph{font-size:20px;line-height:1;font-weight:normal}
+.footer-social .instagram{color:#f72583}.footer-social .facebook,.footer-social .behance{color:#1877f2}.footer-social .pinterest{color:#e60023}.footer-social .substack{color:#ff6719}.footer-social .mastodon{color:#7657da}.footer-social .bluesky{color:#1688ed}.footer-social .etsy{color:#f1641e}.footer-social .email{color:#f34486}
+.footer-social .social-wordmark{font-size:10px}.footer-social .social-wordmark small{font-size:8px}
+
+/* Footer: compact navigation, icon row without dividers */
+.footer-links{display:flex;flex-direction:row;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:24px}
+.footer-social{margin:24px auto 0!important;padding:0!important;border:0!important}
+.copyright{border:0!important;border-top:0!important;margin-top:12px!important;padding-top:0!important}
+.footer-inner{padding-bottom:0!important}
+/* Contact form mirrors the ivory portfolio dialog */
+.contact-panel{position:relative;width:min(550px,calc(100vw - 28px));max-height:calc(100dvh - 24px);overflow-y:auto;background:#fffdf8;border-radius:24px;padding:38px;box-shadow:0 35px 100px #0005;color:#18191f}
+.contact-close{position:absolute;right:17px;top:16px;border:0;border-radius:50%;width:38px;height:38px;background:#191a20;color:white;font-size:22px;cursor:pointer}
+.contact-eyebrow,.contact-panel label{display:block;font-size:10px;font-weight:800;letter-spacing:.17em}
+.contact-heading{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.8rem,6vw,4.3rem);font-weight:800;letter-spacing:-.09em;line-height:1;margin:12px 0 16px}
+.contact-heading em{font-family:Georgia,serif;font-weight:400;letter-spacing:-.09em}
+.contact-intro{font-size:14px;color:#797680;margin:0 0 25px}
+.contact-panel label{margin:14px 0 7px}
+.contact-panel input,.contact-panel textarea{width:100%;box-sizing:border-box;background:#f3f1f4;border:1px solid #dad7df;border-radius:12px;padding:12px 14px;font:inherit;font-size:15px;color:#18191f}
+.contact-panel textarea{resize:vertical;min-height:110px}
+.contact-panel input:focus,.contact-panel textarea:focus{outline:2px solid #7386ff;outline-offset:1px}
+.contact-submit{width:100%;margin-top:17px;padding:15px;border:0;border-radius:30px;background:linear-gradient(100deg,#ec2f83,#455bff);color:white;font-weight:800;letter-spacing:.03em;cursor:pointer}
+.contact-status{font-size:11px;color:#77727c;margin:12px 0 0;text-align:center}
+@media(max-width:650px){.contact-panel{padding:27px 23px}.footer-links{justify-content:flex-start;gap:15px}.header-nav{flex-wrap:wrap}.header-nav a{display:inline!important;font-size:.7rem}.header-nav button{font-size:.7rem}}
+
+/* Consistent navigation hover treatment */
+.header-nav a,.header-nav button,.footer-links a,.footer-links button{
+  display:inline-flex;align-items:center;position:relative;
+  border-radius:7px;padding:7px 10px!important;margin:-7px -10px;
+  font:600 .85rem/1.4 "DM Sans",sans-serif!important;
+  letter-spacing:normal!important;opacity:.82!important;
+  text-decoration:none;transition:color .2s ease,background .2s ease,box-shadow .2s ease,opacity .2s ease;
+}
+.header-nav a:hover,.header-nav button:hover,.footer-links a:hover,.footer-links button:hover{
+  opacity:1!important;color:#ed2d83!important;background:rgba(237,45,131,.08)!important;
+  box-shadow:0 0 17px rgba(237,45,131,.19);
+}
+.footer-links a:hover,.footer-links button:hover{color:#ff8db9!important;background:rgba(255,255,255,.09)!important}
+.brand-byline{font-family:"Space Grotesk",sans-serif;font-style:normal;font-weight:400;font-size:.84rem;letter-spacing:-.02em;color:#39373b;white-space:nowrap;margin-left:2px}
+.copyright-byline{font:inherit;color:inherit}
+@media(max-width:650px){.brand-byline{font-size:.66rem}.logo{gap:7px}.header-nav a,.header-nav button{font-size:.7rem!important;padding:5px!important;margin:-5px!important}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
 
@@ -895,15 +984,14 @@ footer {
 
     <a class="logo" href="#">
         <span class="logo-mark">Z</span>
-        <span>ZM Creative</span>
+        <span>ZM Creative</span><span class="brand-byline">by Zarir Madon</span>
     </a>
 
     <nav class="header-nav">
+        <a href="https://zarirmadon.etsy.com/" target="_blank" rel="noopener">Etsy Shop ↗</a>
         <a href="#popular">Popular</a>
         <a href="#collections">Collections</a>
-        <a href="https://www.etsy.com/" target="_blank" rel="noopener">
-            Etsy Shop ↗
-        </a>
+        <button type="button" data-open-dialog="aboutDialog">About</button>
     </nav>
 
 </header>
@@ -1162,28 +1250,72 @@ footer {
 
 
         <div class="footer-links">
-
+            <a href="https://zarirmadon.etsy.com/" target="_blank" rel="noopener">Etsy Shop ↗</a>
             <a href="#popular">Popular</a>
             <a href="#collections">Collections</a>
-
-            <a
-                href="https://www.etsy.com/"
-                target="_blank"
-                rel="noopener">
-                Etsy Shop ↗
-            </a>
-
+            <button type="button" data-open-dialog="aboutDialog">About</button>
         </div>
 
     </div>
 
 
+    <div class="footer-social" aria-label="Social and contact links">
+      <a href="https://www.zarirmadon.com" target="_blank" rel="noopener" aria-label="zarirmadon.com" title="zarirmadon.com"><span class="social-wordmark">ZM<small>.com</small></span></a>
+      <a href="https://www.instagram.com/zarirmadon/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram social-glyph instagram" aria-hidden="true"></i></a>
+      <a href="https://www.facebook.com/zarirmadonphotography" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f social-glyph facebook" aria-hidden="true"></i></a>
+      <a href="https://www.behance.net/zarirmadon" target="_blank" rel="noopener" aria-label="Behance" title="Behance"><i class="fa-brands fa-behance social-glyph behance" aria-hidden="true"></i></a>
+      <a href="https://x.com/zarirmadon" target="_blank" rel="noopener" aria-label="X" title="X"><i class="fa-brands fa-x-twitter social-glyph xbrand" aria-hidden="true"></i></a>
+      <a href="https://www.pinterest.com/zarirmadon/" target="_blank" rel="noopener" aria-label="Pinterest" title="Pinterest"><i class="fa-brands fa-pinterest-p social-glyph pinterest" aria-hidden="true"></i></a>
+      <a href="https://www.substack.com/@zarirmadon" target="_blank" rel="noopener" aria-label="Substack" title="Substack"><i class="fa-solid fa-bookmark social-glyph substack" aria-hidden="true"></i></a>
+      <a href="https://mastodon.social/@zarirmadon" target="_blank" rel="noopener" aria-label="Mastodon" title="Mastodon"><i class="fa-brands fa-mastodon social-glyph mastodon" aria-hidden="true"></i></a>
+      <a href="https://bsky.app/profile/zarirmadon.bsky.social" target="_blank" rel="noopener" aria-label="Bluesky" title="Bluesky"><i class="fa-brands fa-bluesky social-glyph bluesky" aria-hidden="true"></i></a>
+      <a href="https://fineartamerica.com/profiles/zarirmadon" target="_blank" rel="noopener" aria-label="Fine Art America" title="Fine Art America"><span class="social-small">FAA</span></a>
+      <a href="https://www.saatchiart.com/zarirmadon" target="_blank" rel="noopener" aria-label="Saatchi Art" title="Saatchi Art"><span class="social-small">SA</span></a>
+      <a href="https://github.com/zarirmadon" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><i class="fa-brands fa-github social-glyph github" aria-hidden="true"></i></a>
+      <a href="https://www.etsy.com/shop/zarirmadon" target="_blank" rel="noopener" aria-label="Etsy" title="Etsy"><i class="fa-brands fa-etsy social-glyph etsy" aria-hidden="true"></i></a>
+      <button type="button" data-open-dialog="contactDialog" aria-label="Email" title="Email"><i class="fa-regular fa-envelope social-glyph email" aria-hidden="true"></i></button>
+    </div>
     <div class="copyright">
-        © 2026 ZM Creative. All rights reserved.
+        © 2026 ZM Creative <span class="copyright-byline">by Zarir Madon</span>. All rights reserved.
     </div>
 
 </footer>
 
+
+
+<div class="editorial-overlay" id="aboutDialog" role="dialog" aria-modal="true" aria-labelledby="aboutHeading" aria-hidden="true">
+  <div class="editorial-panel" tabindex="-1">
+    <button class="editorial-close" type="button" data-close-dialog aria-label="Close About">×</button>
+    <div class="editorial-grid">
+      <div><div class="editorial-eyebrow">Contemporary digital fine art</div><h2 class="editorial-heading" id="aboutHeading">See<br>things<em>again.</em></h2></div>
+      <div class="editorial-copy">
+        <p><strong>ZM Creative</strong> is a visual practice by Zarir Madon — where photography becomes abstraction, technology becomes a creative instrument, and ordinary subjects are pushed somewhere stranger.</p>
+        <p>The work moves freely between fine art, graphic design, surrealism and digital experimentation. There are no strict borders. Only interesting ones to cross.</p>
+        <p>The common thread is <em>transformation</em> — giving permission to move from a straight photograph to a wildly abstract digital piece without the collection feeling fragmented.</p>
+        <div class="editorial-facts"><div><span>Based in</span><b>Aotearoa / New Zealand</b></div><div><span>Practice</span><b>Art · Design · Photography</b></div><div><span>Approach</span><b>Curious / Experimental / Deliberate</b></div></div>
+      </div>
+    </div>
+    <a class="editorial-portfolio" href="https://www.zarirmadon.com" target="_blank" rel="noopener" aria-label="Visit www.zarirmadon.com">www.zarirmadon.com ↗</a>
+  </div>
+</div>
+<div class="editorial-overlay" id="contactDialog" role="dialog" aria-modal="true" aria-labelledby="contactHeading" aria-hidden="true">
+  <div class="contact-panel" tabindex="-1">
+    <button class="contact-close" type="button" data-close-dialog aria-label="Close contact">×</button>
+    <div class="contact-eyebrow">GET IN TOUCH</div>
+    <h2 class="contact-heading" id="contactHeading">Say <em>hello.</em></h2>
+    <p class="contact-intro">Send a message directly from the website.</p>
+    <form id="contactForm">
+      <label for="contactName">NAME</label>
+      <input id="contactName" name="name" autocomplete="name" required maxlength="120">
+      <label for="contactEmail">EMAIL</label>
+      <input id="contactEmail" name="email" type="email" autocomplete="email" required maxlength="254">
+      <label for="contactMessage">MESSAGE</label>
+      <textarea id="contactMessage" name="message" rows="5" required maxlength="5000"></textarea>
+      <button class="contact-submit" type="submit">SEND MESSAGE</button>
+      <p class="contact-status" id="contactStatus" role="status">This demo opens your email app to send the message.</p>
+    </form>
+  </div>
+</div>
 
 <script>
 
@@ -1841,10 +1973,31 @@ document
    INITIALISE
    ========================================================= */
 
+
+let previousDialogFocus=null;
+function closeEditorial(){document.querySelectorAll('.editorial-overlay.open').forEach(d=>{d.classList.remove('open');d.setAttribute('aria-hidden','true')});document.body.style.overflow='';previousDialogFocus?.focus();}
+document.querySelectorAll('[data-open-dialog]').forEach(b=>b.addEventListener('click',()=>{previousDialogFocus=b;const d=document.getElementById(b.dataset.openDialog);d.classList.add('open');d.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';d.querySelector('.editorial-close').focus()}));
+document.querySelectorAll('.editorial-overlay').forEach(d=>{d.addEventListener('click',e=>{if(e.target===d)closeEditorial()});d.querySelector('[data-close-dialog]').addEventListener('click',closeEditorial);d.addEventListener('keydown',e=>{if(e.key==='Tab'){const focusable=[...d.querySelectorAll('button,a[href]')];const first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}})});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeEditorial()});
+
 renderPopular();
 
 renderCategories();
 
+
+// Static preview: compose the message in the visitor's email application.
+// A server-side contact endpoint is needed for direct in-page delivery.
+document.getElementById('contactForm').addEventListener('submit', function(event){
+  event.preventDefault();
+  if (!this.reportValidity()) return;
+  const name=document.getElementById('contactName').value.trim();
+  const email=document.getElementById('contactEmail').value.trim();
+  const message=document.getElementById('contactMessage').value.trim();
+  const subject=encodeURIComponent('ZM Creative enquiry from '+name);
+  const body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\n'+message);
+  window.location.href='mailto:?subject='+subject+'&body='+body;
+  document.getElementById('contactStatus').textContent='Your email app should open. Choose a recipient and send the message there.';
+});
 </script>
 
 </body>
