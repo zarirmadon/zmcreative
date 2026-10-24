@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Open Masterpieces: explore public-domain and CC0 paintings with original museum image links.">
+<title>Open Masterpieces · The Digital Perspective</title>
+<style>
+:root{color-scheme:dark;--bg:#17191d;--panel:#202329;--panel2:#292c33;--raised:#33373f;--ink:#f2f1ee;--muted:#adb1b9;--line:#3a3e46;--blue:#82b9f1;--amber:#e8bc72;--danger:#efa69e;--focus:#9bcbff;--radius:13px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);line-height:1.5}button,input,select{font:inherit}button{cursor:pointer}a{color:var(--blue)}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.top{border-bottom:1px solid var(--line);background:#1d2025;position:sticky;top:0;z-index:12}.top-inner{max-width:1510px;margin:auto;min-height:66px;padding:11px 26px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:12px}.brand-icon{display:grid;place-items:center;width:40px;height:40px;border:1px solid #626d79;border-radius:10px;font-size:22px;color:var(--amber)}.brand strong{display:block;font-size:17px;letter-spacing:-.45px}.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:1.8px;text-transform:uppercase}.top-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{border:1px solid #4b5059;border-radius:9px;background:var(--panel2);color:var(--ink);padding:9px 13px;transition:background .13s}.btn:hover{background:#3d434b}.btn.primary{background:#335c86;border-color:#477dad;color:#fff}.btn.primary:hover{background:#406b96}.btn.ghost{background:transparent}.btn.small{padding:7px 10px;font-size:13px}.btn:disabled{opacity:.5;cursor:not-allowed}
+main{max-width:1510px;margin:auto;padding:0 26px 40px}.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;padding:44px 0 24px;border-bottom:1px solid var(--line);align-items:end}.overline{color:var(--amber);text-transform:uppercase;letter-spacing:2.3px;font-size:11px;font-weight:700;margin:0 0 7px}h1{font-family:Georgia,serif;font-weight:500;font-size:clamp(36px,4.3vw,64px);line-height:1.13;margin:0 0 10px;letter-spacing:-1.8px}.hero p{margin:0;max-width:775px;color:var(--muted);font-size:15px}.numbers{display:flex;gap:24px;text-align:right}.number strong{display:block;font-family:Georgia,serif;font-weight:400;font-size:31px;color:var(--ink)}.number span{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.notice{margin:17px 0 12px;padding:11px 13px;background:#262a30;border:1px solid #494b4a;border-left:3px solid var(--amber);border-radius:8px;color:#d8dadf;font-size:13px}.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:23px}.tabs{display:flex;align-items:center;flex-wrap:wrap;gap:6px}.tab{background:transparent;border:1px solid transparent;border-radius:8px;color:#b7bbc4;padding:10px 15px}.tab.active{background:#2b4055;color:#eaf4ff;border-color:#50647a}.tab:hover{background:var(--panel2)}.searchbar{flex:1;min-width:240px;display:flex;align-items:center;border:1px solid #525760;background:var(--panel);border-radius:10px;padding:0 5px 0 12px}.searchbar:focus-within{border-color:#7eaee1}.searchbar input{width:100%;background:transparent;border:0;outline:none;color:var(--ink);min-width:20px;height:43px;padding:0 10px}.searchbar input::placeholder{color:#9299a4}.searchbar button{white-space:nowrap}.subject-tools{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:9px;color:var(--muted);font-size:12px}.subject-tools label{display:flex;align-items:center;gap:9px}.subject-tools select{border-radius:8px;background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:8px 11px;max-width:280px}.subject-tools .tip{flex:1;min-width:240px}.filters{display:flex;gap:10px;flex-wrap:wrap;margin:13px 0 17px}.filters label{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:12px}.filters select{border-radius:8px;background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:9px 28px 9px 11px;max-width:230px}.summary{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:24px 0 14px;flex-wrap:wrap}.summary h2{margin:0;font-size:20px;font-weight:600;letter-spacing:-.3px}.summary small{color:var(--muted)}.toolsline{display:flex;gap:10px;align-items:center}.spinner{display:inline-block;height:14px;width:14px;border:2px solid #727e8a;border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:7px}@keyframes spin{to{transform:rotate(360deg)}}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.art{border:1px solid var(--line);border-radius:12px;background:var(--panel);min-width:0;overflow:hidden;display:flex;flex-direction:column}.art:hover{border-color:#6b7581}.art-img{height:240px;position:relative;background:var(--panel2);display:flex;justify-content:center;align-items:center;overflow:hidden}.art-img img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .16s}.art-img img:hover{transform:scale(1.035)}.open-art{position:absolute;inset:0;background:transparent;border:none;color:transparent;font-size:0}.art-img:hover .image-open{opacity:1}.image-open{position:absolute;left:12px;bottom:12px;background:#17191dd9;color:white;padding:5px 9px;font-size:12px;border-radius:6px;pointer-events:none;opacity:0;transition:opacity .15s}.art-flags{position:absolute;top:11px;left:11px;display:flex;gap:5px;pointer-events:none}.flag{padding:3px 7px;border-radius:5px;background:#11191edb;color:#d6e9d6;font-size:10px;font-weight:700;letter-spacing:.3px}.flag.size{color:#ffdfa6}.fav{position:absolute;top:9px;right:9px;width:31px;height:31px;border:1px solid #7a818b;background:#17191de8;border-radius:8px;color:#e4e6ea;font-size:19px}.fav.saved{color:var(--amber);border-color:#caa76f}.art-body{padding:16px;display:flex;flex-direction:column;flex:1}.art-body h3{font-family:Georgia,serif;font-size:20px;font-weight:400;line-height:1.25;margin:0 0 7px}.meta{color:var(--muted);font-size:13px;margin-bottom:9px}.blurb{color:#c3c7ce;font-size:12px;line-height:1.55;flex:1;margin:0 0 14px}.art-foot{display:flex;justify-content:space-between;align-items:center;gap:6px;border-top:1px solid var(--line);padding-top:11px;color:var(--muted);font-size:11px}.art-foot button{background:transparent;border:none;color:var(--blue);padding:3px;font-weight:650}.empty{grid-column:1/-1;text-align:center;padding:75px 18px;background:var(--panel);border:1px dashed #50545d;border-radius:12px;color:var(--muted)}.empty strong{display:block;font-size:20px;color:var(--ink);margin-bottom:7px}.more{display:flex;justify-content:center;margin-top:24px}.state{min-height:21px;color:var(--muted);font-size:12px}.info-line{font-size:12px;color:#d9c7a6;margin:10px 0}
+footer{border-top:1px solid var(--line);padding:30px 26px;max-width:1510px;margin:20px auto 0;display:flex;gap:25px;justify-content:space-between;align-items:flex-start;color:var(--muted);font-size:12px}footer .credit{text-align:right}.muted{color:var(--muted)}
+.dialog{position:fixed;inset:0;z-index:30;background:#090b0edc;display:none;align-items:center;justify-content:center;padding:16px}.dialog.show{display:flex}.dialog-panel{background:#202329;border:1px solid #515660;border-radius:14px;width:min(1070px,100%);max-height:95dvh;overflow:auto;box-shadow:0 15px 70px #0008}.dialog-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#202329;z-index:1}.dialog-head h2{margin:0;font-size:18px;font-weight:600}.detail{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}.detail-image{background:#16191f;min-height:420px;display:flex;align-items:center;justify-content:center;padding:18px}.detail-image img{max-width:100%;max-height:65dvh;object-fit:contain}.detail-text{padding:24px}.detail-text h3{font-family:Georgia,serif;font-size:30px;line-height:1.17;font-weight:400;margin:3px 0 8px}.detail-meta{color:var(--muted);font-size:14px;margin:0 0 18px}.detail-text p{color:#d5d7db;font-size:13px}.kv{border-top:1px solid var(--line);margin-top:14px;padding-top:12px;display:grid;grid-template-columns:112px 1fr;gap:8px;font-size:12px}.kv dt{color:var(--muted)}.kv dd{margin:0;overflow-wrap:anywhere}.detail-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:18px 0}.fact{border:1px solid #454b54;background:#292d34;border-radius:9px;padding:12px;min-width:0}.fact-label{display:block;font-size:10px;color:#b6bcc5;letter-spacing:1px;font-weight:700;margin-bottom:7px}.fact strong{display:block;font-size:15px;overflow-wrap:anywhere;line-height:1.4;color:#f1f0ed}.fact-sub{display:block;margin-top:7px;font-size:11px;color:#aab0ba;line-height:1.35}.detail-buttons{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.warn{border-left:3px solid var(--amber);padding:8px 12px;background:#333029;color:#e8d6b9;font-size:12px;margin-top:16px;border-radius:3px}.about{padding:22px 26px;max-width:830px}.about h3{font-size:16px;margin:16px 0 7px}.about p,.about li{color:#d0d2d8;font-size:14px}.about a{overflow-wrap:anywhere}.about ul{padding-left:20px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{grid-template-columns:1fr}.numbers{justify-content:flex-start;text-align:left}.detail{grid-template-columns:1fr}.detail-image{min-height:240px}.detail-image img{max-height:42dvh}}
+@media(max-width:780px){main{padding:0 15px 25px}.top-inner{padding:11px 15px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.art-img{height:190px}.art-body{padding:12px}.art-body h3{font-size:17px}.blurb{display:none}.hero{padding-top:27px}.hero h1{font-size:40px}.number strong{font-size:25px}.top-actions .btn{padding:8px}.toolbar{display:block}.tabs{margin-bottom:12px}.searchbar{width:100%}.filters select{max-width:180px}footer{display:block}footer .credit{text-align:left;margin-top:20px}}
+@media(max-width:460px){.detail-facts{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.art-img{height:300px}.brand strong{font-size:15px}.brand small{font-size:9px}.top-actions .btn.small{font-size:12px}.numbers{gap:22px}.searchbar input{font-size:14px}.filters{gap:7px}.filters label{flex:1 1 44%}.filters select{width:100%;max-width:100%}.detail-text{padding:15px}.detail-text h3{font-size:25px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ZM Creative-inspired editorial presentation. Artwork and metadata behaviour remain unchanged. */
+:root{color-scheme:light;--bg:#f5f4f0;--panel:#fffefa;--panel2:#eeede8;--raised:#e7e5de;--ink:#191919;--muted:#65645f;--line:#d8d5ce;--blue:#333b37;--amber:#a66f3b;--danger:#a12e22;--focus:#636e5e;--radius:0;font-family:Arial,Helvetica,sans-serif}
+body{background:var(--bg);color:var(--ink);letter-spacing:-.01em}a{color:#444b41;text-underline-offset:3px}a:hover{color:#101310}
+.top{background:#f5f4f0ef;border-bottom:1px solid var(--ink);backdrop-filter:blur(18px)}.top-inner{max-width:1600px;min-height:79px;padding:12px 36px}.brand{gap:16px}.brand-icon{height:43px;width:43px;border:2px solid #191919;border-radius:50%;color:#191919;font-size:14px;font-weight:900;letter-spacing:-2px;padding-right:2px}.brand strong{font-size:17px;font-weight:900;letter-spacing:-.7px}.brand-mark{font-size:12px;vertical-align:top}.brand small{font-size:9px;letter-spacing:2.1px;color:#666}
+.btn{border:1px solid var(--ink);border-radius:0;background:transparent;color:var(--ink);padding:11px 15px;font-size:12px;font-weight:750;letter-spacing:.045em;transition:background .16s,color .16s}.btn:hover,.btn.primary:hover{background:#41423e;color:white}.btn.primary{background:#20211f;border-color:#20211f;color:#fff}.btn.ghost{background:transparent}.btn.small{padding:9px 12px;font-size:11px}
+main{max-width:1600px;padding:0 36px 70px}.hero{padding:72px 0 52px;gap:30px;border-bottom:1px solid #242424;align-items:end}.overline{font-size:10px;letter-spacing:3px;color:#6e6b63;font-weight:800;margin-bottom:24px}h1{font-family:Arial,Helvetica,sans-serif;font-size:clamp(54px,8vw,132px);line-height:.9;font-weight:850;letter-spacing:-.09em;margin:0 0 28px}h1 em{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-.075em}.hero p:not(.overline){max-width:650px;font-size:15px;line-height:1.8;color:#55544f}.numbers{gap:36px}.number strong{font-family:Arial,sans-serif;font-size:clamp(29px,3vw,46px);font-weight:800;letter-spacing:-.075em}.number span{font-size:10px;letter-spacing:1.5px;color:#6c6962}
+.notice{background:#e9e6de;border:0;border-left:2px solid #2e302c;border-radius:0;color:#494841;padding:15px 18px;line-height:1.6}.toolbar{margin-top:32px;gap:16px}.tabs{gap:3px}.tab{color:#68665f;border-radius:0;padding:13px 16px;font-size:12px;font-weight:650}.tab.active{background:#1e201d;border-color:#1e201d;color:#fff}.tab:hover{background:#e1ded5;color:#181818}.tab.active:hover{background:#1e201d;color:#fff}
+.searchbar{background:#fffefa;border-color:#bab5aa;border-radius:0;padding-left:13px}.searchbar:focus-within{border-color:#252525}.searchbar input{height:49px;font-size:14px;color:#191919}.searchbar input::placeholder{color:#807d75}.subject-tools{margin-top:15px}.subject-tools select,.filters select{border:1px solid #bcb8ac;background:#fffefa;color:#2b2a27;border-radius:0;font-size:12px;padding:10px}.filters{gap:14px;border-bottom:1px solid #d3cfc6;padding-bottom:24px}.filters label{color:#5b5a55;font-weight:650;letter-spacing:.01em}
+.summary{margin:38px 0 21px}.summary h2{font-size:clamp(25px,3vw,43px);font-weight:850;letter-spacing:-.06em}.summary small{color:#716f68}.state{color:#6e6c65}.spinner{border-color:#b2ada4;border-top-color:#292929}
+.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}.art{background:var(--panel);border:1px solid #dedbd3;border-radius:0;transition:border-color .18s,transform .18s}.art:hover{border-color:#333;transform:translateY(-3px)}.art-img{height:265px;background:#eae8e0}.art-img img{transition:transform .4s}.art-img img:hover{transform:scale(1.055)}.image-open{border-radius:0;background:#161616e6;padding:8px 12px}.flag{background:#f8f5eee8;color:#21231f;border-radius:0;font-size:9px;letter-spacing:.7px;padding:6px 8px}.flag.size{color:#2d362f}.fav{border:1px solid #aaa79e;background:#f9f7f0ef;color:#1d1d1d;border-radius:0}.fav.saved{color:#9b6330;border-color:#9b6330}.art-body{padding:19px}.art-body h3{font-family:Georgia,serif;font-size:22px;letter-spacing:-.045em;color:#1c1c1c}.meta{font-size:12px;color:#64625e}.blurb{color:#77736d;font-size:12px;line-height:1.7}.art-foot{border-color:#dedbd3;color:#72706b}.art-foot button{color:#252523;font-size:11px;text-transform:uppercase;letter-spacing:1px}.empty{background:#f0eee8;color:#666;border:1px dashed #c9c5bc;border-radius:0}.empty strong{color:#222}
+footer{max-width:1600px;border-top:1px solid #191919;padding:28px 36px;color:#79766f}footer strong{color:#181818}.muted{color:#77746e}
+.dialog{background:#131411dc;padding:24px;backdrop-filter:blur(5px)}.dialog-panel{width:min(1190px,100%);max-height:93dvh;background:#f5f4f0;border:0;border-radius:0;box-shadow:0 35px 110px #0006}.dialog-head{background:#f5f4f0;border-bottom:1px solid #c9c5bc;padding:20px 26px}.dialog-head h2{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2.6px;color:#45433d}.detail{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}.detail-image{background:#e9e7e0;min-height:480px;padding:32px;border-right:1px solid #d2cec4}.detail-image img{max-height:72dvh;filter:drop-shadow(0 8px 8px #00000016)}.detail-text{padding:clamp(22px,3vw,48px)}.detail-text h3{font-family:Georgia,serif;font-size:clamp(31px,3.5vw,51px);letter-spacing:-.06em;line-height:1.1;color:#1c1b19}.detail-meta{font-size:13px;color:#646158}.detail-text p{color:#55524c;font-size:13px;line-height:1.8}.kv{border-color:#d4d0c7;grid-template-columns:116px 1fr;font-size:12px}.kv dt{color:#79756f}.detail-facts{gap:10px;margin:22px 0}.fact{background:#eeece5;border:1px solid #cdc9be;border-radius:0;padding:15px}.fact-label{color:#656158;font-size:10px;letter-spacing:1.3px}.fact strong{color:#1d1d1b;font-size:16px}.fact-sub{color:#777268}.warn{background:#e9e5da;border-left-color:#9d713d;color:#514839;border-radius:0}.about{padding:32px 38px}.about p,.about li{color:#595650}.about h3{color:#20211e}
+@media(max-width:1100px){.detail{grid-template-columns:1fr}.detail-image{min-height:250px;border-right:0;border-bottom:1px solid var(--line)}.detail-image img{max-height:42dvh}}
+@media(max-width:780px){.top-inner{padding:11px 16px}main{padding:0 15px 40px}.hero{padding:44px 0 33px}.grid{gap:10px}.art-img{height:190px}.art-body{padding:13px}.art-body h3{font-size:18px}.dialog{padding:8px}.dialog-head{padding:12px 15px}.detail-text{padding:22px}.detail-image{padding:15px}footer{padding:24px 15px}}
+@media(max-width:480px){.hero{padding-top:35px}h1{font-size:clamp(48px,12vw,70px)}.numbers{gap:23px}.brand small{letter-spacing:1px}.brand strong{font-size:13px}.brand-icon{width:35px;height:35px;font-size:11px}.top-actions{gap:5px}.top-actions .btn{font-size:10px;padding:8px}.detail-facts{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.art,.art-img img{transition:none}.art:hover{transform:none}}
+
+/* Responsive gallery and catalogue edition */
+:root{--accent-blue:#316582;--accent-gold:#b57836}
+body{background:radial-gradient(ellipse at 5% 6%,#e8eff0 0,transparent 40%),radial-gradient(ellipse at 92% 36%,#f6e6cf 0,transparent 33%),#f7f5f1}
+.topbar{background:linear-gradient(115deg,#f6f5f0 0%,#e7edef 64%,#f1e5d4 100%)}
+.hero{background:radial-gradient(ellipse at 90% 24%,#e9d5b9aa,transparent 45%);}
+.notice{background:linear-gradient(110deg,#e6ecec,#f3e9da);border-left:3px solid var(--accent-blue)}
+.btn.primary,.tab.active{background:linear-gradient(115deg,#26485d,#357089);border-color:#26485d;color:#fff}
+.btn.primary:hover,.tab.active:hover{background:#284f65}
+.art-img{background:linear-gradient(145deg,#e1e7e8,#ede8df 68%,#ead7bf)}
+.art{box-shadow:0 5px 20px #33465009}
+.art:hover{box-shadow:0 15px 35px #33465019}
+.art-body h3{overflow-wrap:anywhere}
+.dialog-panel{background:#faf9f6}
+.dialog-head{background:linear-gradient(105deg,#f5f6f3,#e8edf0)}
+.detail-image{background:linear-gradient(145deg,#dce7ec,#ebeae5 48%,#eee0ca)}
+.detail-text{background:#faf9f6;min-width:0}
+.detail-text p{font-size:14px;line-height:1.8;overflow-wrap:anywhere}
+.fact:first-child{background:linear-gradient(135deg,#e2ebec,#f1f5f3);border-color:#b8c9cb}
+.fact:nth-child(2){background:linear-gradient(135deg,#f2e7d7,#f8f3e9);border-color:#dac9b0}
+.museum-notes{margin-top:28px;border-top:2px solid #bdcdd0;padding-top:22px}
+.museum-notes h4{font-family:Georgia,serif;font-size:25px;letter-spacing:-.035em;font-weight:400;margin:0 0 16px}
+.museum-section{padding:16px 0;border-top:1px solid #ddd9d2}
+.museum-section h5{font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#396478;margin:0 0 9px}
+.museum-section p{white-space:normal;margin:0;color:#4d4c48;line-height:1.75}
+.museum-more{display:inline-block;margin:14px 0 0;color:#245a78;text-decoration:underline;font-weight:700}
+.museum-fallback{color:#5f625f}
+@media(max-width:1120px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.detail{grid-template-columns:1fr}.detail-image{min-height:0;padding:22px;border-right:0;border-bottom:1px solid #d4d4cf}.detail-image img{max-height:44dvh}}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.top-inner{flex-wrap:wrap;gap:12px}.top-actions{flex-wrap:wrap}.top-actions .btn{min-height:40px}.hero{padding:38px 0 28px}.hero h1{font-size:clamp(47px,10vw,75px)}.filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.filters label,.filters select{min-width:0;width:100%;max-width:none}.art-img{height:215px}.dialog{padding:7px}.dialog-panel{max-height:calc(100dvh - 14px);width:100%}.detail-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.detail-image img{max-height:37dvh}}
+@media(max-width:520px){main{padding:0 15px 36px}.grid{grid-template-columns:1fr;gap:17px}.art-img{height:auto;aspect-ratio:4/3}.art-img img{width:100%;height:100%;object-fit:contain}.art-body{padding:18px}.art-body h3{font-size:24px}.blurb{display:block;font-size:13px}.top-inner{align-items:center;justify-content:space-between}.top-actions{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}.top-actions .btn{font-size:12px!important;padding:11px 8px!important;white-space:normal}.brand strong{font-size:16px}.brand small{font-size:10px}.hero h1{font-size:clamp(47px,12vw,64px)}.hero p:not(.overline){font-size:14px}.numbers{gap:18px}.toolbar{margin-top:20px}.tabs{display:grid;grid-template-columns:repeat(3,1fr)}.tab{font-size:11px;padding:11px 4px}.searchbar{min-width:0}.searchbar input{min-width:0}.searchbar .btn{font-size:11px;padding:9px}.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.detail-facts{grid-template-columns:1fr}.dialog-head{padding:12px 15px}.detail-text{padding:21px 19px}.detail-text h3{font-size:clamp(30px,9vw,43px)}.detail-image{padding:15px}.detail-image img{max-height:32dvh}.kv{grid-template-columns:96px minmax(0,1fr)}.fact{padding:13px}.detail-buttons .btn{flex:1 1 100%;text-align:center}.dialog-head .btn{white-space:nowrap}}
+
+/* Compact search controls: keep the sort visible and secondary choices in a drawer. */
+.compact-controls{display:flex;align-items:start;gap:12px;flex-wrap:wrap;margin:12px 0 2px}
+.sort-quick{display:flex;gap:9px;align-items:center;color:#625c54;font-size:12px;font-weight:700;white-space:nowrap}
+.sort-quick select{font:inherit;color:#242725;background:#fffefa;border:1px solid #bcb8ac;min-height:39px;padding:7px 12px;max-width:min(48vw,260px)}
+.filter-drawer{flex:1;min-width:200px;border:1px solid #cbc8c0;background:#f1efe9}
+.filter-drawer summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:9px;padding:9px 13px;min-height:39px;color:#292924;font-size:12px;font-weight:750;user-select:none}
+.filter-drawer summary::-webkit-details-marker{display:none}
+.filter-drawer summary:focus-visible{outline:2px solid #466f9f;outline-offset:2px}
+.drawer-arrow{margin-left:auto;font-size:19px;line-height:1;transition:transform .2s}
+.filter-drawer[open] .drawer-arrow{transform:rotate(180deg)}
+.filter-content{padding:12px 14px 2px;border-top:1px solid #cbc8c0}
+.filter-content .subject-tools{margin:0 0 12px;align-items:flex-start}
+.filter-content .subject-tools .tip{min-width:0}
+.filter-content .filters{border:0;padding:0 0 10px;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.filter-content .filters label{display:flex;flex-direction:column;align-items:stretch;gap:5px;min-width:0}
+.filter-content .filters select{width:100%;max-width:none;min-width:0}
+.filter-counter{border-radius:30px;background:#d6e4ee;color:#233e52;padding:1px 7px;font-size:11px}
+@media(max-width:760px){.compact-controls{gap:8px}.sort-quick{flex:1 1 100%}.sort-quick select{max-width:none;width:100%}.sort-quick .select-wrap{flex:1;min-width:0}.filter-drawer{min-width:0;flex:1 1 100%}.filter-content .filters{grid-template-columns:repeat(2,minmax(0,1fr))}.filter-content .subject-tools label{width:100%;flex-wrap:wrap}.filter-content .subject-tools select{flex:1;max-width:none;min-width:0}}
+@media(max-width:380px){.filter-content .filters{grid-template-columns:1fr}.filter-content .subject-tools label{display:block}.filter-content .subject-tools select{width:100%;margin-top:5px}}
+
+/* The Digital Perspective alternative visual theme; catalogue behaviour unchanged. */
+:root{color-scheme:dark;--bg:#0d1015;--panel:#181d25;--panel2:#202733;--raised:#2d3541;--ink:#f3f4f7;--muted:#aeb6c3;--line:#343d49;--blue:#a0d3f4;--amber:#eebd88;--focus:#a9d1ff;--accent-blue:#77c0e4;--accent-gold:#dbac83;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
+html{background:#0d1015}body{color:var(--ink);background:radial-gradient(ellipse 80% 48% at 89% 5%,#35244755,transparent 80%),radial-gradient(ellipse 70% 44% at 4% 36%,#18395055,transparent 76%),#0d1015;letter-spacing:0}
+a{color:#9ccdf0}a:hover{color:#d6eafb}
+.top{background:#10141af0;border-bottom:1px solid #303845;backdrop-filter:blur(18px)}.top-inner{max-width:1580px;min-height:75px}.brand-icon{border:1px solid #738195;border-radius:50%;background:linear-gradient(130deg,#253a4b,#352b45);color:#e8edf3;letter-spacing:-1px;font-weight:800}.brand strong{font-size:15px;letter-spacing:.045em;color:#f0f4f7}.brand small{color:#9aa8b7;letter-spacing:1.6px}.brand-mark{color:#a6c6ed}
+.btn{background:#222a35;border:1px solid #586678;border-radius:9px;color:#f0f2f7;font-weight:650;letter-spacing:0;transition:background .15s,border-color .15s}.btn:hover,.btn.ghost:hover{background:#334051;color:#fff;border-color:#93afc8}.btn.primary,.tab.active{background:linear-gradient(115deg,#6279b9,#477a9c 70%,#577d96);border-color:#6f90b9;color:#fff}.btn.primary:hover,.tab.active:hover{background:#688aac;color:#fff}.btn.ghost{background:#1b222b}
+main{max-width:1580px}.hero{position:relative;padding:75px 0 62px;border-color:#3a4554;background:radial-gradient(ellipse at 88% 18%,#4e3f684a,transparent 46%),radial-gradient(ellipse at 45% 92%,#1d52614a,transparent 62%)}.overline{color:#b4c3d7;letter-spacing:2.5px;margin-bottom:20px}.hero h1{color:#fff;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:800;letter-spacing:-.085em;font-size:clamp(55px,8.2vw,124px);line-height:.96}.hero h1 em{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;letter-spacing:-.065em;background:linear-gradient(95deg,#bdd8f1,#e1b6bf 54%,#e0c394);background-clip:text;-webkit-background-clip:text;color:transparent}.hero p:not(.overline){color:#bfc9d6;line-height:1.8;font-size:15px}.number strong{color:#f4f5f8}.number span{color:#a8b3c0}.notice{background:linear-gradient(112deg,#1d3340,#29283a);border-left:3px solid #93c1de;color:#dce4ef}
+.tab{color:#b5becc;border-radius:9px}.tab:hover{background:#293441;color:#f4f6fa}.tab.active:hover{background:#4d7198}.searchbar{background:#181f29;border:1px solid #536173;border-radius:11px}.searchbar:focus-within{border-color:#9dc9f1}.searchbar input{color:#f2f4f8}.searchbar input::placeholder{color:#a2adbd}.summary h2{color:#eff2f6;letter-spacing:-.05em}.summary small,.state{color:#aab4c3}.spinner{border-color:#627387;border-top-color:#add4f4}
+.sort-quick{color:#c8d1dd}.sort-quick select,.filter-content .filters select,.subject-tools select{background:#1b2430;border:1px solid #59697d;border-radius:8px;color:#eaf0f6}.filter-drawer{background:#19212c;border:1px solid #455368;border-radius:9px}.filter-drawer summary{color:#e6ecf5}.filter-content{border-color:#455368}.filter-content .filters{border-color:#39485a}.filter-content .filters label,.filter-content .subject-tools,.filter-content .subject-tools .tip{color:#b6c2d0}.filter-counter{background:#36495e;color:#e0efff}
+.art{background:#171d26;border:1px solid #35404e;border-radius:13px;box-shadow:0 8px 24px #05080c33;transition:transform .16s,border-color .16s,box-shadow .16s}.art:hover{border-color:#86a7c6;box-shadow:0 16px 36px #02040970}.art-img{background:linear-gradient(145deg,#283242,#292a39 50%,#3a3136)}.image-open{border-radius:7px;background:#0d1621e8}.flag{background:#192634eb;color:#d1e8e8;border-radius:5px}.flag.size{color:#f4d7a9}.fav{background:#141d27e8;color:#fff;border-color:#73869c;border-radius:8px}.fav.saved{color:#f0bb7c;border-color:#cda378}.art-body h3{font-family:Georgia,serif;font-weight:400;color:#f6f3f1}.meta,.blurb,.art-foot{color:#b5becc}.art-foot{border-color:#35404e}.art-foot button{color:#b8d8fa}.empty{background:#19212b;border-color:#4b586a;color:#b3bdc9}.empty strong{color:#f2f4f8}
+.dialog{background:#05070bcf;backdrop-filter:blur(8px)}.dialog-panel{background:#171e28;border:1px solid #4c5b6e;border-radius:15px;box-shadow:0 35px 100px #0009}.dialog-head{background:#1d2632;border-color:#3d4b5d}.dialog-head h2{color:#e2eaf5}.detail-image{background:radial-gradient(ellipse at 30% 20%,#375166,#222a37 55%,#241e29);border-color:#404d5c}.detail-image img{filter:drop-shadow(0 10px 20px #0006)}.detail-text{background:#171e28}.detail-text h3{color:#f7f5f6}.detail-meta,.detail-text p{color:#bbc7d5}.kv{border-color:#455064}.kv dt{color:#a7b7c9}.kv dd{color:#e5ecf5}.fact{background:#222d3b;border:1px solid #495971;border-radius:9px}.fact:first-child{background:linear-gradient(135deg,#263d49,#202d3b);border-color:#456b7a}.fact:nth-child(2){background:linear-gradient(135deg,#3b3335,#2b2a36);border-color:#74605e}.fact-label{color:#b8c9d9}.fact strong{color:#f3f3f4}.fact-sub{color:#aebed0}.warn{background:#39312d;border-color:#d5a673;color:#f2ddc7}.museum-notes{border-color:#526a82}.museum-notes h4{color:#f1f2f6}.museum-section{border-color:#3b4857}.museum-section h5{color:#a3cbe7}.museum-section p,.museum-fallback{color:#bfcbda}.museum-more{color:#a9d7fc}.about h3{color:#eef3f8}.about p,.about li{color:#c0cbd9}footer{border-color:#3d495a;color:#b3c0cf}footer strong{color:#f2f4f8}.muted{color:#b4bfcd}
+@media(max-width:760px){.hero{padding:38px 0 30px}.hero h1{font-size:clamp(44px,10vw,72px)}.top-inner{padding:12px 16px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dialog{padding:7px}.dialog-panel{max-height:calc(100dvh - 14px)}.detail-image{border-right:0}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.hero h1{font-size:clamp(44px,11.6vw,63px)}.art-img{height:auto;aspect-ratio:4/3}.top-actions{grid-template-columns:1fr 1fr}.top-actions .btn{font-size:12px!important}.detail-facts{grid-template-columns:1fr}.detail-text{padding:21px 19px}.dialog-head{padding:12px 15px}.hero p:not(.overline){font-size:14px}.brand strong{font-size:13px}.brand small{font-size:9px}.numbers{gap:18px}}
+.world-discovery{padding:12px 0 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:#c5cfda;font-size:12px}.world-discovery>label{font-weight:700}.world-discovery select{border:1px solid #56677c;background:#1b2430;color:#edf2f7;padding:9px 12px;border-radius:8px;max-width:100%;min-width:190px}.world-discovery .tip{width:100%;color:#aebccc;line-height:1.5}@media(max-width:600px){.world-discovery select{width:100%}.world-discovery{display:block}.world-discovery>label{display:block;margin-bottom:8px}}
+.art-img:has(.landmark-empty){background:linear-gradient(145deg,#242c3d,#3b3040 60%,#59483d);display:flex;align-items:center;justify-content:center}.landmark-empty{padding:2rem 1.4rem;text-align:center;letter-spacing:.09em;text-transform:uppercase;line-height:1.7;font-size:.78rem;color:#e4ccaf}.art-img:has(.landmark-empty) .image-open{display:none}.art-img:has(.landmark-empty) .art-flags{z-index:3}.detail-image:has(>p){min-height:270px;background:linear-gradient(135deg,#242c3d,#59483d);display:flex;align-items:center;justify-content:center;padding:2rem;text-align:center}.detail-image>p{max-width:24rem;line-height:1.7;color:#f0dfcb}
+
+/* Compact responsive gallery masthead */
+.hero{padding:22px 0 20px!important;gap:16px!important;align-items:center!important;background:radial-gradient(ellipse at 90% 4%,#36445a55,transparent 60%)!important}
+.overline{margin-bottom:7px!important;letter-spacing:1.7px!important}
+.hero h1{font-size:clamp(34px,4.9vw,66px)!important;line-height:1.01!important;margin:0 0 7px!important;letter-spacing:-.055em!important}
+.hero p:not(.overline){font-size:12px!important;line-height:1.48!important;max-width:690px!important}
+.numbers{gap:18px!important}.number strong{font-size:27px!important}.number span{font-size:9px!important}
+.notice{margin:12px 0!important;padding:9px 12px!important;font-size:11px!important;line-height:1.4!important}
+.art-img .preview-note{position:absolute;bottom:9px;left:10px;right:10px;z-index:2;text-align:center;font-size:10px;background:#101723c9;color:#d7e3ef;padding:4px 6px;pointer-events:none}
+@media(max-width:760px){main{padding:0 12px 28px!important}.hero{padding:14px 0!important;gap:9px!important}.hero h1{font-size:clamp(32px,7vw,47px)!important}.hero p:not(.overline){font-size:11px!important}.overline{font-size:9px!important}.number strong{font-size:20px!important}.number span{font-size:8px!important}.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}.art-img{height:180px!important;aspect-ratio:auto!important}.art-body h3{font-size:16px!important}.art-body{padding:10px!important}.numbers{gap:10px!important}}
+@media(max-width:480px){.hero{grid-template-columns:1fr!important}.numbers{display:none!important}.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.art-img{height:160px!important}.art-body h3{font-size:15px!important}.meta{font-size:11px!important}.art-foot{font-size:10px!important}.flag{font-size:8px!important;padding:3px 4px!important}.fav{width:26px!important;height:26px!important;font-size:16px!important}.top-inner{gap:7px!important}.top-actions .btn{padding:6px!important;font-size:10px!important}}
+@media(max-width:360px){.grid{grid-template-columns:1fr!important}.art-img{height:220px!important}}
+
+/* ZM Creative gallery: artwork-first presentation */
+:root{color-scheme:light;--bg:#f4f1eb;--panel:#fffefa;--panel2:#e8e5df;--ink:#1e252a;--muted:#656e76;--line:#d9d5ce;--blue:#286581;--amber:#b47846;--focus:#3287aa}
+html,body{background:#f4f1eb;color:var(--ink)}
+body{background:radial-gradient(ellipse at 92% 5%,#f4d8c6a0,transparent 45%),radial-gradient(ellipse at 5% 25%,#d4e5e5a0,transparent 48%),#f4f1eb}
+a{color:#286581}a:hover{color:#153e58}
+.top{background:#faf8f3f2;border-bottom:1px solid #d7d3ca;backdrop-filter:blur(14px)}
+.top-inner{min-height:61px;max-width:1500px;padding:9px 22px}
+.brand-icon{background:linear-gradient(135deg,#304852,#c59a74);color:white;border:0;border-radius:50%;width:37px;height:37px;font-size:15px}
+.brand strong{color:#1d262b;font-size:15px;letter-spacing:.015em}.brand small{color:#73736f;font-size:10px}.brand-mark{color:#bd865b}
+.btn,.btn.ghost{background:#fffdfa;border:1px solid #aeb8ba;color:#203038;border-radius:7px}.btn:hover,.btn.ghost:hover{background:#e8eff0;color:#17272e;border-color:#517b8b}
+.btn.primary,.tab.active{background:linear-gradient(110deg,#315b68,#497d8d);color:white;border-color:#315b68}
+main{max-width:1500px;padding:0 22px 44px}
+.hero{display:block;padding:19px 0 11px!important;margin:0;background:none;border:0}
+.hero h1{font-family:Arial,system-ui,sans-serif;font-size:clamp(28px,4vw,45px)!important;line-height:1.1;letter-spacing:-.065em!important;margin:0 0 4px!important;color:#20282d!important;font-weight:800}
+.hero h1 em{background:linear-gradient(95deg,#42738a,#af7d63);background-clip:text;-webkit-background-clip:text;color:transparent;font-weight:400}
+.hero p{font-size:12px!important;line-height:1.35!important;color:#697177!important;margin:0!important}
+.notice{display:none!important}
+.toolbar{margin:8px 0!important;gap:10px}.tabs{gap:3px!important}.tab{border-radius:7px;color:#3d5660;padding:9px 11px!important;font-size:12px!important}
+.searchbar{background:#fffefa;border:1px solid #b6c4c6;border-radius:8px}.searchbar input{color:#24353e}.searchbar input::placeholder{color:#929b9f}
+.compact-controls{margin:6px 0 8px!important;align-items:center}.sort-quick{color:#566268}.sort-quick select,.filter-content .filters select,.subject-tools select{background:white;color:#26363e;border:1px solid #b7c3c5;border-radius:6px}
+.filter-drawer{background:#fffdfa;border:1px solid #d0d5d1;border-radius:7px}.filter-drawer summary{color:#344e5a}.filter-content{border-color:#d9dfdc}.filter-counter{background:#e1eaec;color:#285367}.filter-content .subject-tools,.filter-content .subject-tools .tip,.filter-content .filters label{color:#5e696a}
+.summary{margin:14px 0 12px!important}.summary h2{color:#283238!important;font-size:clamp(19px,2.2vw,27px)!important}.summary small,.state{color:#707c80}
+.grid{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:15px!important}
+.art{background:#fffdfa;border:1px solid #dadbd5;border-radius:10px;box-shadow:0 6px 18px #30434a0c;overflow:hidden;transition:transform .15s,box-shadow .15s}
+.art:hover{box-shadow:0 10px 28px #36495026;border-color:#91aeb0;transform:translateY(-2px)}
+.art-img{height:auto!important;aspect-ratio:1/1.03!important;background:linear-gradient(130deg,#e4eaeb,#eee4db);position:relative}
+.art-img img{width:100%;height:100%;object-fit:contain;display:block}
+.art-placeholder{display:grid;place-items:center;padding:24px;text-align:center;position:absolute;inset:0;color:#8b908f;font-size:12px}
+.art-body{padding:12px 13px 14px!important;min-height:74px}
+.art-body h3{color:#253139!important;font:600 16px/1.2 Georgia,serif!important;letter-spacing:-.025em;margin:0 0 5px}
+.art-body .meta{font-size:11px!important;color:#677178;margin:0!important;line-height:1.35}
+.rank-pill{position:absolute;left:9px;top:9px;background:#20333edb;color:white;padding:3px 7px;font-size:10px;border-radius:4px;z-index:2;pointer-events:none}
+.card-download{display:inline-block;margin-top:8px;font-size:11px;font-weight:700}
+.fav{z-index:4;background:#fffcf3e8;border:1px solid #aab9bd;color:#314d58;border-radius:7px}.fav.saved{color:#a86730;border-color:#af885f}
+.dialog{background:#1b2634c7}.dialog-panel{background:#fbfaf6;border-radius:12px;border:1px solid #d6d0c7}.dialog-head{background:#f7f5f0;border-color:#d6d2ca}.dialog-head h2{color:#33474c}.detail-image{background:linear-gradient(140deg,#e7edf0,#f0e9e1);border-color:#d8d7d0}.detail-text{background:#fbfaf6}.detail-text h3{color:#26333a}.detail-meta,.detail-text p{color:#57646a}.kv{border-color:#d8d8d3}.kv dt{color:#747d7e}.kv dd{color:#303e45}.fact{background:#f0f1ef;border:1px solid #cdd5d2}.fact:first-child{background:linear-gradient(120deg,#e2eef0,#f5f5f0);border-color:#bdcfd1}.fact:nth-child(2){background:linear-gradient(120deg,#f5eee5,#f7f5f0);border-color:#decbbc}.fact strong{color:#2b3f48}.fact-label,.fact-sub{color:#5b7079}.museum-notes{border-color:#c2d5d7}.museum-section{border-color:#d5d8d4}.museum-section h5{color:#396478}.museum-fallback{color:#68777b}.warn{background:#f4eee3;color:#6d553e;border-color:#bd8d5c}.about p,.about li{color:#4a5558}
+footer{background:#edece6;color:#616e71;border-color:#d7dbd7}
+@media(max-width:1200px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+@media(max-width:850px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}.top-inner{padding:10px 14px}.toolbar{display:block}.searchbar{width:100%;margin-top:7px}}
+@media(max-width:600px){main{padding:0 13px 35px}.top-inner{gap:8px;flex-wrap:nowrap}.brand{gap:7px}.brand-icon{width:30px;height:30px;font-size:12px}.brand strong{font-size:12px}.brand small{font-size:8px;letter-spacing:.65px}.top-actions{display:flex;width:auto;gap:5px}.top-actions .btn{padding:6px!important;font-size:0!important;min-width:34px;height:33px}.top-actions #refresh::before{content:'↻';font-size:20px}.top-actions #about::before{content:'ⓘ';font-size:19px}.hero{padding:12px 0 5px!important}.hero h1{font-size:30px!important}.hero p{font-size:11px!important}.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}.art-body{padding:9px!important;min-height:65px}.art-body h3{font-size:15px!important}.art-body .meta{font-size:10px!important}.tabs{display:flex;gap:3px}.tab{font-size:10px!important;flex:1;padding:8px 3px!important;line-height:1.2}.sort-quick{flex:1 1 auto}.filter-drawer{flex:1 1 auto}.summary h2{font-size:20px!important}.detail{grid-template-columns:1fr}.detail-image{min-height:0;padding:12px}.detail-image img{max-height:40dvh}.detail-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.dialog{padding:5px}.dialog-panel{max-height:calc(100dvh - 10px)} }
+@media(max-width:350px){.grid{grid-template-columns:1fr!important}.top-actions #refresh::before,.top-actions #about::before{font-size:16px}}
+
+.art-summary{font-size:14px!important;line-height:1.65!important;margin:16px 0!important;color:#3c4850!important}.view-at{font-size:12px!important;color:#66747b!important;padding:0 0 12px}.reuse-caution{font-size:11px!important;line-height:1.45;color:#866e57!important;margin-top:12px}.detail-text{padding:clamp(16px,2.6vw,35px)!important}.detail-text h3{font-size:clamp(26px,3vw,39px)!important}.detail-facts{margin:16px 0!important}.detail-buttons{margin-top:14px!important}.art-body .card-download{font-size:11px}.detail-image img{object-fit:contain}.detail{align-items:start}@media(max-width:600px){.art-summary{font-size:13px!important}.detail-text{padding:16px!important}.detail-image img{max-height:43dvh}}
+.detail-facts .fact:nth-child(2){display:flex;flex-direction:column;align-items:flex-start;gap:8px}.detail-facts .fact .btn{font-size:12px;padding:10px 12px;text-align:center;max-width:100%;white-space:normal;overflow-wrap:anywhere}.detail-facts .fact .fact-sub{margin-top:2px}.detail-facts{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}@media(max-width:700px){.detail-facts{grid-template-columns:1fr!important}}
+
+/* Integrated discovery: search first, controls on focus, no separate filter row. */
+.toolbar{position:relative;z-index:20;align-items:stretch;gap:10px}
+.search-cluster{position:relative;min-width:0;flex:1 1 360px}
+.search-cluster .searchbar{width:100%;margin:0;display:flex;gap:8px;align-items:center}
+.search-cluster .searchbar input{min-width:0;flex:1}
+.search-options-button{background:transparent;border:1px solid #a8b4b9;color:#345867;border-radius:9px;font-size:18px;min-width:38px;min-height:38px;cursor:pointer;flex-shrink:0}
+.search-options-button[aria-expanded=true]{background:#d9e5e8;border-color:#507483}
+.search-popover[hidden]{display:none!important}
+.search-popover{position:absolute;top:calc(100% + 7px);left:0;right:0;z-index:40;background:#fffdf8;border:1px solid #b9c4c4;border-radius:15px;box-shadow:0 18px 50px #1f334433;padding:14px;color:#26343a;max-height:min(70dvh,650px);overflow:auto}
+.search-popover-title{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px}
+.search-popover-close{border:1px solid #c0c8c8;background:#f6f4ef;border-radius:7px;padding:5px 10px;cursor:pointer;color:#26343a}
+.search-popover-hint{font-size:12px;line-height:1.5;color:#727d80;margin:5px 0 10px}
+.search-popover .compact-controls{display:grid!important;grid-template-columns:1fr;gap:12px;margin:0!important}
+.search-popover .sort-quick{display:grid;grid-template-columns:70px minmax(0,1fr);width:100%;color:#415259}
+.search-popover .sort-quick .select-wrap,.search-popover .sort-quick select{max-width:none;width:100%}
+.search-popover .filter-drawer{background:transparent;border:0;border-radius:0;margin:0;min-width:0}
+.search-popover .filter-drawer>summary{display:none}
+.search-popover .filter-drawer>.filter-content{padding:0;border:0}
+.search-popover .subject-tools,.search-popover .world-discovery{background:#f5f6f3;border:1px solid #e0e4e1;border-radius:9px;padding:10px!important}
+.search-popover select{background:#fff!important;color:#26343a!important;border:1px solid #afbcbc!important;min-height:37px;border-radius:7px!important}
+.search-popover .filter-content .filters label,.search-popover .world-discovery,.search-popover .subject-tools,.search-popover .subject-tools .tip,.search-popover .world-discovery .tip{color:#57676c!important}
+.search-popover .filter-content .filters{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.search-popover .tip{display:none!important}.search-popover .world-discovery{gap:6px}.search-popover .subject-tools{margin-bottom:8px!important}.search-popover .world-discovery{margin-bottom:8px!important}
+@media(max-width:760px){.toolbar{display:flex;flex-wrap:wrap}.search-cluster{flex-basis:100%}.search-popover{padding:12px;max-height:65dvh}.search-popover .filter-content .filters{grid-template-columns:repeat(2,minmax(0,1fr))}.search-popover .world-discovery select{width:100%;min-width:0}}
+@media(max-width:390px){.search-popover .filter-content .filters{grid-template-columns:1fr}.search-cluster .searchbar{gap:5px}.search-options-button{min-width:32px;padding:0}.search-cluster .searchbar .btn{padding-left:8px;padding-right:8px}}
+
+/* On-demand image download selector */
+.download-activator{cursor:pointer;outline-offset:3px;transition:border-color .15s,background .15s}
+.download-activator:hover,.download-activator[aria-expanded=true]{border-color:#4f8297!important;background:#e9f1ee!important}
+.download-activator:focus-visible{outline:2px solid #286581}
+.download-activator::after{content:'Select image & size  ↗';font-size:12px;font-weight:700;color:#286581}
+.download-results[hidden]{display:none!important}
+.download-results{grid-column:1/-1;background:#f7f7f3;border:1px solid #d1d9d6;border-radius:12px;padding:clamp(10px,2vw,20px);margin:12px 0 18px;min-width:0}
+.download-intro,.download-progress,.download-warning,.download-empty{font-size:12px;line-height:1.5;color:#617078;margin:0 0 12px}
+.download-warning{color:#885b3e;background:#f9efe4;border:1px solid #e6c9af;border-radius:7px;padding:9px}
+.download-choice{display:grid;grid-template-columns:94px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid #d8dedb}
+.download-thumb{width:94px;height:100px;object-fit:contain;background:linear-gradient(135deg,#e1e9e8,#f3e8de);border:1px solid #d8ddd9;border-radius:6px}
+.download-choice-body{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.download-choice-name{font-size:13px;font-weight:700;line-height:1.3;overflow-wrap:anywhere;color:#23323b}
+.download-choice-meta{font-size:11px;line-height:1.4;color:#67777d}
+.download-size-links{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:2px 0}
+.download-size-links .btn,.download-museum-item .btn{font-size:11px;padding:7px 9px}
+.download-museum{margin-top:16px}.download-museum h4{font-size:15px;margin:0 0 12px;color:#273e46}
+.download-museum-item{display:flex;flex-wrap:wrap;align-items:center;gap:8px;border-top:1px solid #dce2df;padding:10px 0;font-size:12px}
+.download-museum-item>span{flex:1 1 100%;color:#50636b}
+@media(max-width:480px){.download-choice{grid-template-columns:70px minmax(0,1fr);gap:9px}.download-thumb{width:70px;height:80px}.download-choice-name{font-size:12px}.download-results{padding:10px}.download-size-links .btn{padding:6px 7px;font-size:10px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-inner"><div class="brand"><span class="brand-icon" aria-hidden="true">ZM</span><div><strong>ZM CREATIVE <span class="brand-mark">✳</span></strong><small>OPEN MASTERPIECES / ART LIBRARY</small></div></div><div class="top-actions"><button class="btn small ghost" id="refresh" title="Rebuild the curated list from museum catalogues">↻ Refresh</button><button class="btn small" id="about">ⓘ About & rights</button></div></div></header>
+<main>
+<section class="hero" aria-label="Art gallery"><div><h1>Open <em>Masterpieces.</em></h1><p>300 works to explore · historical fame first · images and download rights shown separately</p></div><div class="numbers" hidden><div class="number"><strong id="totalFeatured">103</strong></div></div></section>
+<div class="toolbar"><nav class="tabs" aria-label="Collections"><button class="tab active" data-tab="featured">Top 300 · historical fame</button><button class="tab" data-tab="search">Museum search</button><button class="tab" data-tab="saved">★ Saved</button></nav><div class="search-cluster" id="searchCluster"><form class="searchbar" id="searchForm"><span aria-hidden="true">⌕</span><input id="query" type="search" autocomplete="off" placeholder="Search title, artist, subjects, region…" aria-label="Search painting titles, artists or depicted subjects"><button class="btn primary small" type="submit">Search</button></form><div class="search-popover" id="searchPopover" hidden><div class="search-popover-title"><strong>Search &amp; filters</strong><button type="button" class="search-popover-close" id="closeSearchOptions" aria-label="Close search options">✕</button></div><p class="search-popover-hint">Try beach, dog, rain, hair, artist names or choose a tradition below.</p><div id="integratedControls"></div></div></div></div>
+<div class="compact-controls"><label class="sort-quick">Sort <span class="select-wrap"><select id="sort"><option value="historical" selected>Historical fame · default</option><option value="featured">Curated open-access order</option><option value="popular">Most popular · museum proxy</option><option value="famous">Most famous · same historical ranking</option><option value="license">Licence · CC0 first</option><option value="resolution-high">Resolution · highest first</option><option value="resolution-low">Resolution · lowest first</option><option value="artist">Artist A–Z</option><option value="title">Title A–Z</option><option value="oldest">Oldest first</option><option value="newest">Newest first</option><option value="largest">Longest side · largest first</option><option value="museum">Museum A–Z</option></select></span></label><details class="filter-drawer" id="filterDrawer"><summary><span aria-hidden="true">⚙</span> Filters &amp; search options <span class="filter-counter" id="filterCount" hidden></span><span class="drawer-arrow" aria-hidden="true">⌄</span></summary><div class="filter-content"><div class="subject-tools"><label for="searchMode">Find <select id="searchMode" aria-label="Search type"><option value="normal">Titles, artists and subjects</option><option value="any">Subjects · ANY keyword</option><option value="all">Subjects · ALL keywords</option></select></label><span class="tip">For depicted features, choose ANY or ALL and enter words separated by spaces or commas. Based on catalogue descriptions, not image recognition.</span></div>
+<div class="world-discovery"><label for="regionPreset">Explore art traditions</label><select id="regionPreset"><option value="">Choose a region or tradition…</option><option value="French painting">France</option><option value="Japanese painting">Japan</option><option value="Chinese painting">China</option><option value="Indian painting">India</option><option value="Persian painting">Iran · Persian</option><option value="Italian Renaissance painting">Italy</option><option value="Spanish painting">Spain</option><option value="Australian painting">Australia</option><option value="New Zealand painting">New Zealand</option><option value="Korean painting">Korea</option><option value="Dutch Golden Age painting">Netherlands</option><option value="African painting">Africa</option><option value="Islamic miniature painting">Islamic painting</option></select><span class="tip">Worldwide discovery through collection catalogues and Wikimedia Commons; verify individual source and image rights. A regional search is not an official museum feed.</span></div><div class="filters"><label>Collection <select id="museum"><option value="all">All museums</option><option value="cma">Cleveland</option><option value="aic">Art Institute of Chicago</option><option value="met">The Met</option><option value="commons">World collections · Commons</option></select></label><label>Artwork size <select id="pixels"><option value="0">All / not verified</option><option value="4000">4,000+ verified</option><option value="6000">6,000+ verified</option></select></label><label>Licence <select id="license"><option value="all">All eligible licences</option><option value="museum-cc0">Museum CC0</option><option value="museum-pd">Museum public domain</option><option value="commons-cc0">Commons CC0 claim</option><option value="commons-pd">Commons PD claim</option></select></label><label>Era <select id="era"><option value="all">All eras</option><option value="ancient">Before 1400</option><option value="renaissance">1400–1699</option><option value="enlightenment">1700–1799</option><option value="modern">1800–1899</option><option value="century">1900 onward</option></select></label></div>
+</div></details></div><div class="summary"><div><h2 id="sectionTitle">Historical fame · world masterpieces</h2><small id="countText">Connecting to museums…</small></div><div class="toolsline"><span id="status" class="state" role="status" aria-live="polite"><span class="spinner"></span> Loading artwork records</span></div></div>
+<div class="grid" id="grid" aria-live="polite"><div class="empty"><span class="spinner"></span><strong>Opening the virtual galleries</strong>Loading open-access collection records. Images will appear as they are found.</div></div>
+<div class="more"><button class="btn" id="more" hidden>Show more works</button></div>
+<p id="footnote" class="info-line">This catalogue requires an internet connection to fetch artworks and previews. The HTML itself is one self-contained file.</p>
+</main>
+<footer><div><strong>ZM CREATIVE / OPEN MASTERPIECES</strong> · An independent discovery tool, not affiliated with or endorsed by any museum.<div>Application source: GPL-3.0-or-later. Artwork images remain under their respective rights designations.</div></div><div class="credit">Collection data and imagery: <a href="https://www.clevelandart.org/open-access" target="_blank" rel="noopener">Cleveland Museum of Art</a> · <a href="https://www.metmuseum.org/about-the-met/policies-and-documents/open-access" target="_blank" rel="noopener">The Met</a> · <a href="https://www.artic.edu/open-access/open-access-images" target="_blank" rel="noopener">Art Institute of Chicago</a> · <a href="https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia" target="_blank" rel="noopener">Wikimedia Commons</a>.</div></footer>
+<div id="dialog" class="dialog" role="presentation"><div class="dialog-panel" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div class="dialog-head"><h2 id="dialogTitle">Artwork details</h2><button class="btn small" id="close">✕ Close</button></div><div id="dialogContent"></div></div></div>
+<script>
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+(()=>{'use strict';
+const $=s=>document.querySelector(s),grid=$('#grid'),status=$('#status'),featuredCount=$('#totalFeatured'),dialog=$('#dialog'),dialogContent=$('#dialogContent');
+const CC0='https://creativecommons.org/publicdomain/zero/1.0/';
+const FIELDS_CMA='id,title,share_license_status,images,creators,creation_date,creation_date_earliest,technique,description,did_you_know,early_education_description,artlens_description,department,type,accession_number,url,is_highlight,collection';
+const FIELDS_AIC='id,title,artist_title,date_start,date_display,artwork_type_title,image_id,is_public_domain,is_boosted,has_not_been_viewed_much,thumbnail,description,short_description,publication_history,exhibition_history,provenance_text,inscriptions,credit_line,dimensions,department_title,artist_display,subject_titles,term_titles,theme_titles,category_titles';
+const state={tab:'featured',featured:[],results:[],query:'',remoteQuery:'',remoteMode:'normal',remoteTerms:[],remotePage:0,loading:false,display:60,source:'all',pixels:0,license:'all',era:'all',sort:'historical',favs:new Set(),selection:null,request:0,featuredRequest:0,remoteRequest:0,featuredLoading:false,remoteLoading:false,failed:[]};
+const HISTORICAL_LANDMARKS=[["Mona Lisa","Leonardo da Vinci","1503","Louvre Museum","PD"],["The Last Supper","Leonardo da Vinci","1498","Santa Maria delle Grazie","PD"],["The Starry Night","Vincent van Gogh","1889","Museum of Modern Art","PD"],["The Scream","Edvard Munch","1893","National Museum, Oslo","PD"],["Guernica","Pablo Picasso","1937","Museo Reina Sofía","RESTRICTED"],["The Persistence of Memory","Salvador Dalí","1931","Museum of Modern Art","RESTRICTED"],["The Birth of Venus","Sandro Botticelli","1485","Uffizi Galleries","PD"],["Girl with a Pearl Earring","Johannes Vermeer","1665","Mauritshuis","PD"],["The Creation of Adam","Michelangelo","1512","Sistine Chapel","PD"],["The Night Watch","Rembrandt van Rijn","1642","Rijksmuseum","PD"],["The Kiss","Gustav Klimt","1908","Belvedere Museum","PD"],["Les Demoiselles d’Avignon","Pablo Picasso","1907","Museum of Modern Art","RESTRICTED"],["The Great Wave off Kanagawa","Katsushika Hokusai","1831","Multiple collections","PD"],["American Gothic","Grant Wood","1930","Art Institute of Chicago","RESTRICTED"],["The Son of Man","René Magritte","1964","Private collection","RESTRICTED"],["A Sunday Afternoon on the Island of La Grande Jatte","Georges Seurat","1886","Art Institute of Chicago","PD"],["The School of Athens","Raphael","1511","Vatican Museums","PD"],["The Arnolfini Portrait","Jan van Eyck","1434","National Gallery, London","PD"],["Las Meninas","Diego Velázquez","1656","Museo del Prado","PD"],["The Garden of Earthly Delights","Hieronymus Bosch","1505","Museo del Prado","PD"],["The Sleeping Gypsy","Henri Rousseau","1897","Museum of Modern Art","PD"],["The Dance","Henri Matisse","1910","Hermitage Museum","RESTRICTED"],["The Hay Wain","John Constable","1821","National Gallery, London","PD"],["The Fighting Temeraire","J. M. W. Turner","1839","National Gallery, London","PD"],["Nighthawks","Edward Hopper","1942","Art Institute of Chicago","RESTRICTED"],["The Milkmaid","Johannes Vermeer","1658","Rijksmuseum","PD"],["The Third of May 1808","Francisco Goya","1814","Museo del Prado","PD"],["Liberty Leading the People","Eugène Delacroix","1830","Louvre Museum","PD"],["Whistler's Mother","James McNeill Whistler","1871","Musée d’Orsay","PD"],["The Raft of the Medusa","Théodore Géricault","1819","Louvre Museum","PD"],["Wanderer above the Sea of Fog","Caspar David Friedrich","1818","Hamburger Kunsthalle","PD"],["The Swing","Jean-Honoré Fragonard","1767","Wallace Collection","PD"],["The Treachery of Images","René Magritte","1929","Los Angeles County Museum of Art","RESTRICTED"],["Composition with Red Blue and Yellow","Piet Mondrian","1930","Kunsthaus Zürich","RESTRICTED"],["The Card Players","Paul Cézanne","1895","Courtauld Gallery","PD"],["Olympia","Édouard Manet","1863","Musée d’Orsay","PD"],["The Luncheon on the Grass","Édouard Manet","1863","Musée d’Orsay","PD"],["Impression Sunrise","Claude Monet","1872","Musée Marmottan Monet","PD"],["Water Lilies","Claude Monet","1916","Various museums","PD"],["Bal du moulin de la Galette","Pierre-Auguste Renoir","1876","Musée d’Orsay","PD"],["Dance at Le Moulin de la Galette","Pierre-Auguste Renoir","1876","Musée d’Orsay","PD"],["Self-Portrait with Thorn Necklace and Hummingbird","Frida Kahlo","1940","Harry Ransom Center","RESTRICTED"],["The Two Fridas","Frida Kahlo","1939","Museo de Arte Moderno, Mexico City","RESTRICTED"],["The Old Guitarist","Pablo Picasso","1904","Art Institute of Chicago","RESTRICTED"],["The Weeping Woman","Pablo Picasso","1937","Tate","RESTRICTED"],["The Elephants","Salvador Dalí","1948","Private collection","RESTRICTED"],["The Temptation of St Anthony","Salvador Dalí","1946","Royal Museums of Fine Arts of Belgium","RESTRICTED"],["The Madonna of the Rocks","Leonardo da Vinci","1486","Louvre Museum","PD"],["Lady with an Ermine","Leonardo da Vinci","1490","Czartoryski Museum","PD"],["The Vitruvian Man","Leonardo da Vinci","1490","Gallerie dell’Accademia","PD"],["Primavera","Sandro Botticelli","1482","Uffizi Galleries","PD"],["The Venus of Urbino","Titian","1538","Uffizi Galleries","PD"],["The Ambassadors","Hans Holbein the Younger","1533","National Gallery, London","PD"],["The Tower of Babel","Pieter Bruegel the Elder","1563","Kunsthistorisches Museum","PD"],["The Hunters in the Snow","Pieter Bruegel the Elder","1565","Kunsthistorisches Museum","PD"],["The Peasant Wedding","Pieter Bruegel the Elder","1567","Kunsthistorisches Museum","PD"],["The Return of the Prodigal Son","Rembrandt van Rijn","1669","Hermitage Museum","PD"],["The Anatomy Lesson of Dr. Nicolaes Tulp","Rembrandt van Rijn","1632","Mauritshuis","PD"],["The Jewish Bride","Rembrandt van Rijn","1667","Rijksmuseum","PD"],["The Art of Painting","Johannes Vermeer","1668","Kunsthistorisches Museum","PD"],["View of Delft","Johannes Vermeer","1661","Mauritshuis","PD"],["The Astronomer","Johannes Vermeer","1668","Louvre Museum","PD"],["Judith Beheading Holofernes","Artemisia Gentileschi","1620","Uffizi Galleries","PD"],["Bacchus","Caravaggio","1596","Uffizi Galleries","PD"],["The Calling of Saint Matthew","Caravaggio","1600","San Luigi dei Francesi","PD"],["Supper at Emmaus","Caravaggio","1601","National Gallery, London","PD"],["The Death of Marat","Jacques-Louis David","1793","Royal Museums of Fine Arts of Belgium","PD"],["Napoleon Crossing the Alps","Jacques-Louis David","1801","Château de Malmaison","PD"],["The Coronation of Napoleon","Jacques-Louis David","1807","Louvre Museum","PD"],["The Oath of the Horatii","Jacques-Louis David","1784","Louvre Museum","PD"],["The Great Wave","Katsushika Hokusai","1831","Multiple collections","PD"],["Fine Wind Clear Morning","Katsushika Hokusai","1831","Multiple collections","PD"],["Plum Estate Kameido","Utagawa Hiroshige","1857","Multiple collections","PD"],["Sudden Shower over Shin-Ōhashi Bridge","Utagawa Hiroshige","1857","Multiple collections","PD"],["Along the River During the Qingming Festival","Zhang Zeduan","1100","Palace Museum Beijing","PD"],["A Thousand Li of Rivers and Mountains","Wang Ximeng","1113","Palace Museum Beijing","PD"],["Dwelling in the Fuchun Mountains","Huang Gongwang","1350","Taipei and Zhejiang collections","PD"],["The Last Judgement","Michelangelo","1541","Sistine Chapel","PD"],["The Transfiguration","Raphael","1520","Vatican Museums","PD"],["Sistine Madonna","Raphael","1512","Gemäldegalerie Alte Meister Dresden","PD"],["The Marriage of the Virgin","Raphael","1504","Pinacoteca di Brera","PD"],["The Birth of Venus","Alexandre Cabanel","1863","Musée d’Orsay","PD"],["The Gleaners","Jean-François Millet","1857","Musée d’Orsay","PD"],["The Angelus","Jean-François Millet","1859","Musée d’Orsay","PD"],["A Bar at the Folies-Bergère","Édouard Manet","1882","Courtauld Gallery","PD"],["The Bedroom","Vincent van Gogh","1888","Van Gogh Museum","PD"],["Irises","Vincent van Gogh","1889","J. Paul Getty Museum","PD"],["Sunflowers","Vincent van Gogh","1888","National Gallery, London","PD"],["Café Terrace at Night","Vincent van Gogh","1888","Kröller-Müller Museum","PD"],["Almond Blossoms","Vincent van Gogh","1890","Van Gogh Museum","PD"],["Wheatfield with Crows","Vincent van Gogh","1890","Van Gogh Museum","PD"],["The Yellow Christ","Paul Gauguin","1889","Albright-Knox Art Gallery","PD"],["Where Do We Come From? What Are We? Where Are We Going?","Paul Gauguin","1897","Museum of Fine Arts Boston","PD"],["Mont Sainte-Victoire","Paul Cézanne","1904","Various museums","PD"],["The Large Bathers","Paul Cézanne","1906","Philadelphia Museum of Art","PD"],["The Basket of Apples","Paul Cézanne","1893","Art Institute of Chicago","PD"],["The Blue Boy","Thomas Gainsborough","1770","Huntington Library","PD"],["Pinkie","Thomas Lawrence","1794","Huntington Library","PD"],["The Horse Fair","Rosa Bonheur","1855","Metropolitan Museum of Art","PD"],["The Gross Clinic","Thomas Eakins","1875","Philadelphia Museum of Art","PD"],["The Gulf Stream","Winslow Homer","1899","Metropolitan Museum of Art","PD"],["The Veteran in a New Field","Winslow Homer","1865","Metropolitan Museum of Art","PD"],["Christina's World","Andrew Wyeth","1948","Museum of Modern Art","RESTRICTED"]];
+function landmarkRecords(){return HISTORICAL_LANDMARKS.map(([title,artist,year,museum,rights],i)=>({key:'landmark:'+i,source:'landmark',museum,title,artist,year:Number(year),date:year,medium:'Historic painting',category:'Painting',preview:'',original:'',originalLabel:'No cleared downloadable image',width:0,height:0,blurb:'',moreInfo:[['Historical ranking','Editorial estimate of worldwide recognition, not measured museum attendance or a scholarly league table.']],subjects:'',detail:'https://en.wikipedia.org/w/index.php?search='+encodeURIComponent(title+' '+artist),license:rights==='RESTRICTED'?'Copyrighted / permission required':'Image rights not verified',licenseURL:rights==='RESTRICTED'?'https://www.wipo.int/en/web/copyright':'https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia',highlight:false,credit:'Historical catalogue',rank:i+1,fameRank:i+1,rightsRestricted:rights==='RESTRICTED'}))}
+// Wikipedia article thumbnails are reference previews, never download licences.
+const WIKI_ARTICLES={
+'Mona Lisa':'Mona Lisa','The Last Supper':'The Last Supper (Leonardo)','The Starry Night':'The Starry Night',
+'The Scream':'The Scream','Guernica':'Guernica (Picasso)','The Persistence of Memory':'The Persistence of Memory',
+'The Birth of Venus':'The Birth of Venus','Girl with a Pearl Earring':'Girl with a Pearl Earring',
+'The Creation of Adam':'The Creation of Adam','The Night Watch':'The Night Watch',
+'The Kiss':'The Kiss (Klimt)','Les Demoiselles d’Avignon':'Les Demoiselles d\'Avignon',
+'The Great Wave off Kanagawa':'The Great Wave off Kanagawa','American Gothic':'American Gothic',
+'The Son of Man':'The Son of Man (painting)',
+'A Sunday Afternoon on the Island of La Grande Jatte':'A Sunday Afternoon on the Island of La Grande Jatte',
+'The School of Athens':'The School of Athens','The Arnolfini Portrait':'Arnolfini Portrait',
+'Las Meninas':'Las Meninas','The Garden of Earthly Delights':'The Garden of Earthly Delights',
+'The Sleeping Gypsy':'The Sleeping Gypsy','The Dance':'Dance (Matisse)',
+'The Hay Wain':'The Hay Wain','The Fighting Temeraire':'The Fighting Temeraire',
+'Nighthawks':'Nighthawks (painting)','The Milkmaid':'The Milkmaid (Vermeer)',
+'The Third of May 1808':'The Third of May 1808','Liberty Leading the People':'Liberty Leading the People',
+"Whistler's Mother":"Whistler's Mother",'The Raft of the Medusa':'The Raft of the Medusa',
+'Wanderer above the Sea of Fog':'Wanderer above the Sea of Fog',
+'The Swing':'The Swing (Fragonard)','The Treachery of Images':'The Treachery of Images',
+'The Old Guitarist':'The Old Guitarist'};
+let referenceFetchInProgress=false;
+async function loadReferenceThumbnails(){
+ if(referenceFetchInProgress)return;
+ const records=state.featured.filter(a=>a.fameRank&&!a.preview&&WIKI_ARTICLES[a.title]);
+ if(!records.length)return;
+ referenceFetchInProgress=true;
+ try{
+  for(let i=0;i<records.length;i+=15){
+   const batch=records.slice(i,i+15), titles=batch.map(a=>WIKI_ARTICLES[a.title]);
+   const u=new URL('https://en.wikipedia.org/w/api.php');
+   for(const [k,v] of Object.entries({action:'query',format:'json',formatversion:'2',prop:'pageimages|extracts',exintro:'1',explaintext:'1',exchars:'650',pithumbsize:'720',redirects:'1',origin:'*',titles:titles.join('|')}))u.searchParams.set(k,v);
+   let payload;try{payload=await getJSON(u.href,13000)}catch{continue}
+   const pages=payload.query?.pages||[];
+   for(const a of batch){
+    const intended=WIKI_ARTICLES[a.title];
+    const page=pages.find(p=>p.title===intended||payload.query?.redirects?.some(r=>r.from===intended&&r.to===p.title));
+    const thumb=page?.thumbnail?.source;
+    if(!thumb||!safeUrl(thumb))continue;
+    a.preview=thumb;a.previewSource='https://en.wikipedia.org/wiki/'+encodeURIComponent(page.title.replaceAll(' ','_'));
+    a.referenceOnly=true;
+    if(page.extract&&clean(page.extract).length>55)a.blurb=cut(page.extract,460);
+   }
+   if(state.tab==='featured')render();
+  }
+ }finally{referenceFetchInProgress=false}
+}
+// Independently verified reference previews never imply reproduction rights.
+let extraPreviewsRunning=false;
+async function loadAdditionalPreviews(){
+ if(extraPreviewsRunning)return;
+ extraPreviewsRunning=true;
+ try{
+  const pending=state.featured.filter(a=>a.fameRank&&!a.preview&&!WIKI_ARTICLES[a.title]);
+  for(let i=0;i<pending.length;i+=10){
+   const batch=pending.slice(i,i+10),u=new URL('https://en.wikipedia.org/w/api.php');
+   const titles=batch.map(a=>a.title);
+   for(const [k,v] of Object.entries({action:'query',format:'json',formatversion:'2',origin:'*',redirects:'1',prop:'pageimages|extracts',exintro:'1',explaintext:'1',exchars:'950',pithumbsize:'720',titles:titles.join('|')}))u.searchParams.set(k,v);
+   let data;try{data=await getJSON(u.href,14000)}catch{continue}
+   for(const a of batch){
+    const key=artworkIdentity(a.title);
+    const page=(data.query?.pages||[]).find(p=>artworkIdentity(p.title)===key);
+    if(!page?.thumbnail?.source||!page.extract)continue;
+    const tokens=artworkIdentity(a.artist).split(' ').filter(x=>x.length>3);
+    const surname=tokens[tokens.length-1];
+    const passage=artworkIdentity(page.extract);
+    if(!surname||!passage.includes(surname)||!/painting|artwork|portrait|fresco|oil on|artist|painted/.test(passage))continue;
+    a.preview=page.thumbnail.source;
+    a.previewSource='https://en.wikipedia.org/wiki/'+encodeURIComponent(page.title.replaceAll(' ','_'));
+    a.referenceOnly=true;
+    if(page.extract&&clean(page.extract).length>55)a.blurb=cut(page.extract,460);
+   }
+   if(state.tab==='featured')render();
+  }
+  store();
+ }finally{extraPreviewsRunning=false}
+}
+// Each artwork offers independent Commons file choices and museum originals on demand.
+const downloadChoiceCache=new Map();
+const COMMONS_API='https://commons.wikimedia.org/w/api.php';
+function commonsFilePage(title){return 'https://commons.wikimedia.org/wiki/'+encodeURIComponent(title.replaceAll(' ','_'))}
+function commonsScaledFile(title,width){
+ const filename=title.replace(/^File:/i,'').replaceAll(' ','_');
+ return `https://commons.wikimedia.org/w/index.php?title=${encodeURIComponent('Special:Redirect/file/'+filename)}&width=${width}`;
+}
+function licenceOf(info){
+ const m=info.extmetadata||{},str=k=>clean(m[k]?.value||''),short=str('LicenseShortName'),code=str('License'),copyright=str('Copyrighted');
+ if(/\b(noncommercial|no derivatives)\b/i.test(short+' '+str('UsageTerms'))||/\bCC[- ]BY[- ](?:NC|ND)\b/i.test(short))return null;
+ if(/^CC0\b/i.test(short)||/\bcc0\b/i.test(code))return {label:'CC0 (Commons claim)',type:'cc0'};
+ if(/^(public domain|pd[- ](?:old|art|us|mark|self))/i.test(short)||(/\bpublic domain\b/i.test(str('UsageTerms'))&&copyright==='False'))return {label:'Public domain (Commons claim)',type:'pd'};
+ if(/^CC BY(?:-SA)?\s*\d/i.test(short))return {label:short+' · attribution'+(/BY-SA/i.test(short)?' + share-alike':''),type:'cc'};
+ return null;
+}
+function titleWords(value){return artworkIdentity(value).split(' ').filter(t=>t.length>2&&!['the','and','for','with','from','saint','van','von','der','de','las','des','les','sainte','oil','canvas','file','original','painting','high','resolution'].includes(t));}
+function artistNamesForMatch(a){
+ const name=artworkIdentity(a.artist).split(' ').filter(x=>x.length>2&&!['the','and','van','von','der','de','da','di','del','le','la'].includes(x));
+ return [...new Set([name.at(-1),...(name.length>1?[name.at(0)]:[])].filter(x=>x?.length>3))];
+}
+function candidatesFromPages(a,pages,canonicalFile=''){
+ const artistClues=artistNamesForMatch(a),wanted=titleWords(a.title),canonical=artworkIdentity(canonicalFile.replace(/^File:/,''));
+ return (pages||[]).map(p=>{
+  const im=p.imageinfo?.[0];if(!im?.url||!im.width||im.width<4000||!im.height||!['image/jpeg','image/png','image/tiff','image/webp'].includes(im.mime))return null;
+  const lic=licenceOf(im);if(!lic)return null;
+  const m=im.extmetadata||{},name=artworkIdentity((p.title||'').replace(/^File:/i,'').replace(/\.[^.]+$/,''));
+  const object=artworkIdentity(clean(m.ObjectName?.value||''));
+  const artist=artworkIdentity(clean(m.Artist?.value||''));
+  const description=artworkIdentity(clean(m.ImageDescription?.value||''));
+  const descriptive=[name,object].join(' ');
+  const full=descriptive+' '+artist+' '+description;
+  const nameHits=wanted.filter(t=>descriptive.includes(t)).length;
+  const coverage=wanted.length?nameHits/wanted.length:0;
+  const isCanonical=!!canonical&&artworkIdentity(p.title.replace(/^File:/,''))===canonical;
+  const artistKnown=artistClues.some(t=>full.includes(t));
+  if(!isCanonical&&(coverage<0.65||!artistKnown))return null;
+  if(/\b(parody|homage|mockup|replica|reinterpretation|recreation|colorized|colourized|after|inspired|detail|fragment|crop|study|reproduction of a reproduction)\b/i.test(name)&&!isCanonical)return null;
+  let score=(isCanonical?125:0)+Math.round(coverage*38)+(artistKnown?35:0)+(object&&wanted.some(t=>object.includes(t))?8:0)+Math.min(8,Math.round(im.width/2000));
+  return {key:p.title,filename:p.title,url:im.url,preview:im.thumburl||'',width:im.width,height:im.height,bytes:im.size||0,mime:im.mime,source:commonsFilePage(p.title),licence:lic.label,licenceType:lic.type,score,identity:isCanonical?'Wikipedia article image':coverage>=.85&&artistKnown?'Title + artist metadata':'Probable match · inspect file page',canonical:isCanonical};
+ }).filter(Boolean);
+}
+function commonsQueryUrl(search,limit=36){const url=new URL(COMMONS_API);
+ for(const [k,v] of Object.entries({action:'query',format:'json',formatversion:'2',origin:'*',generator:'search',gsrsearch:search,gsrnamespace:'6',gsrlimit:String(limit),prop:'imageinfo',iiprop:'url|size|mime',iiurlwidth:'320'}))url.searchParams.set(k,v);
+ return url.href;}
+function commonsMetadataUrl(titles){const u=new URL(COMMONS_API);
+ for(const [k,v] of Object.entries({action:'query',format:'json',formatversion:'2',origin:'*',titles:titles.join('|'),prop:'imageinfo',iiprop:'url|size|mime|extmetadata',iiextmetadatafilter:'LicenseShortName|License|UsageTerms|Copyrighted|Artist|ObjectName|ImageDescription',iiurlwidth:'320'}))u.searchParams.set(k,v);
+ return u.href;
+}
+async function wikipediaCanonicalFile(a){
+ const title=WIKI_ARTICLES[a.title];if(!title)return '';
+ const u=new URL('https://en.wikipedia.org/w/api.php');
+ for(const [k,v] of Object.entries({action:'query',format:'json',formatversion:'2',origin:'*',titles:title,redirects:'1',prop:'pageimages',piprop:'name'}))u.searchParams.set(k,v);
+ const data=await getJSON(u.href,14000);
+ const page=(data.query?.pages||[]).find(p=>p.pageimage);
+ return page?.pageimage?'File:'+page.pageimage:'';
+}
+async function commonsFileByTitle(fileTitle){
+ const u=new URL(COMMONS_API);for(const [k,v] of Object.entries({action:'query',format:'json',formatversion:'2',origin:'*',titles:fileTitle,prop:'imageinfo',iiprop:'url|size|mime|extmetadata',iiextmetadatafilter:'LicenseShortName|License|UsageTerms|Copyrighted|Artist|ObjectName|ImageDescription',iiurlwidth:'320'}))u.searchParams.set(k,v);
+ const data=await getJSON(u.href,15000);return data.query?.pages||[];
+}
+async function fetchDownloadChoices(a){
+ const saved=downloadChoiceCache.get(a.key);if(saved)return saved;
+ const pending=(async()=>{
+  const errors=[],found=new Map(),surname=artistNamesForMatch(a)[0]||'',title=a.title;
+  let canonical='';try{canonical=await wikipediaCanonicalFile(a)}catch{errors.push('Wikipedia article image lookup unavailable')}
+  const stripped=title.replace(/^(The|A|An)\s+/i,'');
+  const searchTerms=[`"${title}" ${surname}`,`${stripped} ${surname}`,`"${title}"`].filter((q,i,arr)=>arr.indexOf(q)===i);
+  const jobs=searchTerms.map(q=>getJSON(commonsQueryUrl(q,36),19000).then(x=>x.query?.pages||[]).catch(()=>{errors.push('A Commons search was unavailable');return []}));
+  if(canonical)jobs.unshift(commonsFileByTitle(canonical).catch(()=>{errors.push('Article file metadata unavailable');return []}));
+  const sets=await Promise.all(jobs);
+  const metadataPages=new Map();
+  if(canonical)for(const page of sets[0]||[])if(page.imageinfo?.[0]?.extmetadata)metadataPages.set(page.title,page);
+  const coarse=new Map(),wanted=titleWords(a.title),clues=artistNamesForMatch(a);
+  for(const pages of sets)for(const page of pages){
+   const im=page.imageinfo?.[0];if(!im?.width||im.width<4000||!['image/jpeg','image/png','image/tiff','image/webp'].includes(im.mime||''))continue;
+   if(metadataPages.has(page.title))continue;
+   const name=artworkIdentity(page.title);
+   const overlap=wanted.filter(t=>name.includes(t)).length;
+   const surnameHit=clues.some(t=>name.includes(t));
+   const coarseScore=(wanted.length?overlap/wanted.length:0)*12+(surnameHit?9:0);
+   if(!coarse.has(page.title))coarse.set(page.title,{page,score:coarseScore});
+  }
+  const ranked=[...coarse.values()].sort((a,b)=>b.score-a.score||b.page.imageinfo[0].width-a.page.imageinfo[0].width).slice(0,36);
+  const batches=[];for(let i=0;i<ranked.length;i+=9)batches.push(ranked.slice(i,i+9).map(x=>x.page.title));
+  const detailed=await Promise.all(batches.map(titles=>getJSON(commonsMetadataUrl(titles),19000).then(x=>x.query?.pages||[]).catch(()=>{errors.push('Some Commons file metadata was unavailable');return []})));
+  for(const pages of detailed)for(const page of pages)metadataPages.set(page.title,page);
+  for(const c of candidatesFromPages(a,[...metadataPages.values()],canonical))found.set(c.key,c);
+  const commons=[...found.values()].sort((a,b)=>b.score-a.score||b.width-a.width).slice(0,12);
+  const museum=await findMuseumChoices(a);
+  const value={commons,museum,errors};
+  if(commons.length&&!a.original&&!a.rightsRestricted){
+   const best=commons[0];a.original=best.url;a.width=best.width;a.height=best.height;
+   a.license=best.licence;a.licenseURL=best.source;a.downloadSource=best.source;a.downloadProvider='Wikimedia Commons';
+   if(state.featured.some(x=>x.key===a.key))store();render();
+  }
+  return value;
+ })();
+ downloadChoiceCache.set(a.key,pending);
+ try{return await pending}catch(e){downloadChoiceCache.delete(a.key);throw e}
+}
+async function findMuseumChoices(a){
+ const options=[];
+ if(museumDownload(a))options.push({source:a.museum||'Museum',url:museumDownload(a),width:Number(a.museumWidth||a.width)||0,height:Number(a.museumHeight||a.height)||0,detail:a.museumDetail||a.detail||'',kind:a.source});
+ const queries=[()=>fetchCMA({q:a.title,limit:15}),()=>fetchAIC(a.title,15,1),()=>fetchMet(a.title,12,0,false)];
+ const responses=await Promise.allSettled(queries.map(fn=>fn()));
+ for(const response of responses){if(response.status!=='fulfilled')continue;
+  for(const record of response.value){if(!verifiedLandmarkMatch(a,record)||!record.original)continue;
+   if(options.some(x=>x.url===record.original))continue;
+   options.push({source:record.museum,url:record.original,width:record.width,height:record.height,detail:record.detail,kind:record.source,infoURL:record.infoURL});
+  }
+ }
+ return options;
+}
+function makeDownloadResults(a,container){
+ const safeSelected=()=>state.selection?.key===a.key&&container.isConnected;
+ container.replaceChildren(el('p','download-progress','Checking Commons image files and museum originals…'));
+ fetchDownloadChoices(a).then(({commons,museum,errors})=>{
+  if(!safeSelected())return;
+  const licBox=document.getElementById('artLicenseDetail');if(licBox&&a.downloadProvider)licBox.textContent=a.license;
+  container.replaceChildren();
+  const intro=el('p','download-intro',`Up to 12 Commons files, ranked by artwork identity and resolution. Use the preview to compare reproductions; check the file page before commercial reuse.`);container.append(intro);
+  if(a.rightsRestricted){container.append(el('p','download-warning','This artwork is still indicated as copyrighted. Files below are reference matches, not clearance to reproduce commercially.'));}
+  if(!commons.length)container.append(el('p','download-empty','No Commons file passed the image-identity, licence and 4,000-pixel checks. Open a source page for further investigation.'));
+  commons.forEach((item,i)=>{
+   const card=el('div','download-choice');
+   const thumb=el('img','download-thumb');thumb.src=item.preview||commonsScaledFile(item.filename,320);thumb.alt='Candidate file '+(i+1);thumb.loading='lazy';
+   const body=el('div','download-choice-body');body.append(el('strong','download-choice-name',`${i+1}. ${item.filename.replace(/^File:/,'')}`));
+   body.append(el('span','download-choice-meta',`${item.width.toLocaleString()} × ${item.height.toLocaleString()} px · ${item.licence}`));
+   body.append(el('span','download-choice-meta',`${item.identity}${item.bytes?' · '+(item.bytes/1048576).toFixed(1)+' MB original':''}`));
+   const links=el('div','download-size-links');
+   if(!a.rightsRestricted){
+    if(item.width>=4000)links.append(link('≈4,000 px',commonsScaledFile(item.filename,4000),'btn'));
+    if(item.width>=6000)links.append(link('≈6,000 px',commonsScaledFile(item.filename,6000),'btn'));
+    links.append(link('Original '+item.width.toLocaleString()+' px',item.url,'btn primary'));
+   }
+   links.append(link('File & rights ↗',item.source,'btn'));body.append(links);
+   card.append(thumb,body);container.append(card);
+  });
+  const museumSection=el('section','download-museum');museumSection.append(el('h4','',`Free museum originals (${museum.length})`));
+  if(!museum.length)museumSection.append(el('p','download-empty','No matching open-access original found from the connected museums.'));
+  for(const item of museum){
+   const line=el('div','download-museum-item'),d=el('span','',`${item.source} · ${item.width&&item.height?item.width.toLocaleString()+' × '+item.height.toLocaleString()+' px':'Pixel dimensions not reported'}`);line.append(d);
+   if(!a.rightsRestricted){
+    if(item.kind==='aic'&&item.width>=4000){for(const width of [4000,6000].filter(w=>item.width>=w))line.append(link(`≈${width.toLocaleString()} px`,item.url.replace(/\/full\/!6000,6000\//,'/full/!'+width+','+width+'/'),'btn'));}
+    line.append(link('Original image ↗',item.url,'btn primary'));
+   }
+   if(item.detail)line.append(link('Museum rights ↗',item.detail,'btn'));museumSection.append(line);
+  }
+  container.append(museumSection);
+  if(errors.length)container.append(el('p','download-warning','Some source requests were unavailable. Results may be incomplete.'));
+ }).catch(()=>{if(safeSelected()){container.replaceChildren(el('p','download-warning','Image searches are unavailable on this connection. Try again or open a museum record.'));downloadChoiceCache.delete(a.key)}});
+}
+function showDownloadChoices(a,box,results){
+ const open=results.hidden;results.hidden=!open;box.setAttribute('aria-expanded',String(open));
+ if(open){if(!results.dataset.started){results.dataset.started='1';makeDownloadResults(a,results)}results.scrollIntoView({block:'nearest',behavior:'smooth'})}
+}
+let articleRecoveryRunning=false;
+async function recoverReferencePreviews(){
+ if(articleRecoveryRunning)return;articleRecoveryRunning=true;
+ try{
+  const missing=state.featured.filter(a=>a.fameRank&&!a.preview);
+  for(let i=0;i<missing.length;i+=5){
+   const group=missing.slice(i,i+5);
+   await Promise.allSettled(group.map(async a=>{
+    if(a.preview)return;
+    const u=new URL('https://en.wikipedia.org/w/api.php');
+    for(const [k,v] of Object.entries({action:'query',format:'json',formatversion:'2',origin:'*',generator:'search',gsrsearch:'intitle:"'+a.title+'" '+a.artist,gsrlimit:'5',prop:'pageimages|extracts',pithumbsize:'900',exintro:'1',explaintext:'1',exchars:'850'}))u.searchParams.set(k,v);
+    const data=await getJSON(u.href,13000);
+    const target=artworkIdentity(a.title),surname=artworkIdentity(a.artist).split(' ').filter(x=>x.length>3).at(-1);
+    const page=(data.query?.pages||[]).find(p=>p.thumbnail?.source&&artworkIdentity(p.title).includes(target)&&artworkIdentity(p.extract||'').includes(surname)&&/paint|artwork|fresco|portrait|masterpiece|oil on/.test(artworkIdentity(p.extract||'')));
+    if(!page)return;
+    a.preview=page.thumbnail.source;a.previewSource='https://en.wikipedia.org/wiki/'+encodeURIComponent(page.title.replaceAll(' ','_'));a.referenceOnly=true;
+   }));
+   if(state.tab==='featured')render();
+  }
+ }finally{articleRecoveryRunning=false}
+}
+function enrichHistorical(){loadReferenceThumbnails().finally(()=>loadAdditionalPreviews().finally(recoverReferencePreviews))}
+
+function historicalSort(a,b){return (a.fameRank||10000)-(b.fameRank||10000)||fameScore(b)-fameScore(a)||quality(b)-quality(a)}
+const artistNames=['van gogh','claude monet','rembrandt','renoir','seurat','cézanne','cezanne','turner','vermeer','botticelli','caravaggio','rubens','raphael','frida kahlo','gustav klimt','el greco','john singer sargent','degas','morisot','manet','whistler','goya','georgia o’keeffe','hokusai','hassam','winslow homer','edvard munch','henri rousseau','pissarro','chardin','velázquez','toulouse-lautrec','mary cassatt','bonheur','constable','millet','gainsborough','inness','guercino','bruegel','caillebotte'];
+const lower=s=>String(s||'').toLocaleLowerCase();const clean=s=>String(s||'').replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').replace(/\s+/g,' ').trim();
+const cut=(s,n=195)=>{s=clean(s);return s.length>n?s.slice(0,n).replace(/\s+\S*$/,'')+'…':s};
+function el(name,cl,text){const node=document.createElement(name);if(cl)node.className=cl;if(text!==undefined)node.textContent=text;return node}
+function safeUrl(raw){try{const u=new URL(raw);return u.protocol==='https:'?u.href:null}catch{return null}}
+function link(label,url,className){const a=el('a',className,label);a.href=safeUrl(url)||'#';a.target='_blank';a.rel='noopener noreferrer';return a}
+function imagePath(a){return safeUrl(a.preview)||''}
+function note(text){status.textContent=text}
+function setBusy(b,text){state.loading=b;status.replaceChildren();if(b){const spin=el('span','spinner');spin.setAttribute('aria-hidden','true');status.append(spin,document.createTextNode(' '+(text||'Fetching museum data…')))}else status.textContent=text||''}
+function yearOf(x){const n=Number(x);return Number.isFinite(n)&&n>-5000&&n<2200?n:0}
+const famousTitles=['a sunday on la grande jatte','a sunday afternoon on the island of la grande jatte','the starry night','wheat field with cypresses','the great wave','water lilies','the bedroom','irises','the birth of venus','girl with a pearl earring','the night watch','the fighting temeraire','the hay wain','the arnolfini portrait','paris street; rainy day','a bar at the folies-bergère','the kiss','nighthawks','the old guitarist','woman with a parasol','a sunday afternoon','the swing'];
+function fameScore(a){const t=lower(a.title),artist=lower(a.artist),titleIndex=famousTitles.findIndex(x=>t.includes(x)),artistIndex=artistNames.findIndex(x=>artist.includes(x));return (titleIndex>=0?420-titleIndex*8:0)+(artistIndex>=0?170-artistIndex*2:0)+(a.highlight?55:0)}
+function popularScore(a){return (a.highlight?260:0)+(a.source==='aic'&&a.underViewed===false?60:0)+(a.underViewed===true?-40:0)+fameScore(a)/4}
+function dimensions(a){const w=Number(a.width)||0,h=Number(a.height)||0;if(w<=0||h<=0)return null;const factor=a.source==='aic'?Math.min(1,6000/Math.max(w,h)):1;return {width:Math.round(w*factor),height:Math.round(h*factor)}}
+function pixelCount(a){const d=dimensions(a);return d?d.width*d.height:0}
+function longestSide(a){const d=dimensions(a);return d?Math.max(d.width,d.height):0}
+function museumDownload(a){return safeUrl(a.museumOriginal||(['cma','aic','met'].includes(a.source)?a.original:null))}
+function museumSizeLabel(a){const w=Number(a.museumWidth)||Number(a.width)||0,h=Number(a.museumHeight)||Number(a.height)||0;if(!w||!h)return 'Original size not reported';const f=(a.museumOriginal||a.source==='aic')&&a.source==='aic'?Math.min(1,6000/Math.max(w,h)):1;return `${Math.round(w*f).toLocaleString()} × ${Math.round(h*f).toLocaleString()} px`}
+function sizeLabel(a){const d=dimensions(a);return d?`${d.width.toLocaleString()} × ${d.height.toLocaleString()} px`: 'Not verified'}
+function licenseGroup(a){if(a.source==='cma'||a.source==='met')return 'museum-cc0';if(a.source==='aic')return 'museum-pd';if(a.source==='commons')return lower(a.license).startsWith('cc0')?'commons-cc0':'commons-pd';return 'other'}
+function licenseOrder(a){return {'museum-cc0':0,'museum-pd':1,'commons-cc0':2,'commons-pd':3}[licenseGroup(a)]??4}
+function quality(a){return fameScore(a)+(a.source==='met'?12:0)+(a.source==='aic'?9:0)+(longestSide(a)>=6000?15:longestSide(a)>=4000?8:0)}
+function cmaRecord(a){if(a.share_license_status!=='CC0'||!a.images?.full?.url||lower(a.type)!=='painting')return null;const f=a.images.full;const width=Number(f.width)||0,height=Number(f.height)||0;if(Math.max(width,height)<4000)return null;const creator=a.creators?.find(c=>c.role==='artist')||a.creators?.[0];const artist=(creator?.description||'Unknown artist').split(' (')[0];return {key:'cma:'+a.id,source:'cma',museum:'Cleveland Museum of Art',title:a.title||'Untitled',artist,year:yearOf(a.creation_date_earliest),date:a.creation_date||'',medium:a.technique||'',category:'Painting',preview:a.images.web?.url||a.images.print?.url||'',original:f.url,originalLabel:'Original TIFF',width,height,blurb:a.description||a.did_you_know||a.artlens_description||'',moreInfo:[['About the painting',a.description],['Did you know?',a.did_you_know],['ArtLens interpretation',a.artlens_description],['Education notes',a.early_education_description]],subjects:clean([a.description,a.did_you_know,a.early_education_description,a.artlens_description].filter(Boolean).join(' ')),detail:a.url||'https://www.clevelandart.org',license:'CC0',licenseURL:CC0,highlight:!!a.is_highlight,credit:a.accession_number||'',infoURL:null};}
+function aicRecord(a){if(!a.is_public_domain||!a.image_id)return null;const type=lower(a.artwork_type_title);if(type&&!type.includes('painting'))return null;const iid=a.image_id;return {key:'aic:'+a.id,source:'aic',museum:'Art Institute of Chicago',title:a.title||'Untitled',artist:a.artist_title||'Unknown artist',year:yearOf(a.date_start),date:a.date_display||'',medium:a.artist_display||'',category:'Painting',preview:`https://www.artic.edu/iiif/2/${iid}/full/400,/0/default.jpg`,original:`https://www.artic.edu/iiif/2/${iid}/full/!6000,6000/0/default.jpg`,originalLabel:'Request up to 6,000px JPEG',width:Number(a.thumbnail?.width)||0,height:Number(a.thumbnail?.height)||0,blurb:a.short_description||a.description||a.thumbnail?.alt_text||'',moreInfo:[['Museum description',a.description||a.short_description],['Exhibition history',a.exhibition_history],['Publication history',a.publication_history],['Provenance',a.provenance_text],['Inscriptions',a.inscriptions]],extraFacts:[['Object dimensions',a.dimensions],['Collection department',a.department_title],['Credit line',a.credit_line]],subjects:clean([...(a.subject_titles||[]),...(a.term_titles||[]),...(a.theme_titles||[]),...(a.category_titles||[])].join(' ')),detail:`https://www.artic.edu/artworks/${a.id}`,license:'Public domain (museum-designated image)',licenseURL:'https://www.artic.edu/open-access/open-access-images',highlight:!!a.is_boosted,underViewed:typeof a.has_not_been_viewed_much==='boolean'?a.has_not_been_viewed_much:null,credit:String(a.id),infoURL:`https://www.artic.edu/iiif/2/${iid}/info.json`};}
+function metRecord(a){if(!a.isPublicDomain||!a.primaryImage)return null;const t=lower(a.objectName+' '+a.medium);if(!t.includes('painting')&&!t.includes('oil on')&&!t.includes('tempera on')&&!t.includes('acrylic on'))return null;return {key:'met:'+a.objectID,source:'met',museum:'The Metropolitan Museum of Art',title:a.title||'Untitled',artist:a.artistDisplayName||a.artistDisplayBio||'Unknown artist',year:yearOf(a.objectBeginDate),date:a.objectDate||'',medium:a.medium||'',category:'Painting',preview:a.primaryImageSmall||a.primaryImage,original:a.primaryImage,originalLabel:'Open museum original',width:0,height:0,blurb:a.artistDisplayBio||'',moreInfo:[['Artist',a.artistDisplayBio],['Cultural context',a.culture],['Period',a.period],['Dynasty',a.dynasty],['Reign',a.reign],['Subject tags',(a.tags||[]).map(t=>t.term).filter(Boolean).join(', ')]],extraFacts:[['Dimensions',a.dimensions],['Department',a.department],['Classification',a.classification],['Object number',a.accessionNumber],['Artist dates',a.artistBeginDate&&a.artistEndDate?`${a.artistBeginDate}–${a.artistEndDate}`:'']],subjects:(a.tags||[]).map(x=>x.term||'').join(' '),detail:a.objectURL||`https://www.metmuseum.org/art/collection/search/${a.objectID}`,license:'CC0 Open Access',licenseURL:'https://www.metmuseum.org/policies/frequently-asked-questions-image-and-data-resources',highlight:!!a.isHighlight,credit:a.creditLine||'',infoURL:null};}
+function commonsRecord(p){const im=p.imageinfo?.[0];if(!im||!im.url)return null;const m=im.extmetadata||{},value=k=>String(m[k]?.value||'');const short=value('LicenseShortName');const copyrighted=value('Copyrighted');const cc0=/^CC0(?: 1\.0)?$/i.test(short);const pd=/^public domain$/i.test(short);if(!cc0&&!(pd&&copyrighted==='False'))return null;const cats=lower(value('Categories'));if(!cats.includes('painting')&&!cats.includes('oil on canvas')&&!cats.includes('tempera painting'))return null;const width=Number(im.width)||0,height=Number(im.height)||0;if(width<4000)return null;const mime=lower(im.mime);if(!['image/jpeg','image/png','image/tiff','image/webp'].includes(mime))return null;const artist=cut(value('Artist')||'Unknown artist',100),title=cut(value('ObjectName')||p.title.replace(/^File:/,'').replace(/\.[^.]+$/,''),110);return {key:'commons:'+p.pageid,source:'commons',museum:'Wikimedia Commons · world collections',title,artist,year:yearOf(parseInt(value('DateTimeOriginal'),10)),date:clean(value('DateTimeOriginal'))||'Date not supplied',medium:'Painting reproduction',category:'Painting',preview:im.thumburl||im.url,original:im.url,originalLabel:'Open original image',width,height,blurb:clean(value('ImageDescription')),moreInfo:[['Image description',clean(value('ImageDescription'))],['Source',clean(value('AttributionRequired'))]],subjects:clean(value('Categories')+' '+value('ImageDescription')),detail:`https://commons.wikimedia.org/wiki/${encodeURIComponent(p.title.replaceAll(' ','_'))}`,license:cc0?'CC0 claim (Commons metadata)':'Public-domain claim (Commons metadata)',licenseURL:safeUrl(value('LicenseUrl'))||'https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia',highlight:false,credit:clean(value('Credit')),infoURL:null};}
+async function fetchCommons(term,offset=0){const u=new URL('https://commons.wikimedia.org/w/api.php');for(const [k,v] of Object.entries({action:'query',format:'json',formatversion:'2',generator:'search',gsrsearch:term+' painting',gsrnamespace:'6',gsrlimit:'50',gsroffset:String(offset),prop:'imageinfo',iiprop:'url|size|extmetadata|mime',iiurlwidth:'420',origin:'*'}))u.searchParams.set(k,v);const data=await getJSON(u.href,25000);return (data.query?.pages||[]).map(commonsRecord).filter(Boolean)}
+// Historical paintings never inherit images from fuzzy web-title searches.
+// Only exact artwork/artist catalogue matches may supply linked downloads.
+function artworkIdentity(value){return lower(value).normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim()}
+function verifiedLandmarkMatch(landmark, candidate){
+ if(!['cma','aic','met'].includes(candidate.source))return false;
+ const original=artworkIdentity(landmark.title),found=artworkIdentity(candidate.title);
+ const left=titleWords(landmark.title),right=titleWords(candidate.title);
+ const titleMatches=original===found||(left.length>=2&&left.filter(word=>right.includes(word)).length/left.length>=.85&&!/\b(copy|after|study|fragment|detail|reproduction)\b/.test(found));
+ if(!titleMatches)return false;
+ const a=artworkIdentity(landmark.artist),b=artworkIdentity(candidate.artist);
+ return a.length>3&&b.length>3&&(a===b||a.split(' ').slice(-1)[0]===b.split(' ').slice(-1)[0]);
+}
+function connectVerifiedLandmarks(landmarks, museumRecords){
+ return landmarks.map(landmark=>{
+  const match=museumRecords.find(candidate=>verifiedLandmarkMatch(landmark,candidate));
+  if(!match)return landmark;
+  return {...match,key:landmark.key,rank:landmark.rank,fameRank:landmark.fameRank,source:match.source,matchedMuseumRecord:true,museumOriginal:match.original,museumWidth:match.width,museumHeight:match.height,museumDetail:match.detail};
+ });
+}
+
+function unique(items){const map=new Map();for(const a of items){if(a&&!map.has(a.key))map.set(a.key,a)}return [...map.values()]}
+async function getJSON(url,timeout=23000){const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),timeout);try{const response=await fetch(url,{signal:ctrl.signal,mode:'cors',headers:{Accept:'application/json'}});if(!response.ok)throw Error(`HTTP ${response.status}`);return await response.json()}finally{clearTimeout(timer)}}
+function cmaURL(params){const u=new URL('https://openaccess-api.clevelandart.org/api/artworks/');u.searchParams.set('cc0','');u.searchParams.set('has_image','1');u.searchParams.set('type','Painting');u.searchParams.set('fields',FIELDS_CMA);for(const [k,v] of Object.entries(params))if(v!==undefined)u.searchParams.set(k,v);return u.href}
+async function fetchCMA(params){const data=await getJSON(cmaURL(params));return (data.data||[]).map(cmaRecord).filter(Boolean)}
+function aicURL(term,limit=60,page=1){const u=new URL('https://api.artic.edu/api/v1/artworks/search');u.searchParams.set('q',term);u.searchParams.set('fields',FIELDS_AIC);u.searchParams.set('limit',limit);u.searchParams.set('page',page);return u.href}
+async function fetchAIC(term,limit=60,page=1){const data=await getJSON(aicURL(term,limit,page));return (data.data||[]).map(aicRecord).filter(Boolean)}
+function metURL(term,limit=40,offset=0,highlight=false){const u=new URL('https://collectionapi.metmuseum.org/public/collection/v1.1/search');u.searchParams.set('hasImages','true');u.searchParams.set('medium','Paintings');u.searchParams.set('limit',limit);u.searchParams.set('offset',offset);if(term)u.searchParams.set('q',term);if(highlight)u.searchParams.set('isHighlight','true');return u.href}
+async function fetchMet(term='',limit=35,offset=0,highlight=false){const data=await getJSON(metURL(term,limit,offset,highlight));const ids=(data.objectIDs||[]).slice(0,limit);const found=[];for(let i=0;i<ids.length;i+=4){const chunk=ids.slice(i,i+4);const vals=await Promise.allSettled(chunk.map(id=>getJSON(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`,16500)));for(const value of vals){if(value.status==='fulfilled'){const o=metRecord(value.value);if(o)found.push(o)}}}return found}
+function selectCurated(cma,aic,met,world=[]){
+ const byScore=arr=>unique(arr).sort((a,b)=>quality(b)-quality(a)||a.title.localeCompare(b.title));
+ const cms=byScore(cma),acs=byScore(aic),mts=byScore(met),globe=byScore(world);
+ const picks=[],counts=new Map(),seen=new Set();
+ const take=(arr,n,cap=10)=>{for(const a of arr){if(picks.length>=300||n<=0)break;
+ const normalized=lower(a.artist+'|'+a.title).replace(/[^a-z0-9|]+/g,'');
+ if(seen.has(a.key)||seen.has(normalized))continue;
+ const artist=lower(a.artist),qty=counts.get(artist)||0;if(qty>=cap)continue;
+ picks.push(a);seen.add(a.key);seen.add(normalized);counts.set(artist,qty+1);n--}};
+ // Editorial open-access selection, diversified across sources; not an objective historical ranking.
+ take(globe,100,12);take(mts,60);take(acs,65);take(cms,300-picks.length);
+ take([...globe,...mts,...acs,...cms],300-picks.length,30);
+ return [...connectVerifiedLandmarks(landmarkRecords(),[...cms,...acs,...mts]),...picks.filter(p=>!HISTORICAL_LANDMARKS.some(([title,artist])=>lower(title)===lower(p.title)&&lower(artist)===lower(p.artist))).slice(0,300-HISTORICAL_LANDMARKS.length).map((a,i)=>({...a,rank:HISTORICAL_LANDMARKS.length+i+1}))];
+}
+function store(){try{localStorage.setItem('open-art-world-fame-v5-download-picker' ,JSON.stringify({time:Date.now(),featured:state.featured}));}catch{}}
+function readCache(){try{const obj=JSON.parse(localStorage.getItem('open-art-world-fame-v5-download-picker' )||'null');return obj?.featured?.length?obj:null}catch{return null}}
+function loadFavs(){try{const a=JSON.parse(localStorage.getItem('open-art-favs-v2')||'[]');state.favs=new Set(Array.isArray(a)?a:[])}catch{state.favs=new Set()}}
+function saveFavs(){try{localStorage.setItem('open-art-favs-v2',JSON.stringify([...state.favs]))}catch{}}
+function refreshFav(a){if(state.favs.has(a.key))state.favs.delete(a.key);else state.favs.add(a.key);saveFavs();render();if(state.selection?.key===a.key)openArtwork(a)}
+async function loadFeatured(force=false){
+ const token=++state.featuredRequest,cache=readCache();
+ if(cache&&!force&&cache.featured?.[0]?.key==='landmark:0'&&Date.now()-cache.time<7*86400000){
+ state.featured=cache.featured;featuredCount.textContent=state.featured.length;render();note(`Saved historical catalogue · ${new Date(cache.time).toLocaleDateString()}`);enrichHistorical();return;
+ }
+ if(state.featuredLoading)return;state.featuredLoading=true;setBusy(true,'Historical ranking ready · checking worldwide museum images…');state.failed=[];
+ const sources=[
+ {name:'Cleveland highlights',run:()=>fetchCMA({highlight:1,limit:500})},
+ {name:'Cleveland paintings',run:()=>fetchCMA({limit:950})},
+ {name:'Chicago Van Gogh',run:()=>fetchAIC('Van Gogh',65)},
+ {name:'Chicago Monet',run:()=>fetchAIC('Monet',65)},
+ {name:'Chicago paintings',run:()=>fetchAIC('painting',90)},
+ {name:'Met highlights',run:()=>fetchMet('',40,0,true)},
+ ...['Japanese paintings','Chinese paintings','Persian paintings','Indian paintings','Australian paintings','New Zealand paintings','French paintings','Italian paintings','Spanish paintings','Korean paintings'].map((q,i)=>({name:'World '+q,run:()=>fetchCommons(q,i%2)}))
+ ];
+ const outcomes=await Promise.all(sources.map(async source=>{
+ try{return{name:source.name,items:await source.run()}}catch(e){return{name:source.name,items:[],error:String(e.message)}}
+ }));
+ if(token!==state.featuredRequest)return;
+ const cma=outcomes.filter(o=>o.name.startsWith('Cleveland')).flatMap(o=>o.items);
+ const aic=outcomes.filter(o=>o.name.startsWith('Chicago')).flatMap(o=>o.items);
+ const met=outcomes.filter(o=>o.name.startsWith('Met')).flatMap(o=>o.items);
+ const world=outcomes.filter(o=>o.name.startsWith('World')).flatMap(o=>o.items);
+ state.failed=outcomes.filter(o=>o.error).map(o=>o.name);
+ state.featured=selectCurated(cma,aic,met,world);
+ if(state.featured.length<300){try{
+ const extra=await fetchCMA({limit:950,skip:950});
+ if(token!==state.featuredRequest)return;
+ state.featured=selectCurated([...cma,...extra],aic,met,world);
+ }catch{state.failed.push('Cleveland second page')}}
+ state.featuredLoading=false;state.loading=false;featuredCount.textContent=state.featured.length;
+ store();render();enrichHistorical();note(`${state.featured.length} worldwide historical and open-access selections${state.failed.length?' · some catalogues unavailable':''}`);
+}
+function setTab(tab){state.tab=tab;state.display=60;document.querySelectorAll('[data-tab]').forEach(b=>{b.classList.toggle('active',b.dataset.tab===tab);b.setAttribute('aria-selected',b.dataset.tab===tab?'true':'false')});render()}
+function textMatch(a,q){const s=lower([a.title,a.artist,a.museum,a.date,a.medium,a.blurb,a.subjects].join(' '));return q.toLocaleLowerCase().split(/\s+/).filter(Boolean).every(w=>s.includes(w))}
+function subjectTerms(q){return [...new Set(lower(q).split(/[\s,;]+/).map(x=>x.trim()).filter(Boolean))].slice(0,5)}
+function subjectVisible(a){return state.remoteMode!=='all'||state.remoteTerms.every(t=>(a.matchedTerms||[]).includes(t))}
+function eraMatch(a){const y=a.year;if(state.era==='all')return true;if(!y)return false;return state.era==='ancient'?y<1400:state.era==='renaissance'?y>=1400&&y<1700:state.era==='enlightenment'?y>=1700&&y<1800:state.era==='modern'?y>=1800&&y<1900:y>=1900}
+function collection(){let items=state.tab==='featured'?state.featured:state.tab==='search'?state.results:unique([...state.featured,...state.results]).filter(a=>state.favs.has(a.key));const query=$('#query').value.trim();items=items.filter(a=>(state.source==='all'||state.source===a.source)&&(state.license==='all'||licenseGroup(a)===state.license)&&(!query||(state.tab==='search'&&query===state.remoteQuery)||textMatch(a,query))&&(state.tab!=='search'||subjectVisible(a))&&eraMatch(a)&&(!state.pixels||longestSide(a)>=state.pixels));const sort=state.sort;if(sort==='historical')items.sort(historicalSort);else if(sort==='artist')items.sort((a,b)=>a.artist.localeCompare(b.artist));else if(sort==='title')items.sort((a,b)=>a.title.localeCompare(b.title));else if(sort==='museum')items.sort((a,b)=>a.museum.localeCompare(b.museum));else if(sort==='oldest')items.sort((a,b)=>(a.year||9999)-(b.year||9999));else if(sort==='newest')items.sort((a,b)=>(b.year||-9999)-(a.year||-9999));else if(sort==='popular')items.sort((a,b)=>popularScore(b)-popularScore(a)||fameScore(b)-fameScore(a));else if(sort==='famous')items.sort(historicalSort);else if(sort==='license')items.sort((a,b)=>licenseOrder(a)-licenseOrder(b)||quality(b)-quality(a));else if(sort==='resolution-high'||sort==='largest')items.sort((a,b)=>longestSide(b)-longestSide(a)||pixelCount(b)-pixelCount(a));else if(sort==='resolution-low')items.sort((a,b)=>(longestSide(a)||Infinity)-(longestSide(b)||Infinity)||pixelCount(a)-pixelCount(b));else if(sort==='featured')items.sort((a,b)=>state.tab==='search'&&state.remoteMode!=='normal'?(b.matchedTerms?.length||0)-(a.matchedTerms?.length||0)||quality(b)-quality(a):(a.rank||9999)-(b.rank||9999)||quality(b)-quality(a));return items}
+function card(a){
+ const article=el('article','art'),visual=el('div','art-img');
+ const img=el('img');img.loading=a.fameRank&&a.fameRank<=10?'eager':'lazy';img.decoding='async';img.alt=a.title+' by '+a.artist;img.style.display='none';
+ const showImage=()=>{const src=imagePath(a);if(!src)return;img.style.display='block';img.src=src;placeholder.style.display='none'};
+ const placeholder=el('div','art-placeholder','Locating artwork preview…');visual.append(placeholder,img);
+ img.onerror=()=>{img.style.display='none';placeholder.style.display='grid';placeholder.textContent='Preview unavailable';};
+ showImage();
+ const cover=el('button','open-art','Open '+a.title);cover.addEventListener('click',()=>openArtwork(a));visual.append(cover);
+ const save=el('button','fav'+(state.favs.has(a.key)?' saved':''),state.favs.has(a.key)?'★':'☆');save.title='Save artwork';save.setAttribute('aria-label','Save '+a.title);save.addEventListener('click',()=>refreshFav(a));visual.append(save);
+ if(a.fameRank)visual.append(el('span','rank-pill','#'+a.fameRank));
+ const body=el('div','art-body');body.append(el('h3','',a.title),el('div','meta',a.artist+' · '+(a.date||'Undated')));
+ if(a.original){const direct=link('↓ Original image',a.original,'card-download');direct.title='Open original image file · check rights in details';body.append(direct)}
+ article.append(visual,body);return article;
+}
+function render(){const items=collection();const title=state.tab==='featured'?'Historical fame · top 300 collection':state.tab==='saved'?'Your saved collection':'Search the open museums';$('#sectionTitle').textContent=title;$('#countText').textContent=state.tab==='search'&&!state.remoteQuery?'Type a name, artist or depicted feature and press Search museums.':`${items.length} matching works${state.tab==='featured'?' · fixed historical landmarks first; additional open-access discoveries follow':''}${state.pixels?' · verified download size only':''}${state.sort==='popular'?' · museum highlight proxy, not view counts':state.sort==='famous'?' · fame is editorial, not measured':''}`;
+const visible=items.slice(0,state.display);const frag=document.createDocumentFragment();if(!visible.length){const empty=el('div','empty');empty.append(el('strong','',state.tab==='search'&&!state.remoteQuery?'Search museum collections':state.loading?'Finding open-access paintings…':'No matching artwork found'));empty.append(el('span','',state.tab==='saved'?'Star a painting to keep it here.':state.pixels?'Try “All / not verified” to include works with unreported dimensions.':'Try a different term, era, or museum.'));frag.append(empty)}else visible.forEach(a=>frag.append(card(a)));grid.replaceChildren(frag);
+const more=$('#more');more.hidden=items.length<=state.display&&!(state.tab==='search'&&state.remoteQuery&&state.results.length>0);if(!more.hidden)more.textContent=items.length>state.display?'Show more works':'Search next page';}
+async function remoteSearch(more=false){
+const q=$('#query').value.trim();if(!q){setTab('featured');return}if(state.remoteLoading)return;
+const mode=$('#searchMode').value,terms=mode==='normal'?[q]:subjectTerms(q);if(!terms.length)return;
+state.remoteLoading=true;const id=++state.remoteRequest;state.remoteQuery=q;state.remoteMode=mode;state.remoteTerms=terms;state.remotePage=more?state.remotePage+1:0;if(!more)state.results=[];
+setTab('search');setBusy(true,mode==='normal'?'Searching open museum catalogues and Commons…':`Looking for ${mode==='all'?'every':'any'} feature across museum catalogues…`);
+const p=state.remotePage,multi=terms.length>1,requests=[];
+for(const term of terms){const limit=multi?30:65,metLimit=multi?12:32;
+requests.push({name:'Cleveland',term,run:()=>fetchCMA({q:term,limit,skip:p*limit})},{name:'Chicago',term,run:()=>fetchAIC(term,multi?35:60,p+1)},{name:'The Met',term,run:()=>fetchMet(term,metLimit,p*metLimit,false)},{name:'Commons',term,run:()=>fetchCommons(term,p*50)});
+}
+const settled=await Promise.all(requests.map(async r=>{try{return{name:r.name,term:r.term,items:await r.run()}}catch(e){return{name:r.name,term:r.term,items:[],error:e.message}}}));
+if(id!==state.remoteRequest)return;
+state.remoteLoading=false;const merged=new Map(state.results.map(a=>[a.key,a]));
+for(const result of settled){for(const artwork of result.items){const existing=merged.get(artwork.key);if(existing){const matches=new Set(existing.matchedTerms||[]);matches.add(result.term);existing.matchedTerms=[...matches];}else merged.set(artwork.key,{...artwork,matchedTerms:[result.term],rank:1000-quality(artwork)});}}
+state.results=[...merged.values()];state.failed=[...new Set(settled.filter(r=>r.error).map(r=>r.name))];
+const matches=mode==='all'?state.results.filter(subjectVisible).length:state.results.length;
+setBusy(false,state.failed.length?`${matches} matches · some providers unavailable: ${state.failed.join(', ')}`:`${matches} matching records · ${mode==='all'?'all subjects':'catalogue metadata'}`);render();}
+
+async function verifyAIC(a){if(!a.infoURL)return;const isSelected=()=>state.selection?.key===a.key;const node=isSelected()?$('#imageSizeDetail'):null;if(node&&!dimensions(a))node.textContent='Checking IIIF image dimensions…';try{const data=await getJSON(a.infoURL,16000);const w=Number(data.width)||0,h=Number(data.height)||0;if(!w||!h)throw Error('Missing dimensions');a.width=w;a.height=h;a.sizeChecked=true;const cache=state.featured.find(x=>x.key===a.key);if(cache){cache.width=w;cache.height=h;cache.sizeChecked=true;store()}if(isSelected()){const field=$('#imageSizeDetail');if(field)field.textContent=sizeLabel(a);const master=$('#museumMasterDetail');if(master)master.textContent=`${w.toLocaleString()} × ${h.toLocaleString()} px (IIIF verified)`}render()}catch{if(isSelected()&&!dimensions(a)){const field=$('#imageSizeDetail');if(field)field.textContent='Not verified · check museum record'}}}
+function artworkSummary(a){
+ const first=clean(a.blurb||'');
+ if(first&&!/^(Historical-fame catalogue entry|Catalogue entry:|Historical painting)/i.test(first))return cut(first,460);
+ const candidates=(a.moreInfo||[]).filter(([name,value])=>!/ranking|provenance|exhibition|publication|inscription|credit|artist dates/i.test(name)&&clean(value).length>70);
+ if(candidates.length)return cut(candidates[0][1],460);
+ return 'A celebrated work by '+a.artist+', dating to '+(a.date||'an undetermined period')+'. Open the artwork reference for its background and artistic context.';
+}
+function openArtwork(a){
+ state.selection=a;$('#dialogTitle').textContent='Artwork';dialogContent.replaceChildren();
+ const holder=el('div','detail'),im=el('div','detail-image'),pic=el('img');pic.alt=a.title+' by '+a.artist;
+ if(imagePath(a)){pic.src=imagePath(a);im.append(pic)}else im.append(el('p','museum-fallback','Preview not available from a confirmed artwork source.'));
+ const info=el('div','detail-text');info.append(el('h3','',a.title),el('div','detail-meta',a.artist+' · '+(a.date||'Date unknown')));
+ info.append(el('p','art-summary',artworkSummary(a)));
+ if(a.museum&&!/Multiple collections|Various museums|world collections|Private collection/i.test(a.museum))info.append(el('p','view-at','On view / held at '+a.museum+'.'));
+ const facts=el('div','detail-facts'),license=el('div','fact'),download=el('div','fact download-activator');
+ license.append(el('span','fact-label','IMAGE LICENCE'),el('strong','',a.license||'Not confirmed'),el('span','fact-sub','The artwork and its particular reproduction may carry different rights. Review each source file.'));
+ license.querySelector('strong').id='artLicenseDetail';
+ download.append(el('span','fact-label','DOWNLOAD OPTIONS'),el('strong','',a.original?'Original: '+sizeLabel(a):'Find up to 12 image files'),el('span','fact-sub','Open to compare Commons files, choose 4K / 6K / original, and see free museum copies.'));
+ download.querySelector('strong').id='imageSizeDetail';
+ download.setAttribute('role','button');download.setAttribute('tabindex','0');download.setAttribute('aria-expanded','false');
+ const options=el('div','download-results');options.hidden=true;
+ download.addEventListener('click',()=>showDownloadChoices(a,download,options));
+ download.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showDownloadChoices(a,download,options)}});
+ facts.append(license,download);info.append(facts,options);
+ const actions=el('div','detail-buttons');
+ if(a.downloadSource)actions.append(link('File page & licence ↗',a.downloadSource,'btn'));
+ if(a.previewSource)actions.append(link('Preview source ↗',a.previewSource,'btn'));
+ if(a.detail)actions.append(link('Artwork record ↗',a.detail,'btn'));
+ if(a.licenseURL)actions.append(link('Licence details ↗',a.licenseURL,'btn'));
+ if(!a.preview)actions.append(link('Find reference image ↗','https://en.wikipedia.org/w/index.php?search='+encodeURIComponent(a.title+' '+a.artist),'btn'));
+ if(a.infoURL){const b=el('button','btn','Check pixel dimensions');b.addEventListener('click',()=>verifyAIC(a));actions.append(b)}
+ const copy=el('button','btn','Copy attribution');copy.addEventListener('click',()=>copyText(`${a.title} — ${a.artist} (${a.date||'date unknown'}). ${a.museum||''}. ${a.license||''}. ${a.downloadSource||a.detail||''}`));actions.append(copy);info.append(actions);
+ if(a.original&&(a.downloadProvider||a.source==='commons'))info.append(el('p','reuse-caution','Commons licence labels are community-maintained. Confirm identity, rights and permitted commercial reuse on the source file page before using the original.'));
+ holder.append(im,info);dialogContent.append(holder);showDialog();if(a.source==='aic'&&!a.sizeChecked)verifyAIC(a);
+}
+function showDialog(){dialog.classList.add('show');document.body.style.overflow='hidden';$('#close').focus()}
+function closeDialog(){dialog.classList.remove('show');document.body.style.overflow='';state.selection=null}
+async function copyText(s){try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(s);note('Attribution copied');return}throw Error('unavailable')}catch{const input=el('textarea');input.value=s;input.style.position='fixed';input.style.opacity='0';document.body.append(input);input.select();try{document.execCommand('copy');note('Attribution copied')}catch{note('Copy unavailable on this browser')}input.remove()}}
+function about(){state.selection=null;$('#dialogTitle').textContent='About, licensing & acknowledgements';dialogContent.replaceChildren();const body=el('div','about');body.innerHTML=`<p><strong>Open Masterpieces</strong> is a single-file art discovery tool. It does not scrape museum pages. It queries official museum APIs plus the Wikimedia Commons API and opens images on their respective servers; an internet connection is required for new results and image previews.</p><h3>Not a definitive “300 greatest” ranking</h3><p>The Top 300 begins with 103 fixed editorial landmarks of globally famous named works—including copyrighted examples—and supplements it with discoverable open-access museum records; it is not a historically established or definitive world ranking. Fame has no objective universal ranking, and many iconic paintings cannot be sourced through these APIs with unrestricted commercial rights. The number may be below 300 if sources are unavailable or fewer qualifying records can be retrieved. Not every painting ever made is searchable here.</p><h3>Popularity, fame, and sorting</h3><p><strong>Most popular (proxy)</strong> uses museum highlight/search-boost flags, and an available low-view signal from Chicago. It is a proxy, not a measured visitor or image download count; the museums do not provide comparable global view counts. <strong>Most famous</strong> is an editorial estimate based on recognisable titles and artists plus museum highlights, not an official all-time ranking. <strong>Licence sorting</strong> puts museum CC0 records before museum public-domain records, then community-sourced claims. <strong>Resolution sorting</strong> uses the dimensions of the linked download: Chicago is capped at 6,000px, even if its underlying master is larger; unknown sizes go last in both directions. Sorting applies only to records currently loaded in the chosen tab.</p><h3>Finding painted subjects</h3><p>Choose Subjects · ANY keyword to enter several depicted subjects (e.g. beach dog rain hair) and find works matching at least one. Choose ALL keywords to return only artworks retrieved under every requested word. Up to five words are queried individually, so broad searches can be slower. The ordinary mode treats your input as one full museum search, which is better for artist names and painting titles. These are textual museum catalogue searches, <strong>not computer vision</strong>; untagged objects in the actual painting may be missed. Some results may be imperfect because museum search metadata can include descriptions and contextual references.</p><h3>Image rights and commercial reuse</h3><p>The historical-fame list deliberately also includes famous paintings without an image cleared for reuse. The download selector shows up to 12 Commons candidates and any matching open-access museum copies, allowing 4,000-pixel, 6,000-pixel or full-original requests where supported. Rights and identity must still be reviewed before commercial use. Images are not “open-source software”: they are public-domain or openly dedicated image reproductions. Verify the source licence, local law and restrictions on publicity, logos and trademarks before making commercial products. <strong>Public-domain rights do not automatically satisfy a marketplace’s originality or listing requirements.</strong> Produce a genuinely artist-designed transformation and accurately represent the original artist and your own contribution.</p><p>Cleveland exposes full TIFF dimensions. The Met does not publish dependable original-image pixel dimensions through its object API. Chicago provides image dimensions in metadata and its IIIF service can verify them; the download link requests a JPEG fitted within 6,000 pixels. The 4K or 6K filter uses the primary available download resolution and excludes unknown sizes. Met works with unknown resolution are not automatically rejected from the unfiltered collection.</p><h3>Collections & attribution</h3><ul><li><a target="_blank" rel="noopener" href="https://www.clevelandart.org/open-access">Cleveland Museum of Art — Open Access</a>, CC0 images and collection data.</li><li><a target="_blank" rel="noopener" href="https://www.metmuseum.org/policies/frequently-asked-questions-image-and-data-resources">The Metropolitan Museum of Art — Open Access FAQ</a>, CC0 images.</li><li><a target="_blank" rel="noopener" href="https://www.artic.edu/open-access/open-access-images">Art Institute of Chicago — Open Access</a>, public-domain image reproductions and collection API; consult their <a href="https://api.artic.edu/docs/" target="_blank" rel="noopener">API documentation</a>.</li><li><a target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia">Wikimedia Commons — image reuse and licensing</a>, independent community-maintained rights claims; manual commercial review required.</li></ul><p>Credit and source links are preserved on each artwork record. Even where attribution isn't legally required under CC0, identifying the original artist, title and museum is good practice. Image and metadata rights are separate from the application's code rights. The museums do not endorse this application.</p><h3>Software licence</h3><p>HTML, CSS and JavaScript in this file: Copyright © 2026, Zarir Madon. Licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener">GNU General Public License version 3 or later</a>. The GPL does not extend to third-party artwork images, names, or catalogue records. The interface uses no external JavaScript libraries, fonts or tracking.</p><h3>How it works</h3><p>Artwork reference links are informational only and never establish download rights. Select historical landmarks can load reference-only thumbnails from specifically identified Wikipedia articles; these thumbnails never grant reproduction rights. The first 103 historically famous named works are embedded in the HTML and always appear even without network access; historical landmarks can search for up to twelve Wikimedia file options on demand; museum originals are queried separately using artwork and artist identity; further open-access works fill remaining positions when museums are reachable. The worldwide list is not an objective ranking and may include unverified image rights. Search looks across three connected museum catalogues plus worldwide Wikimedia Commons discovery, not every museum on earth. Wikimedia Commons expands searches to images from other collections, but its licence metadata is community-maintained; check provenance and rights carefully before selling. Saved artworks remain on this browser. Use Refresh to rebuild the featured list; browser storage can be cleared without affecting the original file. A browser may open TIFF/JPEG rather than download automatically: use the browser's Save action. Some image hosts or corporate networks may refuse direct access; the museum record remains the reliable fallback.</p>`;dialogContent.append(body);showDialog()}
+$('#close').addEventListener('click',closeDialog);dialog.addEventListener('click',e=>{if(e.target===dialog)closeDialog()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&dialog.classList.contains('show'))closeDialog()});$('#about').addEventListener('click',about);$('#refresh').addEventListener('click',()=>{if(state.featuredLoading)return;state.featured=[];featuredCount.textContent='—';render();loadFeatured(true)});document.querySelectorAll('[data-tab]').forEach(btn=>btn.addEventListener('click',()=>setTab(btn.dataset.tab)));
+function updateFilterCount(){let n=0;for(const [id,normal] of [['museum','all'],['pixels','0'],['license','all'],['era','all'],['searchMode','normal']])if(document.getElementById(id).value!==normal)n++;const badge=document.getElementById('filterCount');badge.hidden=n===0;badge.textContent=n+' active';}document.querySelectorAll('#filterDrawer select').forEach(s=>s.addEventListener('change',updateFilterCount));updateFilterCount();
+const searchCluster=$('#searchCluster'),searchPopover=$('#searchPopover'),searchInput=$('#query');
+const integratedControls=$('#integratedControls');
+integratedControls.appendChild(document.querySelector('.compact-controls'));
+const drawer=$('#filterDrawer');drawer.open=true;
+const searchForm=$('#searchForm');
+const optionsButton=document.createElement('button');
+optionsButton.type='button';optionsButton.id='openSearchOptions';optionsButton.className='search-options-button';optionsButton.setAttribute('aria-label','Search categories and filters');optionsButton.setAttribute('aria-expanded','false');optionsButton.setAttribute('aria-controls','searchPopover');optionsButton.textContent='⚙';
+searchForm.insertBefore(optionsButton,searchForm.querySelector('button[type="submit"]'));
+function toggleSearchOptions(open){searchPopover.hidden=!open;optionsButton.setAttribute('aria-expanded',String(open));searchCluster.classList.toggle('options-open',open)}
+searchInput.addEventListener('focus',()=>toggleSearchOptions(true));
+searchInput.addEventListener('click',()=>toggleSearchOptions(true));
+optionsButton.addEventListener('click',()=>toggleSearchOptions(searchPopover.hidden));
+$('#closeSearchOptions').addEventListener('click',()=>toggleSearchOptions(false));
+document.addEventListener('pointerdown',e=>{if(!searchCluster.contains(e.target))toggleSearchOptions(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!searchPopover.hidden){toggleSearchOptions(false);searchInput.blur()}});
+searchForm.addEventListener('submit',()=>toggleSearchOptions(false));
+$('#query').addEventListener('input',()=>{state.display=60;render()});$('#searchMode').addEventListener('change',()=>{if(state.tab==='search'&&$('#query').value.trim()&&!state.remoteLoading)remoteSearch(false);else render()});$('#searchForm').addEventListener('submit',e=>{e.preventDefault();remoteSearch(false)});$('#regionPreset').addEventListener('change',e=>{if(!e.target.value)return;$('#query').value=e.target.value;$('#searchMode').value='normal';state.display=60;updateFilterCount();remoteSearch(false)});for(const [id,k,convert] of [['museum','source',String],['pixels','pixels',Number],['license','license',String],['era','era',String],['sort','sort',String]]){document.getElementById(id).addEventListener('change',e=>{state[k]=convert(e.target.value);state.display=60;render()})}
+$('#more').addEventListener('click',()=>{if(state.tab==='search'&&state.display>=collection().length&&state.remoteQuery){remoteSearch(true);return}state.display+=60;render()});
+loadFavs();state.featured=landmarkRecords();featuredCount.textContent=state.featured.length;setTab('featured');enrichHistorical();loadFeatured();
+})();
+</script>
+</body>
+</html>
