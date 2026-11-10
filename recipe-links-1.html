@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#482ab0"><title>Recipe Links — World Recipe Directory</title>
+<style>
+:root{color-scheme:light;--bg:#f5f7f5;--paper:#fff;--ink:#183036;--muted:#697b7c;--teal:#236b67;--line:#dce5e2;--soft:#e8f0ed;--gold:#bc8050;--shadow:0 9px 25px #182f2f0c;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #d8a66d;outline-offset:3px}.shell{max-width:1260px;margin:auto;padding:0 22px}.top{background:var(--paper);border-bottom:1px solid var(--line)}.bar{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:19px 0}.brand{font-family:Georgia,serif;font-size:clamp(22px,3vw,31px);font-weight:700;letter-spacing:-1px}.brand b{color:var(--teal)}.tag{font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}.hero{background:linear-gradient(125deg,#e8f0ec 0%,#fbf7ed 100%);border-bottom:1px solid var(--line);padding:45px 0 36px}.eyebrow{color:var(--teal);text-transform:uppercase;letter-spacing:.2em;font-size:12px;font-weight:800}.hero h1{font-family:Georgia,serif;letter-spacing:-.035em;font-size:clamp(34px,6vw,64px);max-width:770px;line-height:1.1;margin:12px 0 12px;font-weight:500}.hero p{max-width:660px;color:#52666a;font-size:16px;line-height:1.65;margin:0}.toolbar{padding:22px 0 8px}.searchwrap{position:relative;margin-bottom:18px}.searchwrap svg{position:absolute;left:17px;top:17px;color:var(--muted)}#search{width:100%;padding:16px 45px 16px 49px;border:1px solid #cddbd7;border-radius:13px;background:#fff;box-shadow:var(--shadow);outline-offset:2px}#clearSearch{position:absolute;right:10px;top:9px;border:0;background:transparent;color:var(--muted);font-size:22px;padding:5px 10px}.micro{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin:14px 0 9px}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:white;color:#355a59;border-radius:999px;padding:10px 16px;font-size:14px;font-weight:650}.chip[aria-pressed=true]{background:var(--teal);color:white;border-color:var(--teal)}.filterline{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:16px 0 12px}.select{background:white;border:1px solid var(--line);border-radius:12px;padding:12px 15px;color:var(--ink);min-width:190px;flex:1;max-width:360px}.clean,.favs{border:1px solid var(--line);background:white;border-radius:12px;padding:12px 15px;color:var(--teal);font-weight:700}.favs[aria-pressed=true]{background:#fff3dc;border-color:#d5a765;color:#81561f}.summary{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px;padding:12px 0 20px}.summary strong{color:var(--ink)}.section{margin:0 0 33px}.sectionhead{display:flex;align-items:baseline;gap:13px;margin:0 0 14px;border-bottom:1px solid var(--line);padding-bottom:10px}.section h2{font-family:Georgia,serif;font-size:clamp(24px,3vw,30px);font-weight:500;margin:0}.count{color:var(--muted);font-size:13px}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:12px}.card{position:relative;min-height:128px;border:1px solid var(--line);background:var(--paper);border-radius:15px;padding:18px 43px 15px 17px;box-shadow:var(--shadow);transition:transform .12s,border-color .12s}.card:hover{transform:translateY(-2px);border-color:#96b9b2}.card a{display:block;text-decoration:none}.cardtitle{font-weight:750;color:#236b67;line-height:1.35;font-size:16px}.arr{font-weight:600;font-size:14px}.desc{color:var(--muted);font-size:13px;line-height:1.45;margin-top:9px}.site{color:#8a9898;font-size:11px;margin-top:12px;overflow-wrap:anywhere}.star{position:absolute;right:10px;top:11px;border:0;background:transparent;font-size:22px;color:#8da3a0;border-radius:8px;padding:4px 7px}.star[aria-label="Remove favourite"]{color:#bb8741}.empty{text-align:center;padding:80px 15px;background:white;border:1px solid var(--line);border-radius:15px}.empty h2{font-family:Georgia,serif;font-weight:500}.foot{border-top:1px solid var(--line);margin-top:40px;background:white;padding:27px 0 35px;color:var(--muted);font-size:13px;line-height:1.6}.foot strong{color:var(--ink)}#backtop{position:fixed;bottom:19px;right:18px;border:1px solid var(--line);background:white;border-radius:50%;width:45px;height:45px;box-shadow:var(--shadow);font-weight:800;color:var(--teal)}@media(max-width:600px){.shell{padding:0 15px}.hero{padding:30px 0}.bar{padding:16px 0}.tag{font-size:10px}.hero p{font-size:14px}.chip{padding:9px 12px;font-size:13px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card{padding:15px 32px 12px 13px;min-height:149px}.cardtitle{font-size:14px}.desc{font-size:12px}.site{font-size:10px}.star{right:3px;top:5px}.filterline{gap:8px}.select{min-width:0;max-width:none;width:100%;flex-basis:100%}.clean,.favs{flex:1}.section{margin-bottom:25px}}@media(max-width:360px){.cards{grid-template-columns:1fr}.card{min-height:115px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Colourful editorial treatment, restrained shadows and responsive contrast. */
+:root{--bg:#faf8ff;--paper:#fff;--ink:#252047;--muted:#686582;--teal:#5a36b9;--gold:#ffb345;--line:#e8e0f2;--shadow:0 7px 23px #4e3c8a13}
+body{background:radial-gradient(circle at 3% 30%,#fceaff 0,transparent 25%),radial-gradient(circle at 98% 67%,#e7f9ff 0,transparent 27%),#faf8ff}
+.top{background:linear-gradient(95deg,#ffffff 0%,#fff3fc 50%,#effaff 100%)}
+.brand{font-family:system-ui,sans-serif;font-weight:850;letter-spacing:-.06em}.brand b{color:#693dd1}
+.hero{position:relative;overflow:hidden;background:linear-gradient(115deg,#4b36bd 0%,#a443bb 45%,#fa777b 74%,#ffc170 100%);border:0;padding:64px 0 57px;color:white}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}.hero:before{width:420px;height:420px;background:#ffffff15;right:-130px;top:-270px}.hero:after{width:240px;height:240px;background:#ffffff12;left:35%;bottom:-190px}
+.hero h1{font-family:system-ui,sans-serif;font-weight:850;letter-spacing:-.055em;max-width:920px}.hero h1 em{font-style:normal;color:#fff1a7}.eyebrow,.hero p{color:#fff!important}.hero p{font-size:17px;max-width:740px}
+.toolbar{background:linear-gradient(125deg,#fff 40%,#f5edff 100%);border:1px solid #ece4fb;padding:20px;margin-top:-19px;position:relative;border-radius:22px;box-shadow:0 14px 35px #6b46b317}
+#search{border:1px solid #d9c9f2;border-radius:14px;background:#fff}
+.micro{color:#7853bb}.chip{border-color:#e4d9f5;color:#604399;background:#fff}
+.chip:nth-child(5n + 2){background:#fff3e8}.chip:nth-child(5n + 3){background:#eef9ff}.chip:nth-child(5n + 4){background:#fef0f7}.chip:nth-child(5n + 5){background:#edfaef}
+.chip[aria-pressed=true]{background:linear-gradient(115deg,#6336bd,#d4479e);border-color:transparent;color:#fff}
+.clean,.favs{color:#6642a6}.section{border-radius:20px;padding:18px;margin:12px 0 25px;background:linear-gradient(145deg,#fff,#faf5ff);border:1px solid #ede5f8}
+.section:nth-child(5n + 2){background:linear-gradient(145deg,#fff,#eefaFF)}.section:nth-child(5n + 3){background:linear-gradient(145deg,#fff,#fff3e8)}.section:nth-child(5n + 4){background:linear-gradient(145deg,#fff,#ffedf5)}.section:nth-child(5n){background:linear-gradient(145deg,#fff,#effbf1)}
+.section h2{font-family:system-ui,sans-serif;font-weight:820;letter-spacing:-.035em;color:#463189}.sectionhead{border-color:#ddd5ee}.count{font-weight:650;color:#76589b}
+.card{border-color:#e8e0f4;border-radius:15px;background:#ffffffed;min-height:118px}.card:hover{border-color:#aa7be7;transform:translateY(-2px)}.cardtitle{color:#5635ad}.card:nth-child(7n+2) .cardtitle{color:#c04a78}.card:nth-child(7n+3) .cardtitle{color:#147f98}.card:nth-child(7n+4) .cardtitle{color:#b56823}.card:nth-child(7n+5) .cardtitle{color:#357949}
+.foot{background:linear-gradient(100deg,#f3eaff,#e9f8ff)}#backtop{color:#6b43b5}
+@media(max-width:600px){.hero{padding:43px 0 52px}.hero h1{font-size:clamp(31px,8vw,45px)}.toolbar{padding:14px;margin-top:-17px}.section{padding:13px 10px}.section h2{font-size:22px}.card{min-height:140px}}
+.cuisinequick{display:flex;gap:9px;overflow-x:auto;padding:3px 0 11px;scrollbar-width:thin}.cuisinebtn{white-space:nowrap;border:1px solid #e7d6fb;border-radius:12px;background:linear-gradient(120deg,#fff0f4,#f0eeff);color:#56349a;font-size:13px;font-weight:750;padding:10px 14px}.cuisinebtn:nth-child(3n+2){background:linear-gradient(110deg,#fff5d9,#fff0ec)}.cuisinebtn:nth-child(3n){background:linear-gradient(110deg,#e5fafb,#ecf2ff)}.cuisinebtn[aria-pressed=true]{background:linear-gradient(110deg,#6339bd,#d247a2);color:white;border-color:transparent}</style>
+</head>
+<body>
+<header class="top"><div class="shell bar"><div class="brand">recipe<span style="color:var(--gold)">.</span><b>links</b></div><div class="tag">The world, one kitchen</div></div></header>
+<section class="hero"><div class="shell"><div class="eyebrow">Your recipe bookmarks · All in one place</div><h1>Flavours from every corner.<br><em>One colourful world.</em></h1><p>Explore a delicious world of recipe creators, regional kitchens and dish collections. Filter by cuisine or food, save favourites and open every source separately.</p></div></section>
+<main class="shell"><div class="toolbar"><div class="searchwrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="search" type="search" placeholder="Search websites, dishes, styles or ingredients…" aria-label="Search recipe sources"><button id="clearSearch" aria-label="Clear search" hidden>×</button></div><div class="micro">What are you cooking?</div><div class="chips" id="types" role="group" aria-label="Food type"></div><div class="micro">Explore a cuisine</div><div class="cuisinequick" id="cuisinequick" role="group" aria-label="Popular cuisines"></div><div class="filterline"><select class="select" id="cuisine" aria-label="Filter by cuisine"></select><button class="favs" id="onlyFaves" aria-pressed="false">☆ Favourites <span id="favCount">0</span></button><button class="clean" id="reset">Clear filters</button></div></div><div class="summary"><div><strong id="shown">0</strong> sources shown across <strong id="groups">0</strong> sections</div><span>↗ Original sites open separately</span></div><div id="results" aria-live="polite"></div></main>
+<footer class="foot"><div class="shell"><strong>Recipe Links</strong> · Independent directory of external cooking websites. All recipes, images and trademarks remain with their respective creators. Links may change. Favourites are saved only in this browser on this device. No accounts, advertising or tracking scripts.</div></footer><button id="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+<script>
+'use strict';
+const types=['All','Non-veg','Veg','Beef','Fish','Chicken','Breakfast','Dessert','Baking','Snacks'];
+const cuisines=['All cuisines','Indian','Parsi','Japanese','Chinese','Italian','Mediterranean','Persian','African','Middle Eastern','Thai','Korean','Vietnamese','Filipino','Indonesian','Malaysian','Pakistani','Sri Lankan','Bangladeshi','Nepalese','Turkish','Greek','French','Spanish','Portuguese','British','European','Mexican','Latin American','Caribbean','American','Australian','New Zealand','Vegan','Global'];
+// Name | URL | section | description | food types | cuisines. All metadata is editorial; links are external.
+const raw=`Dassana's Veg Recipes|https://www.vegrecipesofindia.com/|Indian subcontinent|Deep collection of Indian vegetarian dishes|Veg,Breakfast,Dessert,Baking,Snacks|Indian
+Swasthi's Recipes|https://www.indianhealthyrecipes.com/|Indian subcontinent|Indian family meals and step-by-step guides|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Indian
+Hebbars Kitchen|https://hebbarskitchen.com/|Indian subcontinent|Indian vegetarian dishes and snacks|Veg,Breakfast,Dessert,Snacks|Indian
+Tarla Dalal|https://www.tarladalal.com/|Indian subcontinent|Extensive Indian vegetarian cooking|Veg,Breakfast,Dessert,Baking,Snacks|Indian
+Archana's Kitchen|https://www.archanaskitchen.com/|Indian subcontinent|Regional recipes and meal planning|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Indian
+Sailu's Food|https://www.sailusfood.com/|Indian subcontinent|Andhra and wider Indian cooking|Non-veg,Veg,Fish,Chicken,Breakfast,Dessert,Snacks|Indian
+Raks Kitchen|https://rakskitchen.net/|Indian subcontinent|South Indian vegetarian home cooking|Veg,Breakfast,Dessert,Snacks|Indian
+Subbus Kitchen|https://www.subbuskitchen.com/|Indian subcontinent|Tamil and South Indian vegetarian recipes|Veg,Breakfast,Dessert,Snacks|Indian
+Sharmis Passions|https://www.sharmispassions.com/|Indian subcontinent|Indian food, drinks and sweets|Veg,Breakfast,Dessert,Baking,Snacks|Indian
+Nish Kitchen|https://nishkitchen.com/|Indian subcontinent|Indian and global recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Indian,Global
+The Curry Guy|https://greatcurryrecipes.net/|Indian subcontinent|Restaurant-style Indian curries|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Indian,British
+Maunika Gowardhan|https://maunikagowardhan.co.uk/|Indian subcontinent|Regional Indian recipes|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Indian
+Ministry of Curry|https://ministryofcurry.com/|Indian subcontinent|Indian home cooking and modern twists|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Indian
+Spice Up the Curry|https://www.spiceupthecurry.com/|Indian subcontinent|Indian vegetarian meals and curries|Veg,Breakfast,Dessert,Snacks|Indian
+Vegan Richa|https://www.veganricha.com/|Indian subcontinent|Indian and global vegan dishes|Veg,Breakfast,Dessert,Baking,Snacks|Indian,Vegan
+Pakistan Eats|https://www.pakistaneats.com/|Indian subcontinent|Pakistani food stories and recipes|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Pakistani
+Fatima Cooks|https://fatimacooks.net/|Indian subcontinent|Pakistani classics and home cooking|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Snacks|Pakistani
+Tea for Turmeric|https://www.teaforturmeric.com/|Indian subcontinent|Pakistani and Indian favourites|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert|Pakistani,Indian
+My Sri Lankan Recipes|https://www.mysrilankanrecipe.com/|Indian subcontinent|Sri Lankan cooking inspiration|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Sri Lankan
+The Flavor Bender|https://www.theflavorbender.com/|Indian subcontinent|Sri Lankan influences, baking and more|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Sri Lankan,Global
+Bong Eats|https://www.bongeats.com/|Indian subcontinent|Bengali dishes with careful instructions|Non-veg,Veg,Fish,Chicken,Dessert,Snacks|Indian,Bangladeshi
+With A Spin|https://www.withaspin.com/|Indian subcontinent|Bangladeshi and global home recipes|Non-veg,Veg,Beef,Fish,Chicken,Dessert|Bangladeshi
+Food Pleasure and Health|https://www.foodpleasureandhealth.com/|Indian subcontinent|Nepali-inspired cooking and recipes|Non-veg,Veg,Chicken,Snacks|Nepalese
+Sanjeev Kapoor|https://www.sanjeevkapoor.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Nisha Madhulika|https://nishamadhulika.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Manjula’s Kitchen|https://manjulaskitchen.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Cook With Manali|https://www.cookwithmanali.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Vahrehvah|https://www.vahrehvah.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Madhura’s Recipe|https://www.madhurasrecipe.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+My Food Story|https://myfoodstory.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Indian Veggie Delight|https://www.indianveggiedelight.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Jeyashri’s Kitchen|https://www.jeyashriskitchen.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Vidhya’s Home Cooking|https://www.vidhyashomecooking.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Tomato Blues|https://www.tomatoblues.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Kamala’s Corner|https://www.kamalascorner.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+The Belly Rules The Mind|https://thebellyrulesthemind.net/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Cooking Carnival|https://www.cookingcarnival.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Cooking From Heart|https://cookingfromheart.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Kannamma Cooks|https://www.kannammacooks.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Yummy Tummy Aarthi|https://www.yummytummyaarthi.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Padhuskitchen|https://www.padhuskitchen.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Veg Recipes of Karnataka|https://www.vegrecipesofkarnataka.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Fauzia’s Kitchen Fun|https://fauziaskitchenfun.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Kothiyavunu|https://www.kothiyavunu.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+The Bombay Chef|https://www.youtube.com/@GetCurried|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Kabita’s Kitchen|https://www.youtube.com/@KabitasKitchen|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Ranveer Brar|https://www.youtube.com/@RanveerBrar|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Your Food Lab|https://www.youtube.com/@YourFoodLab|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Spice Eats|https://www.youtube.com/@SpiceEats|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Vismai Food|https://vismaifood.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Home Cooking Show|https://www.youtube.com/@HomeCookingShow|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Swasthi’s Indian Chicken|https://www.indianhealthyrecipes.com/?s=chicken|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Tarla Dalal Indian Breakfast|https://www.tarladalal.com/recipes-for-breakfast-151|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Tarla Dalal Indian Sweets|https://www.tarladalal.com/recipes-for-indian-sweets-151|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Indian Healthy Recipes Biryani|https://www.indianhealthyrecipes.com/?s=biryani|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Hebbars South Indian|https://hebbarskitchen.com/?s=south+indian|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Archana’s Parsi Recipes|https://www.archanaskitchen.com/cuisine/parsi|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+NDTV Indian Recipes|https://food.ndtv.com/recipes|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Indian Express Food|https://indianexpress.com/section/lifestyle/food-wine/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Times Food Indian|https://recipes.timesofindia.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+BBC Good Food Indian|https://www.bbcgoodfood.com/recipes/collection/indian-recipes|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+The Guardian Indian Recipes|https://www.theguardian.com/food/indian-food-and-drink|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Veg Recipes of India Snacks|https://www.vegrecipesofindia.com/?s=snacks|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Ruchik Randhap|https://www.ruchikrandhap.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Zesty South Indian|https://www.zestysouthindiankitchen.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Flavours Treat|https://www.flavourstreat.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Spice Cravings|https://spicecravings.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Piping Pot Curry|https://pipingpotcurry.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Whisk Affair|https://www.whiskaffair.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Cubes N Juliennes|https://www.cubesnjuliennes.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Indian Ambrosia|https://indianambrosia.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Easy Indian Cookbook|https://easyindiancookbook.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+The Yummy Delights|https://theyummydelights.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Masala Herb|https://www.masalaherb.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Saffron Trail|https://www.saffrontrail.com/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Holy Cow Vegan Indian|https://holycowvegan.net/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+Vegan Richa Indian|https://www.veganricha.com/category/indian-vegan-recipes/|Indian subcontinent|Indian recipes, regional dishes and cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Indian
+ParsiCuisine — recipe archive|https://www.parsicuisine.com/Recipes/recipes/|Parsi kitchen|Dedicated Parsi recipes, heritage and food stories|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian,Persian
+Perzen Patel — recipe index|https://perzen.substack.com/p/recipe-index|Parsi kitchen|Dedicated Parsi recipes, heritage and food stories|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian,Persian
+NDTV Food — Parsi collection|https://food.ndtv.com/topic/parsi/recipes|Parsi kitchen|Dedicated Parsi recipes, heritage and food stories|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian,Persian
+Bawi Bride — Parsi cooking|https://www.bawibride.com/|Parsi kitchen|Dedicated Parsi recipes, heritage and food stories|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian,Persian
+Parsi Khabar — food stories|https://parsikhabar.net/category/food/|Parsi kitchen|Dedicated Parsi recipes, heritage and food stories|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian,Persian
+ParsiCuisine — homepage|https://www.parsicuisine.com/home/|Parsi kitchen|Dedicated Parsi recipes, heritage and food stories|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian,Persian
+Dhansak — explore recipes|https://www.parsicuisine.com/?s=dhansak|Parsi kitchen|Search this Parsi publisher for dhansak|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Sali Boti — explore recipes|https://www.bawibride.com/?s=sali+boti|Parsi kitchen|Search this Parsi publisher for sali boti|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Patra Ni Machhi — explore recipes|https://www.parsicuisine.com/?s=patra+ni+machhi|Parsi kitchen|Search this Parsi publisher for patra ni machhi|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Akuri — explore recipes|https://www.parsicuisine.com/?s=akuri|Parsi kitchen|Search this Parsi publisher for akuri|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Lagan Nu Custard — explore recipes|https://www.bawibride.com/?s=lagan+nu+custard|Parsi kitchen|Search this Parsi publisher for lagan nu custard|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Chicken Farcha — explore recipes|https://www.parsicuisine.com/?s=chicken+farcha|Parsi kitchen|Search this Parsi publisher for chicken farcha|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Sali Marghi — explore recipes|https://www.parsicuisine.com/?s=sali+marghi|Parsi kitchen|Search this Parsi publisher for sali marghi|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Papeta Par Eeda — explore recipes|https://www.bawibride.com/?s=papeta+par+eeda|Parsi kitchen|Search this Parsi publisher for papeta par eeda|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Kheema Pav — explore recipes|https://www.parsicuisine.com/?s=kheema+pav|Parsi kitchen|Search this Parsi publisher for kheema pav|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Dhan Dar — explore recipes|https://www.parsicuisine.com/?s=dhan+dar|Parsi kitchen|Search this Parsi publisher for dhan dar|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Prawn Patio — explore recipes|https://www.bawibride.com/?s=prawn+patio|Parsi kitchen|Search this Parsi publisher for prawn patio|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Jardaloo Salli — explore recipes|https://www.parsicuisine.com/?s=jardaloo+salli|Parsi kitchen|Search this Parsi publisher for jardaloo salli|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Kolmi No Patio — explore recipes|https://www.parsicuisine.com/?s=kolmi+no+patio|Parsi kitchen|Search this Parsi publisher for kolmi no patio|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Bhakra — explore recipes|https://www.bawibride.com/?s=bhakra|Parsi kitchen|Search this Parsi publisher for bhakra|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Dar Ni Pori — explore recipes|https://www.parsicuisine.com/?s=dar+ni+pori|Parsi kitchen|Search this Parsi publisher for dar ni pori|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Mawa Cake — explore recipes|https://www.parsicuisine.com/?s=mawa+cake|Parsi kitchen|Search this Parsi publisher for mawa cake|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Malido — explore recipes|https://www.bawibride.com/?s=malido|Parsi kitchen|Search this Parsi publisher for malido|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Sev — explore recipes|https://www.parsicuisine.com/?s=sev|Parsi kitchen|Search this Parsi publisher for sev|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Ravo — explore recipes|https://www.parsicuisine.com/?s=ravo|Parsi kitchen|Search this Parsi publisher for ravo|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Ras Chawal — explore recipes|https://www.bawibride.com/?s=ras+chawal|Parsi kitchen|Search this Parsi publisher for ras chawal|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Mutton Pulao — explore recipes|https://www.parsicuisine.com/?s=mutton+pulao|Parsi kitchen|Search this Parsi publisher for mutton pulao|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Tarela Machhi — explore recipes|https://www.parsicuisine.com/?s=tarela+machhi|Parsi kitchen|Search this Parsi publisher for tarela machhi|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Methi Per Eeda — explore recipes|https://www.bawibride.com/?s=methi+per+eeda|Parsi kitchen|Search this Parsi publisher for methi per eeda|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Tomato Per Eeda — explore recipes|https://www.parsicuisine.com/?s=tomato+per+eeda|Parsi kitchen|Search this Parsi publisher for tomato per eeda|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Kheema Cutlets — explore recipes|https://www.parsicuisine.com/?s=kheema+cutlets|Parsi kitchen|Search this Parsi publisher for kheema cutlets|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Parsi Curry — explore recipes|https://www.bawibride.com/?s=parsi+curry|Parsi kitchen|Search this Parsi publisher for parsi curry|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Mutton Dhansak — explore recipes|https://www.parsicuisine.com/?s=mutton+dhansak|Parsi kitchen|Search this Parsi publisher for mutton dhansak|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Parsi Pickle — explore recipes|https://www.parsicuisine.com/?s=parsi+pickle|Parsi kitchen|Search this Parsi publisher for parsi pickle|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Bhaji Dana Ma Gosht — explore recipes|https://www.bawibride.com/?s=bhaji+dana+ma+gosht|Parsi kitchen|Search this Parsi publisher for bhaji dana ma gosht|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+Wafer Par Eeda — explore recipes|https://www.parsicuisine.com/?s=wafer+par+eeda|Parsi kitchen|Search this Parsi publisher for wafer par eeda|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi,Indian
+BBC Good Food|https://www.bbcgoodfood.com/|Global favourites|Large collection of everyday recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global,British,European
+Allrecipes|https://www.allrecipes.com/|Global favourites|Community favourites and familiar classics|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global,American
+Serious Eats|https://www.seriouseats.com/|Global favourites|Technique-focused recipes and kitchen science|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global,American
+The Spruce Eats|https://www.thespruceeats.com/|Global favourites|A wide range of dishes and techniques|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Food Network|https://www.foodnetwork.com/recipes|Global favourites|Chef recipes and home cooking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global,American
+Delish|https://www.delish.com/cooking/|Global favourites|Accessible weeknight cooking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global,American
+Epicurious|https://www.epicurious.com/recipes-menus|Global favourites|Recipes and cooking guides|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Bon Appétit|https://www.bonappetit.com/recipes|Global favourites|Contemporary recipes and ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Taste of Home|https://www.tasteofhome.com/recipes/|Global favourites|Home-style meals and baking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|American,Global
+The Kitchn|https://www.thekitchn.com/|Global favourites|Everyday cooking and tips|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes|https://www.simplyrecipes.com/|Global favourites|Comfort food and practical recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global,American
+RecipeTin Eats|https://www.recipetineats.com/|Global favourites|Detailed, accessible recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global,Australian,Asian
+The Woks of Life|https://thewoksoflife.com/|East & Southeast Asia|Chinese home cooking and baking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese,Asian
+Made With Lau|https://www.madewithlau.com/|East & Southeast Asia|Cantonese family recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Snacks|Chinese
+Omnivore's Cookbook|https://omnivorescookbook.com/|East & Southeast Asia|Modern Chinese home cooking|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Chinese
+Red House Spice|https://redhousespice.com/|East & Southeast Asia|Chinese recipes explained clearly|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Chinese
+China Sichuan Food|https://www.chinasichuanfood.com/|East & Southeast Asia|Sichuan and Chinese cooking|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Chinese
+Just One Cookbook|https://www.justonecookbook.com/|East & Southeast Asia|Japanese home-cooked dishes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Japanese
+Japanese Cooking 101|https://www.japanesecooking101.com/|East & Southeast Asia|Japanese essentials and classics|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Snacks|Japanese
+Cooking with Dog|https://cookingwithdog.com/|East & Southeast Asia|Japanese cooking tutorials|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Snacks|Japanese
+Namiko's Japanese Recipes|https://www.justonecookbook.com/categories/recipes/|East & Southeast Asia|Browse dishes by Japanese recipe category|Non-veg,Veg,Beef,Fish,Chicken,Dessert|Japanese
+Maangchi|https://www.maangchi.com/recipes|East & Southeast Asia|Traditional Korean home food|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Korean
+Korean Bapsang|https://www.koreanbapsang.com/|East & Southeast Asia|Korean family meals|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Korean
+My Korean Kitchen|https://mykoreankitchen.com/|East & Southeast Asia|Korean dishes and side plates|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Korean
+The Korean Vegan|https://thekoreanvegan.com/|East & Southeast Asia|Plant-based Korean-inspired recipes|Veg,Breakfast,Dessert,Baking,Snacks|Korean,Vegan
+Hot Thai Kitchen|https://hot-thai-kitchen.com/|East & Southeast Asia|Thai home cooking explained|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Snacks|Thai
+Thai Food Master|https://thaifoodmaster.com/|East & Southeast Asia|Traditional Thai techniques|Non-veg,Veg,Beef,Fish,Chicken|Thai
+Eating Thai Food|https://www.eatingthaifood.com/|East & Southeast Asia|Thai food and recipes|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Thai
+Hungry Huy|https://www.hungryhuy.com/|East & Southeast Asia|Vietnamese meals and desserts|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Snacks|Vietnamese
+The Viet Vegan|https://thevietvegan.com/|East & Southeast Asia|Vietnamese-inspired plant-based food|Veg,Dessert,Baking,Snacks|Vietnamese,Vegan
+Vicky Pham|https://www.vickypham.com/|East & Southeast Asia|Vietnamese home recipes|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Vietnamese
+Panlasang Pinoy|https://panlasangpinoy.com/|East & Southeast Asia|Filipino recipes and cooking tips|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Snacks|Filipino
+Kawaling Pinoy|https://www.kawalingpinoy.com/|East & Southeast Asia|Filipino family favourites|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Snacks|Filipino
+Salu Salo Recipes|https://salu-salo.com/|East & Southeast Asia|Filipino home cooking|Non-veg,Veg,Beef,Fish,Chicken,Dessert|Filipino
+Rasa Malaysia|https://rasamalaysia.com/|East & Southeast Asia|Malaysian and Asian recipes|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Snacks|Malaysian,Chinese,Thai,Indonesian
+SBS Food|https://www.sbs.com.au/food|Australia, NZ & Pacific|International recipes and food culture|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global,Australian
+Taste.com.au|https://www.taste.com.au/|Australia, NZ & Pacific|Large Australian recipe catalogue|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Australian,Global
+Women's Weekly Food|https://www.womensweeklyfood.com.au/|Australia, NZ & Pacific|Classic everyday recipes and baking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Australian
+Coles Recipes|https://www.coles.com.au/recipes-inspiration/recipes|Australia, NZ & Pacific|Supermarket-friendly meal inspiration|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Australian,Global
+Woolworths Australia Recipes|https://www.woolworths.com.au/shop/recipes|Australia, NZ & Pacific|Budget and family meal ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Australian,Global
+Healthy Food Guide NZ|https://www.healthyfood.com/|Australia, NZ & Pacific|Healthy meal ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|New Zealand,Global
+Fresh Recipes NZ|https://fresh.co.nz/|Australia, NZ & Pacific|New Zealand meal and baking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|New Zealand,Global
+Chelsea Sugar Recipes|https://www.chelsea.co.nz/browse-recipes/|Australia, NZ & Pacific|NZ cakes, biscuits and baking|Veg,Breakfast,Dessert,Baking,Snacks|New Zealand
+Edmonds Cooking|https://edmondscooking.co.nz/recipes/|Australia, NZ & Pacific|New Zealand home baking favourites|Non-veg,Veg,Breakfast,Dessert,Baking,Snacks|New Zealand
+Nadia Lim|https://nadialim.com/|Australia, NZ & Pacific|Family-friendly home recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|New Zealand,Global
+Heart Foundation NZ Recipes|https://www.heartfoundation.org.nz/wellbeing/healthy-recipes|Australia, NZ & Pacific|Heart-conscious cooking ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|New Zealand
+Parsi Cuisine|https://www.parsicuisine.com/|Parsi & Persian|Parsi food, traditions and recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Parsi
+Peri's Spice Ladle|https://www.perisspiceladle.com/|Parsi & Persian|Parsi-inspired recipes and cooking|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Parsi,Indian
+The Persian Pot|https://www.thepersianpot.com/|Parsi & Persian|Persian cuisine and classics|Non-veg,Veg,Beef,Fish,Chicken,Dessert|Persian
+Persian Mama|https://persianmama.com/|Parsi & Persian|Traditional Persian home recipes|Non-veg,Veg,Beef,Fish,Chicken,Dessert|Persian
+The Caspian Chef|https://thecaspianchef.com/|Parsi & Persian|Iranian home cooking and cultural stories|Non-veg,Veg,Beef,Fish,Chicken,Dessert|Persian
+Unicorns in the Kitchen|https://www.unicornsinthekitchen.com/|Parsi & Persian|Persian and Mediterranean home recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert|Persian,Mediterranean
+Turmeric & Saffron|https://turmericsaffron.blogspot.com/|Parsi & Persian|Persian food and traditional dishes|Non-veg,Veg,Beef,Fish,Chicken,Dessert|Persian
+The Mediterranean Dish|https://www.themediterraneandish.com/|Middle East & Mediterranean|Mediterranean-inspired meals|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Mediterranean,Greek,Middle Eastern
+Olive Tomato|https://www.olivetomato.com/|Middle East & Mediterranean|Greek Mediterranean cooking|Non-veg,Veg,Fish,Chicken,Breakfast,Snacks|Greek,Mediterranean
+Dimitra's Dishes|https://www.dimitrasdishes.com/|Middle East & Mediterranean|Greek family recipes and baking|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Baking,Snacks|Greek,Mediterranean
+My Greek Dish|https://www.mygreekdish.com/|Middle East & Mediterranean|Greek classics and recipes|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Snacks|Greek,Mediterranean
+Feel Good Foodie|https://feelgoodfoodie.net/|Middle East & Mediterranean|Lebanese-influenced and modern meals|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Middle Eastern,Mediterranean
+Maureen Abood|https://maureenabood.com/|Middle East & Mediterranean|Lebanese recipes and traditions|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Baking|Middle Eastern
+Palestine in a Dish|https://palestineinadish.com/|Middle East & Mediterranean|Palestinian home cooking|Non-veg,Veg,Beef,Chicken,Dessert,Baking|Middle Eastern
+Hungry Paprikas|https://www.hungrypaprikas.com/|Middle East & Mediterranean|Middle Eastern family meals|Non-veg,Veg,Beef,Fish,Chicken,Dessert|Middle Eastern
+Ozlem's Turkish Table|https://ozlemsturkishtable.com/|Middle East & Mediterranean|Turkish regional and family recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Turkish,Middle Eastern
+Give Recipe|https://www.giverecipe.com/|Middle East & Mediterranean|Turkish food, sweets and baking|Non-veg,Veg,Beef,Chicken,Breakfast,Dessert,Baking,Snacks|Turkish
+The Daring Gourmet|https://www.daringgourmet.com/|Europe & UK|International classics and European food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|European,Global
+Great British Chefs|https://www.greatbritishchefs.com/recipes|Europe & UK|Recipes from professional chefs|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|British,European
+Jamie Oliver|https://www.jamieoliver.com/recipes/|Europe & UK|Accessible meals and global flavours|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|British,Italian,Global
+The Guardian Food|https://www.theguardian.com/food|Europe & UK|Food features and recipe columns|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|British,Global
+Delicious Magazine UK|https://www.deliciousmagazine.co.uk/|Europe & UK|Meals, desserts and seasonal cooking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|British,European
+Waitrose Recipes|https://www.waitrose.com/ecom/recipes|Europe & UK|Everyday meals and baking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|British,Global
+The Happy Foodie|https://thehappyfoodie.co.uk/|Europe & UK|Cookbook authors and recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|British,Global
+GialloZafferano|https://www.giallozafferano.com/|Europe & UK|Italian dishes, pasta and desserts|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Baking,Snacks|Italian
+La Cucina Italiana|https://www.lacucinaitaliana.com/|Europe & UK|Classic Italian cooking|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Baking|Italian
+The Pasta Project|https://www.the-pasta-project.com/|Europe & UK|Regional Italian pasta dishes|Non-veg,Veg,Beef,Fish,Chicken|Italian
+Inside the Rustic Kitchen|https://www.insidetherustickitchen.com/|Europe & UK|Italian comfort food and desserts|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Baking|Italian
+An Italian in My Kitchen|https://anitalianinmykitchen.com/|Europe & UK|Italian home recipes and baking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Sip and Feast|https://www.sipandfeast.com/|Europe & UK|Italian-American dishes|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Italian,American
+Spain on a Fork|https://spainonafork.com/|Europe & UK|Spanish tapas and home cooking|Non-veg,Veg,Fish,Chicken,Breakfast,Snacks|Spanish,Mediterranean
+Spanish Sabores|https://spanishsabores.com/|Europe & UK|Spanish food traditions and recipes|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Snacks|Spanish
+Leite's Culinaria|https://leitesculinaria.com/|Europe & UK|Portuguese and wider home recipes|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Baking|Portuguese,Global
+David Lebovitz|https://www.davidlebovitz.com/|Europe & UK|French desserts and savoury cooking|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Baking|French
+French Cooking Academy|https://www.thefrenchcookingacademy.com/|Europe & UK|French techniques and traditional dishes|Non-veg,Veg,Beef,Fish,Chicken,Dessert|French
+Pardon Your French|https://www.pardonyourfrench.com/|Europe & UK|Classic French meals and baking|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Baking|French
+196 Flavors|https://www.196flavors.com/|Africa & world cultures|Traditional dishes from many countries|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African,Caribbean,Latin American,Global
+Immaculate Bites|https://www.africanbites.com/|Africa & world cultures|African, Caribbean and Southern recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African,Caribbean,American
+African Food Network|https://afrifoodnetwork.com/|Africa & world cultures|African recipes and food culture|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Snacks|African
+Demand Africa Food|https://demandafrica.com/food/|Africa & world cultures|Regional African food inspiration|Non-veg,Veg,Beef,Fish,Chicken,Snacks|African
+My Moroccan Food|https://www.mymoroccanfood.com/|Africa & world cultures|Moroccan dishes and tagines|Non-veg,Veg,Beef,Fish,Chicken,Dessert|African,Mediterranean
+Moroccan Food Tour|https://moroccanfoodtour.com/|Africa & world cultures|Moroccan cooking and food traditions|Non-veg,Veg,Beef,Fish,Chicken|African,Mediterranean
+The Ethiopian Food|https://theethiopianfood.com/|Africa & world cultures|Ethiopian dishes and recipes|Non-veg,Veg,Beef,Fish,Chicken|African
+Chef Lola's Kitchen|https://cheflolaskitchen.com/|Africa & world cultures|West African and international cooking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+My Active Kitchen|https://www.myactivekitchen.com/|Africa & world cultures|Nigerian and everyday home meals|Non-veg,Veg,Beef,Fish,Chicken,Snacks|African
+Mexico in My Kitchen|https://www.mexicoinmykitchen.com/|The Americas & Caribbean|Traditional Mexican recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Mexican
+Isabel Eats|https://www.isabeleats.com/|The Americas & Caribbean|Mexican recipes for home cooks|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Mexican
+Pati Jinich|https://patijinich.com/|The Americas & Caribbean|Regional Mexican flavours|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert|Mexican
+Mexico in My Pocket|https://www.mexicoinmypocket.com/|The Americas & Caribbean|Mexican dishes and cultural notes|Non-veg,Veg,Beef,Fish,Chicken,Snacks|Mexican
+Laylita's Recipes|https://www.laylita.com/recipes/|The Americas & Caribbean|Ecuadorian and Latin American cooking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Latin American
+My Colombian Recipes|https://www.mycolombianrecipes.com/|The Americas & Caribbean|Colombian home-style recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert|Latin American
+Peru Delights|https://perudelights.com/|The Americas & Caribbean|Peruvian dishes and desserts|Non-veg,Veg,Beef,Fish,Chicken,Dessert,Snacks|Latin American
+The Curious Coconut|https://thecuriouscoconut.com/|The Americas & Caribbean|Caribbean-inspired home recipes|Non-veg,Veg,Beef,Fish,Chicken,Dessert|Caribbean
+CaribbeanPot|https://caribbeanpot.com/|The Americas & Caribbean|Caribbean dishes and techniques|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Snacks|Caribbean
+That Girl Cooks Healthy|https://thatgirlcookshealthy.com/|The Americas & Caribbean|Caribbean-inspired and plant-based dishes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Caribbean
+Sally's Baking Addiction|https://sallysbakingaddiction.com/|Baking, sweets & specialist|Reliable cakes, cookies and pastries|Veg,Breakfast,Dessert,Baking,Snacks|Global,American
+King Arthur Baking|https://www.kingarthurbaking.com/recipes|Baking, sweets & specialist|Tested baking recipes and bread guides|Veg,Breakfast,Dessert,Baking,Snacks|Global,American
+The Vanilla Bean Blog|https://www.thevanillabeanblog.com/|Baking, sweets & specialist|Cookies, cakes and desserts|Veg,Breakfast,Dessert,Baking,Snacks|American
+Cloudy Kitchen|https://cloudykitchen.com/|Baking, sweets & specialist|Detailed baking recipes with metric weights|Veg,Breakfast,Dessert,Baking,Snacks|New Zealand,Global
+The Loopy Whisk|https://theloopywhisk.com/|Baking, sweets & specialist|Gluten-free and accessible baking|Veg,Breakfast,Dessert,Baking,Snacks|Global
+Bake with Shivesh|https://bakewithshivesh.com/|Baking, sweets & specialist|Indian-friendly home baking and desserts|Veg,Breakfast,Dessert,Baking,Snacks|Indian
+Jane's Patisserie|https://www.janespatisserie.com/|Baking, sweets & specialist|British cakes, bars and sweet bakes|Veg,Breakfast,Dessert,Baking,Snacks|British
+Bigger Bolder Baking|https://www.biggerbolderbaking.com/|Baking, sweets & specialist|Approachable desserts and baking|Veg,Breakfast,Dessert,Baking,Snacks|Global
+The First Mess|https://thefirstmess.com/|Baking, sweets & specialist|Seasonal plant-based recipes|Veg,Breakfast,Dessert,Baking,Snacks|Vegan,Global
+Love and Lemons|https://www.loveandlemons.com/|Baking, sweets & specialist|Vegetable-focused everyday cooking|Veg,Breakfast,Dessert,Baking,Snacks|Vegan,Mediterranean,Global
+Cookie and Kate|https://cookieandkate.com/|Baking, sweets & specialist|Whole-food vegetarian home cooking|Veg,Breakfast,Dessert,Baking,Snacks|Global
+Minimalist Baker|https://minimalistbaker.com/|Baking, sweets & specialist|Plant-forward recipes with simple methods|Veg,Breakfast,Dessert,Baking,Snacks|Vegan,Global
+Rainbow Plant Life|https://rainbowplantlife.com/|Baking, sweets & specialist|Plant-based dishes and meal ideas|Veg,Breakfast,Dessert,Baking,Snacks|Vegan,Indian,Global
+Pick Up Limes|https://www.pickuplimes.com/|Baking, sweets & specialist|Plant-based meals and snacks|Veg,Breakfast,Dessert,Baking,Snacks|Vegan,Global
+Budget Bytes|https://www.budgetbytes.com/|Baking, sweets & specialist|Cost-conscious cooking across categories|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global,American
+Skinnytaste|https://www.skinnytaste.com/|Baking, sweets & specialist|Lighter everyday recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global,American
+Downshiftology|https://downshiftology.com/|Baking, sweets & specialist|Meal prep, fresh meals and breakfasts|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Global
+101 Cookbooks|https://www.101cookbooks.com/|Baking, sweets & specialist|Vegetarian cooking and whole grains|Veg,Breakfast,Dessert,Baking,Snacks|Global
+Vegetarian Society UK|https://vegsoc.org/recipes/|Baking, sweets & specialist|Vegetarian recipe collection|Veg,Breakfast,Dessert,Baking,Snacks|British,Vegan
+Eat for Health AU|https://www.eatforhealth.gov.au/|Baking, sweets & specialist|Australian healthy eating guidance|Veg,Breakfast,Snacks|Australian
+Heart Foundation AU Recipes|https://www.heartfoundation.org.au/healthy-living/healthy-recipes|Baking, sweets & specialist|Heart-friendly meal ideas|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Snacks|Australian
+RecipeSource Archive|https://www.recipesource.com/|Cooking archives & references|Old-school international recipe archive|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global,African,Indian,Persian,Chinese,Japanese,Italian
+Wikibooks Cookbook|https://en.wikibooks.org/wiki/Cookbook|Cooking archives & references|Open collaborative cookbook and techniques|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Cookpad|https://cookpad.com/|Cooking archives & references|Home-cook recipe community|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global,Japanese
+Food52|https://food52.com/recipes|Cooking archives & references|Community cooking and entertaining|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Yummly|https://www.yummly.com/|Cooking archives & references|Discover recipes by ingredient|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Chicken|https://www.bbcgoodfood.com/?s=chicken|Global favourites|Browse chicken recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Chicken|https://www.simplyrecipes.com/?s=chicken|Global favourites|Browse chicken recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Spruce Eats — Chicken|https://www.thespruceeats.com/?s=chicken|Global favourites|Browse chicken recipes on The Spruce Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Pasta|https://www.bbcgoodfood.com/?s=pasta|Global favourites|Browse pasta recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Pasta|https://www.simplyrecipes.com/?s=pasta|Global favourites|Browse pasta recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Spruce Eats — Pasta|https://www.thespruceeats.com/?s=pasta|Global favourites|Browse pasta recipes on The Spruce Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Bread|https://www.bbcgoodfood.com/?s=bread|Global favourites|Browse bread recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Bread|https://www.simplyrecipes.com/?s=bread|Global favourites|Browse bread recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Spruce Eats — Bread|https://www.thespruceeats.com/?s=bread|Global favourites|Browse bread recipes on The Spruce Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Breakfast|https://www.bbcgoodfood.com/?s=breakfast|Global favourites|Browse breakfast recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Breakfast|https://www.simplyrecipes.com/?s=breakfast|Global favourites|Browse breakfast recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Spruce Eats — Breakfast|https://www.thespruceeats.com/?s=breakfast|Global favourites|Browse breakfast recipes on The Spruce Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Easy Dinner|https://www.bbcgoodfood.com/?s=easy+dinner|Global favourites|Browse easy dinner recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Easy Dinner|https://www.simplyrecipes.com/?s=easy+dinner|Global favourites|Browse easy dinner recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Spruce Eats — Easy Dinner|https://www.thespruceeats.com/?s=easy+dinner|Global favourites|Browse easy dinner recipes on The Spruce Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Dessert|https://www.bbcgoodfood.com/?s=dessert|Global favourites|Browse dessert recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Dessert|https://www.simplyrecipes.com/?s=dessert|Global favourites|Browse dessert recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Spruce Eats — Dessert|https://www.thespruceeats.com/?s=dessert|Global favourites|Browse dessert recipes on The Spruce Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Fish|https://www.bbcgoodfood.com/?s=fish|Global favourites|Browse fish recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Fish|https://www.simplyrecipes.com/?s=fish|Global favourites|Browse fish recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Spruce Eats — Fish|https://www.thespruceeats.com/?s=fish|Global favourites|Browse fish recipes on The Spruce Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Woks of Life — Noodles|https://thewoksoflife.com/?s=noodles|East & Southeast Asia|Browse noodles recipes on Woks of Life|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Just One Cookbook — Noodles|https://www.justonecookbook.com/?s=noodles|East & Southeast Asia|Browse noodles recipes on Just One Cookbook|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Hot Thai Kitchen — Noodles|https://hot-thai-kitchen.com/?s=noodles|East & Southeast Asia|Browse noodles recipes on Hot Thai Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Woks of Life — Dumplings|https://thewoksoflife.com/?s=dumplings|East & Southeast Asia|Browse dumplings recipes on Woks of Life|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Just One Cookbook — Dumplings|https://www.justonecookbook.com/?s=dumplings|East & Southeast Asia|Browse dumplings recipes on Just One Cookbook|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Hot Thai Kitchen — Dumplings|https://hot-thai-kitchen.com/?s=dumplings|East & Southeast Asia|Browse dumplings recipes on Hot Thai Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Woks of Life — Rice|https://thewoksoflife.com/?s=rice|East & Southeast Asia|Browse rice recipes on Woks of Life|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Just One Cookbook — Rice|https://www.justonecookbook.com/?s=rice|East & Southeast Asia|Browse rice recipes on Just One Cookbook|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Hot Thai Kitchen — Rice|https://hot-thai-kitchen.com/?s=rice|East & Southeast Asia|Browse rice recipes on Hot Thai Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Woks of Life — Tofu|https://thewoksoflife.com/?s=tofu|East & Southeast Asia|Browse tofu recipes on Woks of Life|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+RecipeTin Eats — Pavlova|https://www.recipetineats.com/?s=pavlova|Australia, NZ & Pacific|Browse pavlova recipes on RecipeTin Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Healthy Food Guide — Pavlova|https://www.healthyfood.com/?s=pavlova|Australia, NZ & Pacific|Browse pavlova recipes on Healthy Food Guide|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Nadia Lim — Pavlova|https://nadialim.com/?s=pavlova|Australia, NZ & Pacific|Browse pavlova recipes on Nadia Lim|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+RecipeTin Eats — Lamington|https://www.recipetineats.com/?s=lamington|Australia, NZ & Pacific|Browse lamington recipes on RecipeTin Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Healthy Food Guide — Lamington|https://www.healthyfood.com/?s=lamington|Australia, NZ & Pacific|Browse lamington recipes on Healthy Food Guide|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Nadia Lim — Lamington|https://nadialim.com/?s=lamington|Australia, NZ & Pacific|Browse lamington recipes on Nadia Lim|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+RecipeTin Eats — Anzac Biscuits|https://www.recipetineats.com/?s=anzac+biscuits|Australia, NZ & Pacific|Browse anzac biscuits recipes on RecipeTin Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Healthy Food Guide — Anzac Biscuits|https://www.healthyfood.com/?s=anzac+biscuits|Australia, NZ & Pacific|Browse anzac biscuits recipes on Healthy Food Guide|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Nadia Lim — Anzac Biscuits|https://nadialim.com/?s=anzac+biscuits|Australia, NZ & Pacific|Browse anzac biscuits recipes on Nadia Lim|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+RecipeTin Eats — Meat Pie|https://www.recipetineats.com/?s=meat+pie|Australia, NZ & Pacific|Browse meat pie recipes on RecipeTin Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Healthy Food Guide — Meat Pie|https://www.healthyfood.com/?s=meat+pie|Australia, NZ & Pacific|Browse meat pie recipes on Healthy Food Guide|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Nadia Lim — Meat Pie|https://nadialim.com/?s=meat+pie|Australia, NZ & Pacific|Browse meat pie recipes on Nadia Lim|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+RecipeTin Eats — Roast Lamb|https://www.recipetineats.com/?s=roast+lamb|Australia, NZ & Pacific|Browse roast lamb recipes on RecipeTin Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Healthy Food Guide — Roast Lamb|https://www.healthyfood.com/?s=roast+lamb|Australia, NZ & Pacific|Browse roast lamb recipes on Healthy Food Guide|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Nadia Lim — Roast Lamb|https://nadialim.com/?s=roast+lamb|Australia, NZ & Pacific|Browse roast lamb recipes on Nadia Lim|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+RecipeTin Eats — Fish|https://www.recipetineats.com/?s=fish|Australia, NZ & Pacific|Browse fish recipes on RecipeTin Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Healthy Food Guide — Fish|https://www.healthyfood.com/?s=fish|Australia, NZ & Pacific|Browse fish recipes on Healthy Food Guide|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Nadia Lim — Fish|https://nadialim.com/?s=fish|Australia, NZ & Pacific|Browse fish recipes on Nadia Lim|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+RecipeTin Eats — Salad|https://www.recipetineats.com/?s=salad|Australia, NZ & Pacific|Browse salad recipes on RecipeTin Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Healthy Food Guide — Salad|https://www.healthyfood.com/?s=salad|Australia, NZ & Pacific|Browse salad recipes on Healthy Food Guide|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Nadia Lim — Salad|https://nadialim.com/?s=salad|Australia, NZ & Pacific|Browse salad recipes on Nadia Lim|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+RecipeTin Eats — Chicken|https://www.recipetineats.com/?s=chicken|Australia, NZ & Pacific|Browse chicken recipes on RecipeTin Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Dhansak|https://www.unicornsinthekitchen.com/?s=dhansak|Parsi & Persian|Browse dhansak recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Bawi Bride — Dhansak|https://www.bawibride.com/?s=dhansak|Parsi & Persian|Browse dhansak recipes on Bawi Bride|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Akuri|https://www.unicornsinthekitchen.com/?s=akuri|Parsi & Persian|Browse akuri recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Bawi Bride — Akuri|https://www.bawibride.com/?s=akuri|Parsi & Persian|Browse akuri recipes on Bawi Bride|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+ParsiCuisine — Sali Boti|https://www.parsicuisine.com/?s=sali+boti|Parsi & Persian|Browse sali boti recipes on ParsiCuisine|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Sali Boti|https://www.unicornsinthekitchen.com/?s=sali+boti|Parsi & Persian|Browse sali boti recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Patra Ni Machhi|https://www.unicornsinthekitchen.com/?s=patra+ni+machhi|Parsi & Persian|Browse patra ni machhi recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Bawi Bride — Patra Ni Machhi|https://www.bawibride.com/?s=patra+ni+machhi|Parsi & Persian|Browse patra ni machhi recipes on Bawi Bride|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+ParsiCuisine — Polo|https://www.parsicuisine.com/?s=polo|Parsi & Persian|Browse polo recipes on ParsiCuisine|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Polo|https://www.unicornsinthekitchen.com/?s=polo|Parsi & Persian|Browse polo recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Bawi Bride — Polo|https://www.bawibride.com/?s=polo|Parsi & Persian|Browse polo recipes on Bawi Bride|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+ParsiCuisine — Kebab|https://www.parsicuisine.com/?s=kebab|Parsi & Persian|Browse kebab recipes on ParsiCuisine|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Kebab|https://www.unicornsinthekitchen.com/?s=kebab|Parsi & Persian|Browse kebab recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Bawi Bride — Kebab|https://www.bawibride.com/?s=kebab|Parsi & Persian|Browse kebab recipes on Bawi Bride|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+ParsiCuisine — Custard|https://www.parsicuisine.com/?s=custard|Parsi & Persian|Browse custard recipes on ParsiCuisine|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Custard|https://www.unicornsinthekitchen.com/?s=custard|Parsi & Persian|Browse custard recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Bawi Bride — Custard|https://www.bawibride.com/?s=custard|Parsi & Persian|Browse custard recipes on Bawi Bride|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+ParsiCuisine — Rice|https://www.parsicuisine.com/?s=rice|Parsi & Persian|Browse rice recipes on ParsiCuisine|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Rice|https://www.unicornsinthekitchen.com/?s=rice|Parsi & Persian|Browse rice recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Bawi Bride — Rice|https://www.bawibride.com/?s=rice|Parsi & Persian|Browse rice recipes on Bawi Bride|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+ParsiCuisine — Chicken|https://www.parsicuisine.com/?s=chicken|Parsi & Persian|Browse chicken recipes on ParsiCuisine|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Chicken|https://www.unicornsinthekitchen.com/?s=chicken|Parsi & Persian|Browse chicken recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Tagine|https://www.themediterraneandish.com/?s=tagine|Middle East & Mediterranean|Browse tagine recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Tagine|https://www.unicornsinthekitchen.com/?s=tagine|Middle East & Mediterranean|Browse tagine recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+My Moroccan Food — Tagine|https://www.mymoroccanfood.com/?s=tagine|Middle East & Mediterranean|Browse tagine recipes on My Moroccan Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Couscous|https://www.themediterraneandish.com/?s=couscous|Middle East & Mediterranean|Browse couscous recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Couscous|https://www.unicornsinthekitchen.com/?s=couscous|Middle East & Mediterranean|Browse couscous recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+My Moroccan Food — Couscous|https://www.mymoroccanfood.com/?s=couscous|Middle East & Mediterranean|Browse couscous recipes on My Moroccan Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Kebab|https://www.themediterraneandish.com/?s=kebab|Middle East & Mediterranean|Browse kebab recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+My Moroccan Food — Kebab|https://www.mymoroccanfood.com/?s=kebab|Middle East & Mediterranean|Browse kebab recipes on My Moroccan Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Hummus|https://www.themediterraneandish.com/?s=hummus|Middle East & Mediterranean|Browse hummus recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Hummus|https://www.unicornsinthekitchen.com/?s=hummus|Middle East & Mediterranean|Browse hummus recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+My Moroccan Food — Hummus|https://www.mymoroccanfood.com/?s=hummus|Middle East & Mediterranean|Browse hummus recipes on My Moroccan Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Falafel|https://www.themediterraneandish.com/?s=falafel|Middle East & Mediterranean|Browse falafel recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Falafel|https://www.unicornsinthekitchen.com/?s=falafel|Middle East & Mediterranean|Browse falafel recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+My Moroccan Food — Falafel|https://www.mymoroccanfood.com/?s=falafel|Middle East & Mediterranean|Browse falafel recipes on My Moroccan Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Shakshuka|https://www.themediterraneandish.com/?s=shakshuka|Middle East & Mediterranean|Browse shakshuka recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Shakshuka|https://www.unicornsinthekitchen.com/?s=shakshuka|Middle East & Mediterranean|Browse shakshuka recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+My Moroccan Food — Shakshuka|https://www.mymoroccanfood.com/?s=shakshuka|Middle East & Mediterranean|Browse shakshuka recipes on My Moroccan Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Persian Rice|https://www.themediterraneandish.com/?s=persian+rice|Middle East & Mediterranean|Browse persian rice recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Persian Rice|https://www.unicornsinthekitchen.com/?s=persian+rice|Middle East & Mediterranean|Browse persian rice recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+My Moroccan Food — Persian Rice|https://www.mymoroccanfood.com/?s=persian+rice|Middle East & Mediterranean|Browse persian rice recipes on My Moroccan Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Harissa|https://www.themediterraneandish.com/?s=harissa|Middle East & Mediterranean|Browse harissa recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Unicorns in the Kitchen — Harissa|https://www.unicornsinthekitchen.com/?s=harissa|Middle East & Mediterranean|Browse harissa recipes on Unicorns in the Kitchen|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Risotto|https://www.bbcgoodfood.com/?s=risotto|Europe & UK|Browse risotto recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Risotto|https://www.themediterraneandish.com/?s=risotto|Europe & UK|Browse risotto recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Risotto|https://www.simplyrecipes.com/?s=risotto|Europe & UK|Browse risotto recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Pizza|https://www.bbcgoodfood.com/?s=pizza|Europe & UK|Browse pizza recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Pizza|https://www.themediterraneandish.com/?s=pizza|Europe & UK|Browse pizza recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Pizza|https://www.simplyrecipes.com/?s=pizza|Europe & UK|Browse pizza recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Pasta|https://www.themediterraneandish.com/?s=pasta|Europe & UK|Browse pasta recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Tacos|https://www.bbcgoodfood.com/?s=tacos|Europe & UK|Browse tacos recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Tacos|https://www.themediterraneandish.com/?s=tacos|Europe & UK|Browse tacos recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Tacos|https://www.simplyrecipes.com/?s=tacos|Europe & UK|Browse tacos recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Paella|https://www.bbcgoodfood.com/?s=paella|Europe & UK|Browse paella recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Paella|https://www.themediterraneandish.com/?s=paella|Europe & UK|Browse paella recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+African Bites — Jollof|https://www.africanbites.com/?s=jollof|Africa & world cultures|Browse jollof recipes on African Bites|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Jollof|https://www.themediterraneandish.com/?s=jollof|Africa & world cultures|Browse jollof recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+My Moroccan Food — Jollof|https://www.mymoroccanfood.com/?s=jollof|Africa & world cultures|Browse jollof recipes on My Moroccan Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+African Bites — Tagine|https://www.africanbites.com/?s=tagine|Africa & world cultures|Browse tagine recipes on African Bites|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+African Bites — Couscous|https://www.africanbites.com/?s=couscous|Africa & world cultures|Browse couscous recipes on African Bites|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+African Bites — Lamb|https://www.africanbites.com/?s=lamb|Africa & world cultures|Browse lamb recipes on African Bites|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Lamb|https://www.themediterraneandish.com/?s=lamb|Africa & world cultures|Browse lamb recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+My Moroccan Food — Lamb|https://www.mymoroccanfood.com/?s=lamb|Africa & world cultures|Browse lamb recipes on My Moroccan Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+African Bites — Chicken|https://www.africanbites.com/?s=chicken|Africa & world cultures|Browse chicken recipes on African Bites|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Chicken|https://www.themediterraneandish.com/?s=chicken|Africa & world cultures|Browse chicken recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+My Moroccan Food — Chicken|https://www.mymoroccanfood.com/?s=chicken|Africa & world cultures|Browse chicken recipes on My Moroccan Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+African Bites — Rice|https://www.africanbites.com/?s=rice|Africa & world cultures|Browse rice recipes on African Bites|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Rice|https://www.themediterraneandish.com/?s=rice|Africa & world cultures|Browse rice recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+My Moroccan Food — Rice|https://www.mymoroccanfood.com/?s=rice|Africa & world cultures|Browse rice recipes on My Moroccan Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+African Bites — Beans|https://www.africanbites.com/?s=beans|Africa & world cultures|Browse beans recipes on African Bites|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Beans|https://www.themediterraneandish.com/?s=beans|Africa & world cultures|Browse beans recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+My Moroccan Food — Beans|https://www.mymoroccanfood.com/?s=beans|Africa & world cultures|Browse beans recipes on My Moroccan Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+African Bites — Fufu|https://www.africanbites.com/?s=fufu|Africa & world cultures|Browse fufu recipes on African Bites|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Mediterranean Dish — Fufu|https://www.themediterraneandish.com/?s=fufu|Africa & world cultures|Browse fufu recipes on The Mediterranean Dish|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+My Moroccan Food — Fufu|https://www.mymoroccanfood.com/?s=fufu|Africa & world cultures|Browse fufu recipes on My Moroccan Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Tacos|https://www.allrecipes.com/?s=tacos|The Americas & Caribbean|Browse tacos recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Spruce Eats — Tacos|https://www.thespruceeats.com/?s=tacos|The Americas & Caribbean|Browse tacos recipes on The Spruce Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Burritos|https://www.simplyrecipes.com/?s=burritos|The Americas & Caribbean|Browse burritos recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Burritos|https://www.allrecipes.com/?s=burritos|The Americas & Caribbean|Browse burritos recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Spruce Eats — Burritos|https://www.thespruceeats.com/?s=burritos|The Americas & Caribbean|Browse burritos recipes on The Spruce Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Chili|https://www.simplyrecipes.com/?s=chili|The Americas & Caribbean|Browse chili recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Chili|https://www.allrecipes.com/?s=chili|The Americas & Caribbean|Browse chili recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Spruce Eats — Chili|https://www.thespruceeats.com/?s=chili|The Americas & Caribbean|Browse chili recipes on The Spruce Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Beans|https://www.simplyrecipes.com/?s=beans|The Americas & Caribbean|Browse beans recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Beans|https://www.allrecipes.com/?s=beans|The Americas & Caribbean|Browse beans recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Spruce Eats — Beans|https://www.thespruceeats.com/?s=beans|The Americas & Caribbean|Browse beans recipes on The Spruce Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Rice|https://www.simplyrecipes.com/?s=rice|The Americas & Caribbean|Browse rice recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Rice|https://www.allrecipes.com/?s=rice|The Americas & Caribbean|Browse rice recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Spruce Eats — Rice|https://www.thespruceeats.com/?s=rice|The Americas & Caribbean|Browse rice recipes on The Spruce Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Pasta|https://www.allrecipes.com/?s=pasta|The Americas & Caribbean|Browse pasta recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Corn|https://www.simplyrecipes.com/?s=corn|The Americas & Caribbean|Browse corn recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Corn|https://www.allrecipes.com/?s=corn|The Americas & Caribbean|Browse corn recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+The Spruce Eats — Corn|https://www.thespruceeats.com/?s=corn|The Americas & Caribbean|Browse corn recipes on The Spruce Eats|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Simply Recipes — Barbecue|https://www.simplyrecipes.com/?s=barbecue|The Americas & Caribbean|Browse barbecue recipes on Simply Recipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Barbecue|https://www.allrecipes.com/?s=barbecue|The Americas & Caribbean|Browse barbecue recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Sally’s Baking Addiction — Cake|https://sallysbakingaddiction.com/?s=cake|Baking, sweets & specialist|Browse cake recipes on Sally’s Baking Addiction|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+King Arthur Baking — Cake|https://www.kingarthurbaking.com/?s=cake|Baking, sweets & specialist|Browse cake recipes on King Arthur Baking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Bigger Bolder Baking — Cake|https://www.biggerbolderbaking.com/?s=cake|Baking, sweets & specialist|Browse cake recipes on Bigger Bolder Baking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Sally’s Baking Addiction — Cookies|https://sallysbakingaddiction.com/?s=cookies|Baking, sweets & specialist|Browse cookies recipes on Sally’s Baking Addiction|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+King Arthur Baking — Cookies|https://www.kingarthurbaking.com/?s=cookies|Baking, sweets & specialist|Browse cookies recipes on King Arthur Baking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Bigger Bolder Baking — Cookies|https://www.biggerbolderbaking.com/?s=cookies|Baking, sweets & specialist|Browse cookies recipes on Bigger Bolder Baking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Sally’s Baking Addiction — Sourdough|https://sallysbakingaddiction.com/?s=sourdough|Baking, sweets & specialist|Browse sourdough recipes on Sally’s Baking Addiction|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+King Arthur Baking — Sourdough|https://www.kingarthurbaking.com/?s=sourdough|Baking, sweets & specialist|Browse sourdough recipes on King Arthur Baking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Bigger Bolder Baking — Sourdough|https://www.biggerbolderbaking.com/?s=sourdough|Baking, sweets & specialist|Browse sourdough recipes on Bigger Bolder Baking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Sally’s Baking Addiction — Pastry|https://sallysbakingaddiction.com/?s=pastry|Baking, sweets & specialist|Browse pastry recipes on Sally’s Baking Addiction|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+King Arthur Baking — Pastry|https://www.kingarthurbaking.com/?s=pastry|Baking, sweets & specialist|Browse pastry recipes on King Arthur Baking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Bigger Bolder Baking — Pastry|https://www.biggerbolderbaking.com/?s=pastry|Baking, sweets & specialist|Browse pastry recipes on Bigger Bolder Baking|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Food52 — Bread|https://food52.com/?s=bread|Cooking archives & references|Browse bread recipes on Food52|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Bread|https://www.allrecipes.com/?s=bread|Cooking archives & references|Browse bread recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Rice|https://www.bbcgoodfood.com/?s=rice|Cooking archives & references|Browse rice recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Food52 — Rice|https://food52.com/?s=rice|Cooking archives & references|Browse rice recipes on Food52|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Food52 — Fish|https://food52.com/?s=fish|Cooking archives & references|Browse fish recipes on Food52|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Fish|https://www.allrecipes.com/?s=fish|Cooking archives & references|Browse fish recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Food52 — Pasta|https://food52.com/?s=pasta|Cooking archives & references|Browse pasta recipes on Food52|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Salad|https://www.bbcgoodfood.com/?s=salad|Cooking archives & references|Browse salad recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Food52 — Salad|https://food52.com/?s=salad|Cooking archives & references|Browse salad recipes on Food52|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Salad|https://www.allrecipes.com/?s=salad|Cooking archives & references|Browse salad recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Food52 — Chicken|https://food52.com/?s=chicken|Cooking archives & references|Browse chicken recipes on Food52|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Chicken|https://www.allrecipes.com/?s=chicken|Cooking archives & references|Browse chicken recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Curry|https://www.bbcgoodfood.com/?s=curry|Cooking archives & references|Browse curry recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Food52 — Curry|https://food52.com/?s=curry|Cooking archives & references|Browse curry recipes on Food52|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Curry|https://www.allrecipes.com/?s=curry|Cooking archives & references|Browse curry recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Cake|https://www.bbcgoodfood.com/?s=cake|Cooking archives & references|Browse cake recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Food52 — Cake|https://food52.com/?s=cake|Cooking archives & references|Browse cake recipes on Food52|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Cake|https://www.allrecipes.com/?s=cake|Cooking archives & references|Browse cake recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Soup|https://www.bbcgoodfood.com/?s=soup|Cooking archives & references|Browse soup recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Food52 — Soup|https://food52.com/?s=soup|Cooking archives & references|Browse soup recipes on Food52|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Allrecipes — Soup|https://www.allrecipes.com/?s=soup|Cooking archives & references|Browse soup recipes on Allrecipes|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+BBC Good Food — Vegetarian|https://www.bbcgoodfood.com/?s=vegetarian|Cooking archives & references|Browse vegetarian recipes on BBC Good Food|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Japanese · Ramen|https://www.justonecookbook.com/?s=ramen|Japanese recipes|Browse ramen on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Sushi|https://www.justonecookbook.com/?s=sushi|Japanese recipes|Browse sushi on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Tempura|https://www.justonecookbook.com/?s=tempura|Japanese recipes|Browse tempura on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Udon|https://www.justonecookbook.com/?s=udon|Japanese recipes|Browse udon on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Soba|https://www.justonecookbook.com/?s=soba|Japanese recipes|Browse soba on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Onigiri|https://www.justonecookbook.com/?s=onigiri|Japanese recipes|Browse onigiri on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Okonomiyaki|https://www.justonecookbook.com/?s=okonomiyaki|Japanese recipes|Browse okonomiyaki on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Yakitori|https://www.justonecookbook.com/?s=yakitori|Japanese recipes|Browse yakitori on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Miso|https://www.justonecookbook.com/?s=miso|Japanese recipes|Browse miso on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Tonkatsu|https://www.justonecookbook.com/?s=tonkatsu|Japanese recipes|Browse tonkatsu on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Mochi|https://www.justonecookbook.com/?s=mochi|Japanese recipes|Browse mochi on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Tofu|https://www.justonecookbook.com/?s=tofu|Japanese recipes|Browse tofu on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Teriyaki|https://www.justonecookbook.com/?s=teriyaki|Japanese recipes|Browse teriyaki on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Bento|https://www.justonecookbook.com/?s=bento|Japanese recipes|Browse bento on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Gyoza|https://www.justonecookbook.com/?s=gyoza|Japanese recipes|Browse gyoza on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Donburi|https://www.justonecookbook.com/?s=donburi|Japanese recipes|Browse donburi on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Curry|https://www.justonecookbook.com/?s=curry|Japanese recipes|Browse curry on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Sashimi|https://www.justonecookbook.com/?s=sashimi|Japanese recipes|Browse sashimi on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Dashi|https://www.justonecookbook.com/?s=dashi|Japanese recipes|Browse dashi on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Karaage|https://www.justonecookbook.com/?s=karaage|Japanese recipes|Browse karaage on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Tamago|https://www.justonecookbook.com/?s=tamago|Japanese recipes|Browse tamago on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Tsukemono|https://www.justonecookbook.com/?s=tsukemono|Japanese recipes|Browse tsukemono on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Sukiyaki|https://www.justonecookbook.com/?s=sukiyaki|Japanese recipes|Browse sukiyaki on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Shabu Shabu|https://www.justonecookbook.com/?s=shabu+shabu|Japanese recipes|Browse shabu shabu on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Oden|https://www.justonecookbook.com/?s=oden|Japanese recipes|Browse oden on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Dorayaki|https://www.justonecookbook.com/?s=dorayaki|Japanese recipes|Browse dorayaki on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Matcha|https://www.justonecookbook.com/?s=matcha|Japanese recipes|Browse matcha on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Yakisoba|https://www.justonecookbook.com/?s=yakisoba|Japanese recipes|Browse yakisoba on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Japanese · Nikujaga|https://www.justonecookbook.com/?s=nikujaga|Japanese recipes|Browse nikujaga on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Chinese · Fried Rice|https://thewoksoflife.com/?s=fried+rice|Chinese recipes|Browse fried rice on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Mapo Tofu|https://thewoksoflife.com/?s=mapo+tofu|Chinese recipes|Browse mapo tofu on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Bao|https://thewoksoflife.com/?s=bao|Chinese recipes|Browse bao on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Congee|https://thewoksoflife.com/?s=congee|Chinese recipes|Browse congee on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Hot Pot|https://thewoksoflife.com/?s=hot+pot|Chinese recipes|Browse hot pot on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Sweet Sour|https://thewoksoflife.com/?s=sweet+sour|Chinese recipes|Browse sweet sour on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Chow Mein|https://thewoksoflife.com/?s=chow+mein|Chinese recipes|Browse chow mein on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Soup|https://thewoksoflife.com/?s=soup|Chinese recipes|Browse soup on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Eggplant|https://thewoksoflife.com/?s=eggplant|Chinese recipes|Browse eggplant on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Fish|https://thewoksoflife.com/?s=fish|Chinese recipes|Browse fish on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Beef|https://thewoksoflife.com/?s=beef|Chinese recipes|Browse beef on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Chicken|https://thewoksoflife.com/?s=chicken|Chinese recipes|Browse chicken on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Steamed Buns|https://thewoksoflife.com/?s=steamed+buns|Chinese recipes|Browse steamed buns on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Wonton|https://thewoksoflife.com/?s=wonton|Chinese recipes|Browse wonton on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Sichuan|https://thewoksoflife.com/?s=sichuan|Chinese recipes|Browse sichuan on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Cantonese|https://thewoksoflife.com/?s=cantonese|Chinese recipes|Browse cantonese on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Pork|https://thewoksoflife.com/?s=pork|Chinese recipes|Browse pork on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Bok Choy|https://thewoksoflife.com/?s=bok+choy|Chinese recipes|Browse bok choy on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Egg|https://thewoksoflife.com/?s=egg|Chinese recipes|Browse egg on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Scallion Pancake|https://thewoksoflife.com/?s=scallion+pancake|Chinese recipes|Browse scallion pancake on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Sesame|https://thewoksoflife.com/?s=sesame|Chinese recipes|Browse sesame on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Shrimp|https://thewoksoflife.com/?s=shrimp|Chinese recipes|Browse shrimp on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Lo Mein|https://thewoksoflife.com/?s=lo+mein|Chinese recipes|Browse lo mein on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Fried Noodles|https://thewoksoflife.com/?s=fried+noodles|Chinese recipes|Browse fried noodles on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Sticky Rice|https://thewoksoflife.com/?s=sticky+rice|Chinese recipes|Browse sticky rice on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Spring Rolls|https://thewoksoflife.com/?s=spring+rolls|Chinese recipes|Browse spring rolls on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese · Moon Cake|https://thewoksoflife.com/?s=moon+cake|Chinese recipes|Browse moon cake on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Italian · Lasagna|https://www.themediterraneandish.com/?s=lasagna|Italian recipes|Browse lasagna on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Gnocchi|https://www.themediterraneandish.com/?s=gnocchi|Italian recipes|Browse gnocchi on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Bruschetta|https://www.themediterraneandish.com/?s=bruschetta|Italian recipes|Browse bruschetta on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Tiramisu|https://www.themediterraneandish.com/?s=tiramisu|Italian recipes|Browse tiramisu on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Focaccia|https://www.themediterraneandish.com/?s=focaccia|Italian recipes|Browse focaccia on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Ravioli|https://www.themediterraneandish.com/?s=ravioli|Italian recipes|Browse ravioli on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Pesto|https://www.themediterraneandish.com/?s=pesto|Italian recipes|Browse pesto on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Bolognese|https://www.themediterraneandish.com/?s=bolognese|Italian recipes|Browse bolognese on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Carbonara|https://www.themediterraneandish.com/?s=carbonara|Italian recipes|Browse carbonara on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Arancini|https://www.themediterraneandish.com/?s=arancini|Italian recipes|Browse arancini on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Polenta|https://www.themediterraneandish.com/?s=polenta|Italian recipes|Browse polenta on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Minestrone|https://www.themediterraneandish.com/?s=minestrone|Italian recipes|Browse minestrone on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Gelato|https://www.themediterraneandish.com/?s=gelato|Italian recipes|Browse gelato on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Cannoli|https://www.themediterraneandish.com/?s=cannoli|Italian recipes|Browse cannoli on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Osso Buco|https://www.themediterraneandish.com/?s=osso+buco|Italian recipes|Browse osso buco on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Seafood|https://www.themediterraneandish.com/?s=seafood|Italian recipes|Browse seafood on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Salad|https://www.themediterraneandish.com/?s=salad|Italian recipes|Browse salad on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Bread|https://www.themediterraneandish.com/?s=bread|Italian recipes|Browse bread on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Eggplant|https://www.themediterraneandish.com/?s=eggplant|Italian recipes|Browse eggplant on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Tomato|https://www.themediterraneandish.com/?s=tomato|Italian recipes|Browse tomato on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Basil|https://www.themediterraneandish.com/?s=basil|Italian recipes|Browse basil on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Ricotta|https://www.themediterraneandish.com/?s=ricotta|Italian recipes|Browse ricotta on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Zucchini|https://www.themediterraneandish.com/?s=zucchini|Italian recipes|Browse zucchini on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Meatballs|https://www.themediterraneandish.com/?s=meatballs|Italian recipes|Browse meatballs on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian · Stuffed Peppers|https://www.themediterraneandish.com/?s=stuffed+peppers|Italian recipes|Browse stuffed peppers on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Persian · Persian|https://www.unicornsinthekitchen.com/?s=persian|Persian recipes|Browse persian on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Tahdig|https://www.unicornsinthekitchen.com/?s=tahdig|Persian recipes|Browse tahdig on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Ghormeh Sabzi|https://www.unicornsinthekitchen.com/?s=ghormeh+sabzi|Persian recipes|Browse ghormeh sabzi on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Fesenjan|https://www.unicornsinthekitchen.com/?s=fesenjan|Persian recipes|Browse fesenjan on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Zereshk Polo|https://www.unicornsinthekitchen.com/?s=zereshk+polo|Persian recipes|Browse zereshk polo on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Kabab|https://www.unicornsinthekitchen.com/?s=kabab|Persian recipes|Browse kabab on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Ash Reshteh|https://www.unicornsinthekitchen.com/?s=ash+reshteh|Persian recipes|Browse ash reshteh on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Saffron Rice|https://www.unicornsinthekitchen.com/?s=saffron+rice|Persian recipes|Browse saffron rice on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Kuku Sabzi|https://www.unicornsinthekitchen.com/?s=kuku+sabzi|Persian recipes|Browse kuku sabzi on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Shirin Polo|https://www.unicornsinthekitchen.com/?s=shirin+polo|Persian recipes|Browse shirin polo on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Baghali Polo|https://www.unicornsinthekitchen.com/?s=baghali+polo|Persian recipes|Browse baghali polo on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Joojeh Kabab|https://www.unicornsinthekitchen.com/?s=joojeh+kabab|Persian recipes|Browse joojeh kabab on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Kashke Bademjan|https://www.unicornsinthekitchen.com/?s=kashke+bademjan|Persian recipes|Browse kashke bademjan on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Mast O Khiar|https://www.unicornsinthekitchen.com/?s=mast+o+khiar|Persian recipes|Browse mast o khiar on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Dolmeh|https://www.unicornsinthekitchen.com/?s=dolmeh|Persian recipes|Browse dolmeh on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Adas Polo|https://www.unicornsinthekitchen.com/?s=adas+polo|Persian recipes|Browse adas polo on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Loobia Polo|https://www.unicornsinthekitchen.com/?s=loobia+polo|Persian recipes|Browse loobia polo on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Soup|https://www.unicornsinthekitchen.com/?s=soup|Persian recipes|Browse soup on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Stew|https://www.unicornsinthekitchen.com/?s=stew|Persian recipes|Browse stew on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Lamb|https://www.unicornsinthekitchen.com/?s=lamb|Persian recipes|Browse lamb on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Pistachio|https://www.unicornsinthekitchen.com/?s=pistachio|Persian recipes|Browse pistachio on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Cardamom|https://www.unicornsinthekitchen.com/?s=cardamom|Persian recipes|Browse cardamom on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Sholeh Zard|https://www.unicornsinthekitchen.com/?s=sholeh+zard|Persian recipes|Browse sholeh zard on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Eggplant|https://www.unicornsinthekitchen.com/?s=eggplant|Persian recipes|Browse eggplant on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Herbs|https://www.unicornsinthekitchen.com/?s=herbs|Persian recipes|Browse herbs on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Rosewater|https://www.unicornsinthekitchen.com/?s=rosewater|Persian recipes|Browse rosewater on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Yogurt|https://www.unicornsinthekitchen.com/?s=yogurt|Persian recipes|Browse yogurt on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian · Lentils|https://www.unicornsinthekitchen.com/?s=lentils|Persian recipes|Browse lentils on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Mediterranean · Tabbouleh|https://www.themediterraneandish.com/?s=tabbouleh|Mediterranean recipes|Browse tabbouleh on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Baba Ganoush|https://www.themediterraneandish.com/?s=baba+ganoush|Mediterranean recipes|Browse baba ganoush on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Shawarma|https://www.themediterraneandish.com/?s=shawarma|Mediterranean recipes|Browse shawarma on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Greek Salad|https://www.themediterraneandish.com/?s=greek+salad|Mediterranean recipes|Browse greek salad on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Tzatziki|https://www.themediterraneandish.com/?s=tzatziki|Mediterranean recipes|Browse tzatziki on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Mezze|https://www.themediterraneandish.com/?s=mezze|Mediterranean recipes|Browse mezze on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Olives|https://www.themediterraneandish.com/?s=olives|Mediterranean recipes|Browse olives on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Fish|https://www.themediterraneandish.com/?s=fish|Mediterranean recipes|Browse fish on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Lentils|https://www.themediterraneandish.com/?s=lentils|Mediterranean recipes|Browse lentils on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Pita|https://www.themediterraneandish.com/?s=pita|Mediterranean recipes|Browse pita on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Feta|https://www.themediterraneandish.com/?s=feta|Mediterranean recipes|Browse feta on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Baklava|https://www.themediterraneandish.com/?s=baklava|Mediterranean recipes|Browse baklava on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Artichoke|https://www.themediterraneandish.com/?s=artichoke|Mediterranean recipes|Browse artichoke on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Soup|https://www.themediterraneandish.com/?s=soup|Mediterranean recipes|Browse soup on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Grilled Vegetables|https://www.themediterraneandish.com/?s=grilled+vegetables|Mediterranean recipes|Browse grilled vegetables on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Spanakopita|https://www.themediterraneandish.com/?s=spanakopita|Mediterranean recipes|Browse spanakopita on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Moussaka|https://www.themediterraneandish.com/?s=moussaka|Mediterranean recipes|Browse moussaka on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Orzo|https://www.themediterraneandish.com/?s=orzo|Mediterranean recipes|Browse orzo on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Chickpeas|https://www.themediterraneandish.com/?s=chickpeas|Mediterranean recipes|Browse chickpeas on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean · Tomatoes|https://www.themediterraneandish.com/?s=tomatoes|Mediterranean recipes|Browse tomatoes on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+African · Jollof Rice|https://www.africanbites.com/?s=jollof+rice|African recipes|Browse jollof rice on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Suya|https://www.africanbites.com/?s=suya|African recipes|Browse suya on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Egusi Soup|https://www.africanbites.com/?s=egusi+soup|African recipes|Browse egusi soup on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Peanut Stew|https://www.africanbites.com/?s=peanut+stew|African recipes|Browse peanut stew on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Berbere|https://www.africanbites.com/?s=berbere|African recipes|Browse berbere on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Injera|https://www.africanbites.com/?s=injera|African recipes|Browse injera on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Peri Peri|https://www.africanbites.com/?s=peri+peri|African recipes|Browse peri peri on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Harissa|https://www.africanbites.com/?s=harissa|African recipes|Browse harissa on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Plantain|https://www.africanbites.com/?s=plantain|African recipes|Browse plantain on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Okra|https://www.africanbites.com/?s=okra|African recipes|Browse okra on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Goat Curry|https://www.africanbites.com/?s=goat+curry|African recipes|Browse goat curry on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Chicken Stew|https://www.africanbites.com/?s=chicken+stew|African recipes|Browse chicken stew on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Fish|https://www.africanbites.com/?s=fish|African recipes|Browse fish on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Cassava|https://www.africanbites.com/?s=cassava|African recipes|Browse cassava on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Mandazi|https://www.africanbites.com/?s=mandazi|African recipes|Browse mandazi on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Samosa|https://www.africanbites.com/?s=samosa|African recipes|Browse samosa on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Beef|https://www.africanbites.com/?s=beef|African recipes|Browse beef on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Vegetables|https://www.africanbites.com/?s=vegetables|African recipes|Browse vegetables on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Spice|https://www.africanbites.com/?s=spice|African recipes|Browse spice on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Soup|https://www.africanbites.com/?s=soup|African recipes|Browse soup on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Bread|https://www.africanbites.com/?s=bread|African recipes|Browse bread on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Dessert|https://www.africanbites.com/?s=dessert|African recipes|Browse dessert on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Coconut|https://www.africanbites.com/?s=coconut|African recipes|Browse coconut on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African · Stew|https://www.africanbites.com/?s=stew|African recipes|Browse stew on a recipe publisher|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+Parsi & Persian · Vegetables|https://www.parsicuisine.com/?s=vegetables|Parsi & Persian|Explore vegetables on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Parsi
+Africa & world cultures · Eggs|https://www.africanbites.com/?s=eggs|Africa & world cultures|Explore eggs on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+Cooking archives & references · Vegetables|https://www.bbcgoodfood.com/?s=vegetables|Cooking archives & references|Explore vegetables on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Cooking archives & references · Eggs|https://www.bbcgoodfood.com/?s=eggs|Cooking archives & references|Explore eggs on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Cooking archives & references · Family Dinner|https://www.bbcgoodfood.com/?s=family+dinner|Cooking archives & references|Explore family dinner on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Global
+Japanese recipes · Vegetables|https://www.justonecookbook.com/?s=vegetables|Japanese recipes|Explore vegetables on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Japanese
+Chinese recipes · Vegetables|https://thewoksoflife.com/?s=vegetables|Chinese recipes|Explore vegetables on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese recipes · Eggs|https://thewoksoflife.com/?s=eggs|Chinese recipes|Explore eggs on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Chinese recipes · Family Dinner|https://thewoksoflife.com/?s=family+dinner|Chinese recipes|Explore family dinner on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Chinese
+Italian recipes · Vegetables|https://www.themediterraneandish.com/?s=vegetables|Italian recipes|Explore vegetables on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian recipes · Eggs|https://www.themediterraneandish.com/?s=eggs|Italian recipes|Explore eggs on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian recipes · Family Dinner|https://www.themediterraneandish.com/?s=family+dinner|Italian recipes|Explore family dinner on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian recipes · Dessert|https://www.themediterraneandish.com/?s=dessert|Italian recipes|Explore dessert on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Italian recipes · Sauce|https://www.themediterraneandish.com/?s=sauce|Italian recipes|Explore sauce on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Italian
+Persian recipes · Vegetables|https://www.unicornsinthekitchen.com/?s=vegetables|Persian recipes|Explore vegetables on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Persian recipes · Eggs|https://www.unicornsinthekitchen.com/?s=eggs|Persian recipes|Explore eggs on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Persian
+Mediterranean recipes · Spiced Rice|https://www.themediterraneandish.com/?s=spiced+rice|Mediterranean recipes|Explore spiced rice on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean recipes · Traditional|https://www.themediterraneandish.com/?s=traditional|Mediterranean recipes|Explore traditional on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean recipes · Stuffed|https://www.themediterraneandish.com/?s=stuffed|Mediterranean recipes|Explore stuffed on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean recipes · Lentil|https://www.themediterraneandish.com/?s=lentil|Mediterranean recipes|Explore lentil on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean recipes · Holiday|https://www.themediterraneandish.com/?s=holiday|Mediterranean recipes|Explore holiday on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean recipes · Roast|https://www.themediterraneandish.com/?s=roast|Mediterranean recipes|Explore roast on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean recipes · Herbs|https://www.themediterraneandish.com/?s=herbs|Mediterranean recipes|Explore herbs on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean recipes · Sweet|https://www.themediterraneandish.com/?s=sweet|Mediterranean recipes|Explore sweet on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean recipes · Breakfast|https://www.themediterraneandish.com/?s=breakfast|Mediterranean recipes|Explore breakfast on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+Mediterranean recipes · Chutney|https://www.themediterraneandish.com/?s=chutney|Mediterranean recipes|Explore chutney on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|Mediterranean
+African recipes · Family Dinner|https://www.africanbites.com/?s=family+dinner|African recipes|Explore family dinner on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African recipes · Sauce|https://www.africanbites.com/?s=sauce|African recipes|Explore sauce on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African recipes · Spiced Rice|https://www.africanbites.com/?s=spiced+rice|African recipes|Explore spiced rice on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African recipes · Traditional|https://www.africanbites.com/?s=traditional|African recipes|Explore traditional on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African recipes · Stuffed|https://www.africanbites.com/?s=stuffed|African recipes|Explore stuffed on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African
+African recipes · Lentil|https://www.africanbites.com/?s=lentil|African recipes|Explore lentil on the source recipe site|Non-veg,Veg,Beef,Fish,Chicken,Breakfast,Dessert,Baking,Snacks|African`;
+const sources=raw.trim().split('\n').map((line,i)=>{const [name,url,section,description,kind,region]=line.split('|');return{id:i,name,url,section,description,types:kind.split(','),cuisines:region.split(',')}}).filter(x=>{try{return new URL(x.url).protocol==='https:'}catch{return false}});
+const $=id=>document.getElementById(id);let type='All',onlyFav=false;let favs=new Set();try{favs=new Set(JSON.parse(localStorage.getItem('recipe-links-favourites')||'[]'))}catch{};
+const h=(tag,cl,txt)=>{const e=document.createElement(tag);if(cl)e.className=cl;if(txt!==undefined)e.textContent=txt;return e};
+function saved(){try{localStorage.setItem('recipe-links-favourites',JSON.stringify([...favs]))}catch{}}
+function renderTypes(){const root=$('types');root.replaceChildren();types.forEach(t=>{const b=h('button','chip',t);b.type='button';b.setAttribute('aria-pressed',String(type===t));b.onclick=()=>{type=t;renderTypes();render()};root.append(b)})}
+const selector=$('cuisine');const quick=$('cuisinequick');['All cuisines','Indian','Parsi','Japanese','Chinese','Italian','Persian','Mediterranean','African','Thai','Korean'].forEach(c=>{const b=h('button','cuisinebtn',c);b.type='button';b.onclick=()=>{selector.value=c;refreshCuisine();render()};b.dataset.cuisine=c;quick.append(b)});function refreshCuisine(){quick.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.cuisine===selector.value)))}cuisines.forEach(c=>{const o=h('option','',c);o.value=c;selector.append(o)});
+function render(){const q=$('search').value.trim().toLocaleLowerCase();$('clearSearch').hidden=!q;const cuisine=selector.value;const found=sources.filter(s=>(type==='All'||s.types.includes(type))&&(cuisine==='All cuisines'||s.cuisines.includes(cuisine))&&(!onlyFav||favs.has(s.url))&&(!q||[s.name,s.description,s.section,...s.types,...s.cuisines].join(' ').toLocaleLowerCase().includes(q)));const sections=[...new Set(found.map(s=>s.section))];$('shown').textContent=found.length;$('groups').textContent=sections.length;$('favCount').textContent=favs.size;const root=$('results');root.replaceChildren();if(!found.length){const box=h('div','empty');box.append(h('h2','',onlyFav?'No favourites match yet':'No recipe links found'),h('p','','Try another search or clear the filters.'));root.append(box);return}sections.forEach(section=>{const list=found.filter(s=>s.section===section);const block=h('section','section');const head=h('div','sectionhead');head.append(h('h2','',section),h('span','count',`${list.length} sources`));block.append(head);const cards=h('div','cards');list.forEach(s=>{const card=h('article','card');const a=h('a');a.href=s.url;a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('aria-label',`Visit ${s.name} (opens new tab)`);a.append(h('div','cardtitle',s.name+' ↗'),h('div','desc',s.description),h('div','site',new URL(s.url).hostname.replace(/^www\./,'')));const star=h('button','star',favs.has(s.url)?'★':'☆');star.type='button';star.setAttribute('aria-label',favs.has(s.url)?'Remove favourite':'Add favourite');star.title=star.getAttribute('aria-label');star.onclick=()=>{favs.has(s.url)?favs.delete(s.url):favs.add(s.url);saved();render()};card.append(a,star);cards.append(card)});block.append(cards);root.append(block)})}
+$('search').addEventListener('input',render);$('clearSearch').onclick=()=>{$('search').value='';render();$('search').focus()};selector.addEventListener('change',()=>{refreshCuisine();render()});$('reset').onclick=()=>{type='All';selector.value='All cuisines';$('search').value='';onlyFav=false;$('onlyFaves').setAttribute('aria-pressed','false');renderTypes();refreshCuisine();render()};$('onlyFaves').onclick=()=>{onlyFav=!onlyFav;$('onlyFaves').setAttribute('aria-pressed',String(onlyFav));render()};renderTypes();refreshCuisine();render();
+</script>
+</body></html>
